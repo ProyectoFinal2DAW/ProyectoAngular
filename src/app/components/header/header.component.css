@@ -1,5 +1,5 @@
 .header {
-    height: 60px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -7,7 +7,7 @@
     padding: 20px;
 }
 .logoHeader {
-    width: 150px;
+    width: 130px;
 }
 .menuUsuario {
     width: 50px;
