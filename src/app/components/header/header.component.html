@@ -1,0 +1,54 @@
+<div class="header">
+
+    <img class="logoHeader" src="images/logoMonlab3.png" alt="Logo" />
+
+    <div class="divHeaderLinks">
+        <div class="header_nav">
+
+            <a href="#">
+                <p>Home</p>
+            </a>
+
+            <p>|</p>
+
+            <a href="#">
+                <p>Experimentos</p>
+            </a>
+
+            <p>|</p>
+
+            <a href="#">
+                <p>Clases</p>
+            </a>
+
+        </div>
+    </div>
+
+
+
+    <button class="buttonUsuarioHeader" mat-button [matMenuTriggerFor]="menu">
+        <img class="menuUsuario" src="icons/circle-user-regular.svg">
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item class="itemMenu">
+            <img class="iconItemMenu" src="icons/gear-solid.svg">
+            <label>General</label>
+        </button>
+        <button mat-menu-item>
+            <img class="iconItemMenu" src="icons/user-solid.svg">
+            <label>Perfil</label>
+        </button>
+        <button mat-menu-item>
+            <img class="iconItemMenu" src="icons/lock-solid.svg">
+            <label>Cuenta</label>
+        </button>
+        <button mat-menu-item>
+            <img class="iconItemMenu" src="icons/bell-solid.svg">
+            <label>Notificaciones</label>
+        </button>
+    </mat-menu>
+
+
+
+</div>
