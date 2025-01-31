@@ -8,6 +8,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ProfileComponent } from './components/profile/profile.component';
 import { VideoExperimentsComponent } from './components/video-experiments/video-experiments.component';
 import { ExperimentsComponent } from './components/experiments/experiments.component';
+import { ClasesComponent } from './components/clases/clases.component';
 
 export const routes: Routes = [
   { path: '', component: AppComponent }, // Ruta principal (index)
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent }, // Ruta para /home
   { path: 'userProfile', component: ProfileComponent }, // Ruta para /userProfile
   { path: 'videoExperiments', component: VideoExperimentsComponent }, // Ruta para /userProfile
-  { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /userProfile
+  { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
+  { path: 'clases', component: ClasesComponent }, // Ruta para /clases
 
 ];
