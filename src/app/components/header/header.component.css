@@ -1,36 +1,3 @@
-.header {
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-}
-.logoHeader {
-    width: 130px;
-}
-.menuUsuario {
-    width: 50px;
-}
-.header_nav {
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-around;
-}
-.buttonUsuarioHeader {
-    width: 10%;
-    height: 100%;
-}
-.divHeaderLinks {
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-}
-a {
-    text-decoration: none;
-}
 p {
     font-family: 'Jockey One', sans-serif;
     font-size: 18px;
@@ -39,15 +6,8 @@ p {
 
 .itemMenu {
     width: 100%;
-    
-    
-   
 }
 .iconItemMenu {
     width: 20px;
     margin-right: 15px;
-    
-}
-h4 {
-    width: 50%;
 }
