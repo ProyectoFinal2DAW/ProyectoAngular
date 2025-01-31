@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './item-experiment.component.css'
 })
 export class ItemExperimentComponent {
-
+  nombreExperimento: string = "";
+  imagenExperimento: string = "";
 }
