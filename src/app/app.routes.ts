@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { VideoExperimentsComponent } from './components/video-experiments/video-experiments.component';
 import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { ClasesComponent } from './components/clases/clases.component';
+import { ConfigurationsComponent } from './components/configurations/configurations.component';
 
 export const routes: Routes = [
   { path: '', component: AppComponent }, // Ruta principal (index)
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'videoExperiments', component: VideoExperimentsComponent }, // Ruta para /userProfile
   { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
   { path: 'clases', component: ClasesComponent }, // Ruta para /clases
+  { path: 'configuration', component: ConfigurationsComponent }, // Ruta para /configuration
 
 ];

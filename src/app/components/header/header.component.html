@@ -1,23 +1,25 @@
-<div class="h-[80px] flex flex-row justify-space-between  p-3">
+<div class="h-[80px] flex flex-row justify-space-between p-3 bg-blue-800">
 
-    <img src="images/logoMonlab3.png" alt="Logo" />
+    <a href="/home" class="w-32">
+        <img src="images/logoMonlab3.png" alt="Logo" />
+    </a>
 
     <div class="w-full flex justify-end items-center ">
         <div class="w-full flex justify-around lg:w-[50%]">
 
-            <a class="no-underline" href="#">
+            <a class="no-underline" href="/home">
                 <p>Home</p>
             </a>
 
             <p>|</p>
 
-            <a class="no-underline" href="#">
+            <a class="no-underline" href="/experimentos">
                 <p>Experimentos</p>
             </a>
 
             <p>|</p>
 
-            <a class="no-underline" href="#">
+            <a class="no-underline" href="/clases">
                 <p>Clases</p>
             </a>
 
@@ -31,22 +33,22 @@
     </button>
 
     <mat-menu #menu="matMenu">
-        <button mat-menu-item class="itemMenu">
+        <a mat-menu-item href="/configuration" class="itemMenu">
             <img class="iconItemMenu" src="icons/gear-solid.svg">
             <label>General</label>
-        </button>
-        <button mat-menu-item>
+        </a>
+        <a mat-menu-item href="/userProfile">
             <img class="iconItemMenu" src="icons/user-solid.svg">
             <label>Perfil</label>
-        </button>
-        <button mat-menu-item>
+        </a>
+        <a mat-menu-item>
             <img class="iconItemMenu" src="icons/lock-solid.svg">
             <label>Cuenta</label>
-        </button>
-        <button mat-menu-item>
+        </a>
+        <a mat-menu-item>
             <img class="iconItemMenu" src="icons/bell-solid.svg">
             <label>Notificaciones</label>
-        </button>
+        </a>
     </mat-menu>
 
 
