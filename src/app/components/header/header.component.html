@@ -1,23 +1,23 @@
-<div class="h-[80px] flex flex-row justify-space-between bg-blue-700 p-3">
+<div class="h-[80px] flex flex-row justify-space-between  p-3">
 
-    <img class="logoHeader" src="images/logoMonlab3.png" alt="Logo" />
+    <img src="images/logoMonlab3.png" alt="Logo" />
 
-    <div class="divHeaderLinks">
-        <div class="header_nav">
+    <div class="w-full flex justify-end items-center ">
+        <div class="w-full flex justify-around lg:w-[50%]">
 
-            <a href="#">
+            <a class="no-underline" href="#">
                 <p>Home</p>
             </a>
 
             <p>|</p>
 
-            <a href="#">
+            <a class="no-underline" href="#">
                 <p>Experimentos</p>
             </a>
 
             <p>|</p>
 
-            <a href="#">
+            <a class="no-underline" href="#">
                 <p>Clases</p>
             </a>
 
@@ -26,8 +26,8 @@
 
 
 
-    <button class="buttonUsuarioHeader" mat-button [matMenuTriggerFor]="menu">
-        <img class="menuUsuario" src="icons/circle-user-regular.svg">
+    <button class="w-20"  [matMenuTriggerFor]="menu">
+        <img class="w-3/4" src="icons/circle-user-regular.svg">
     </button>
 
     <mat-menu #menu="matMenu">
