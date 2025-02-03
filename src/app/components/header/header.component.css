@@ -34,7 +34,7 @@ a {
 p {
     font-family: 'Jockey One', sans-serif;
     font-size: 18px;
-    color: blue;
+    color: rgb(255, 255, 255);
 }
 
 .itemMenu {
