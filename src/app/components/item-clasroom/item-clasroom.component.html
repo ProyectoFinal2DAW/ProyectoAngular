@@ -1,13 +1,28 @@
-<div class="w-64 rounded-lg border overflow-hidden">
+<div class="w-72 rounded-lg border overflow-hidden">
 
-    <div class=" w-64 bg-red-300 p-5">
-        <h1 class="text-xl">{{ nombre_clases }}</h1>
+    <div class="relative w-full bg-red-300 p-5">
+        <!-- Imagen de perfil redonda en la esquina superior derecha -->
+        <div class="absolute top-0 right-0 mt-4 mr-4 w-20 h-20 bg-white rounded-full overflow-hidden z-10">
+            <img class="w-full h-full object-cover" src="images/persona.jpg" alt="Imagen de perfil">
+        </div>
+    
+        <!-- Contenido -->
+        <h1 class="text-2xl">{{ nombre_clases }}</h1>
         <h4 class="mt-1">Curso</h4>
         <h5>Profe</h5>
     </div>
+    
 
-    <div class="flex justify-center">
-        <h4 class="px-5 py-8">{{ descripcion_clases }}</h4>
+    <div class="w-full h-40 flex p-4">
+        <h4 class="">{{ descripcion_clases }}</h4>
+    </div>
+
+    <hr>
+
+    <div class="w-full flex flex-row justify-end p-4">
+        <a>
+            <img class="w-6" src="icons/file-pen-solid.svg">
+        </a>
     </div>
 
 </div>
