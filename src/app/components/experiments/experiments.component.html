@@ -2,10 +2,10 @@
 
 <div class="mt-[150px] flex flex-wrap flex-row gap-5 items-center justify-center">
 
-    <app-item-experiment class="hover:bg-gray-200 hover:shadow-lg transition-all duration-300"></app-item-experiment>
-    <app-item-experiment class="hover:bg-gray-200 hover:shadow-lg transition-all duration-300"></app-item-experiment>
-    <app-item-experiment class="hover:bg-gray-200 hover:shadow-lg transition-all duration-300"></app-item-experiment>
-    <app-item-experiment class="hover:bg-gray-200 hover:shadow-lg transition-all duration-300"></app-item-experiment>
-    <app-item-experiment class="hover:bg-gray-200 hover:shadow-lg transition-all duration-300"></app-item-experiment>
+    
+
+    @for (experiment of listExperiments; track $index) {
+        <app-item-experiment class="hover:bg-gray-200 hover:shadow-lg transition-all duration-300" [nombreExperimento]=experiment.nombre [imagenExperimento]=experiment.imagen></app-item-experiment>
+    }
 
 </div>

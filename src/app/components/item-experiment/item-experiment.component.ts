@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-item-experiment',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './item-experiment.component.css'
 })
 export class ItemExperimentComponent {
-  nombreExperimento: string = "";
-  imagenExperimento: string = "";
+  @Input() nombreExperimento: string = "";
+  @Input() imagenExperimento: string = "";
 }
