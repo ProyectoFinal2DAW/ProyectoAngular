@@ -10,6 +10,7 @@ import { VideoExperimentsComponent } from './components/video-experiments/video-
 import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { ClasesComponent } from './components/clases/clases.component';
 import { ConfigurationsComponent } from './components/configurations/configurations.component';
+import { BoxQuestionFormComponentComponent } from './components/box-question-form-component/box-question-form-component.component';
 
 export const routes: Routes = [
   { path: '', component: AppComponent }, // Ruta principal (index)
@@ -22,5 +23,7 @@ export const routes: Routes = [
   { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
   { path: 'clases', component: ClasesComponent }, // Ruta para /clases
   { path: 'configuration', component: ConfigurationsComponent }, // Ruta para /configuration
+
+  { path: 'form', component: BoxQuestionFormComponentComponent }, // Ruta para /configuration
 
 ];
