@@ -11,6 +11,7 @@ import { ExperimentsComponent } from './components/experiments/experiments.compo
 import { ClasesComponent } from './components/clases/clases.component';
 import { ConfigurationsComponent } from './components/configurations/configurations.component';
 import { BoxQuestionFormComponentComponent } from './components/box-question-form-component/box-question-form-component.component';
+import { ContainerClassComponent } from './components/container-class/container-class.component';
 
 export const routes: Routes = [
   { path: '', component: AppComponent }, // Ruta principal (index)
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'configuration', component: ConfigurationsComponent }, // Ruta para /configuration
 
   { path: 'form', component: BoxQuestionFormComponentComponent }, // Ruta para /configuration
+  { path: 'clase', component: ContainerClassComponent }, // Ruta para /configuration
 
 ];
