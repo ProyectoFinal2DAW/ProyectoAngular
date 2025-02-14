@@ -30,3 +30,7 @@ body { margin: 0; font-family: Roboto, "Jockey One, Helvetica Neue", sans-serif;
     font-weight: bold;
   }
   
+  .icon-class {
+      width: 24px;
+      height: 24px;
+  }

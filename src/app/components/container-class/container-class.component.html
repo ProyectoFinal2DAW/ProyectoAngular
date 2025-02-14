@@ -1,31 +1,44 @@
 <div class="mt-[80px] p-10 flex flex-col overflow-auto">
 
 
-    <h1 class="w-full text-2xl text-center">Clase 1</h1>
+
+    <div class="w-full h-[10rem] flex justify-end p-5 rounded-xl divCabeceraClase">
+
+        <h1 class="w-full text-4xl text-white">Tema 1</h1>
+
+    </div>
+
 
     <!--Div temario-->
     <div class="w-full mt-8">
 
-        <h2 class="text-xl">Teoría</h2>
+        <h2 class="text-3xl">Teoría</h2>
         <hr>
         <br>
 
         <!--Contenido teoria-->
-        <div class="w-full">
+        <div class="w-full flex flex-col gap-4">
+
+            <app-layout-list-element-of-class></app-layout-list-element-of-class>
+            <app-layout-list-element-of-class></app-layout-list-element-of-class>
+            <app-layout-list-element-of-class></app-layout-list-element-of-class>
+
 
         </div>
 
     </div>
 
-    <!--Div Videos-->
-    <div class="w-full">
+    
 
-        <h2 class="text-xl">Vídeos</h2>
+    <!--Div Videos-->
+    <div class="w-full mt-10">
+
+        <h2 class="text-3xl">Vídeos</h2>
         <hr>
         <br>
 
         <!--Contenido videos-->
-        <div class="flex flex-row flex-wrap gap-5">
+        <div class="flex flex-row flex-wrap justify-around gap-3 lg:justify-start">
 
             <app-item-video-list-class-content></app-item-video-list-class-content>
             <app-item-video-list-class-content></app-item-video-list-class-content>
@@ -38,15 +51,16 @@
     </div>
 
     <!--Div examenes-->
-    <div class="w-full">
+    <div class="w-full mt-10">
 
-        <h2 class="text-xl">Exámenes</h2>
+        <h2 class="text-3xl">Exámenes</h2>
         <hr>
         <br>
 
         <!--Contenido examenes-->
-        <div>
-
+        <div class="w-full flex flex-col gap-4">
+            <app-layout-list-element-of-class></app-layout-list-element-of-class>
+            <app-layout-list-element-of-class></app-layout-list-element-of-class>
         </div>
         
     </div>

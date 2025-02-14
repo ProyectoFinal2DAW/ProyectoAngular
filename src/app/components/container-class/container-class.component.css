@@ -1,0 +1,6 @@
+.divCabeceraClase {
+    background-image: url("../../../../public/images/fondoClase.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
