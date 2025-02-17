@@ -1,4 +1,4 @@
-<div class="mt-[80px] p-10 flex flex-col overflow-auto">
+<div class="mt-[80px] p-10 flex flex-col gap-8 overflow-auto">
 
 
 
@@ -10,9 +10,15 @@
 
 
     <!--Div temario-->
-    <div class="w-full mt-8">
+    <div class="w-full">
 
-        <h2 class="text-3xl">Teoría</h2>
+        <div class="w-full flex flex-row items-center gap-5 p-2">
+            <h2 class="text-3xl">Teoría</h2>
+            <button class="hover:bg-blue-100 p-2 rounded-xl">
+                <img src="icons/plus-solid-black.svg" class="icon-class">
+            </button>
+        </div>
+
         <hr>
         <br>
 
@@ -28,12 +34,19 @@
 
     </div>
 
-    
+
 
     <!--Div Videos-->
-    <div class="w-full mt-10">
+    <div class="w-full">
 
-        <h2 class="text-3xl">Vídeos</h2>
+        <div class="w-full flex flex-row items-center gap-5 p-2">
+            <h2 class="text-3xl">Vídeos</h2>
+            <button class="hover:bg-blue-100 p-2 rounded-xl">
+                <img src="icons/plus-solid-black.svg" class="icon-class">
+            </button>
+        </div>
+
+
         <hr>
         <br>
 
@@ -51,9 +64,15 @@
     </div>
 
     <!--Div examenes-->
-    <div class="w-full mt-10">
+    <div class="w-full">
 
-        <h2 class="text-3xl">Exámenes</h2>
+        <div class="w-full flex flex-row items-center gap-5 p-2">
+            <h2 class="text-3xl">Exámenes</h2>
+            <button class="hover:bg-blue-100 p-2 rounded-xl">
+                <img src="icons/plus-solid-black.svg" class="icon-class">
+            </button>
+        </div>
+
         <hr>
         <br>
 
@@ -62,7 +81,7 @@
             <app-layout-list-element-of-class></app-layout-list-element-of-class>
             <app-layout-list-element-of-class></app-layout-list-element-of-class>
         </div>
-        
+
     </div>
 
 </div>

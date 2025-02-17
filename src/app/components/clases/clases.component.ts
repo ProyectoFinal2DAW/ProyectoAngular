@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ItemClasroomComponent } from "../item-clasroom/item-clasroom.component";
 import { Class } from '../../../interfaces/class';
+import { CuadroDialogoCrearExperimentoComponent } from "../cuadro-dialogo-crear-experimento/cuadro-dialogo-crear-experimento.component";
+import { CuadroDialogoStandardComponent } from "../cuadro-dialogo-standard/cuadro-dialogo-standard.component";
 
 @Component({
   selector: 'app-clases',
-  imports: [ItemClasroomComponent],
+  imports: [ItemClasroomComponent, CuadroDialogoCrearExperimentoComponent, CuadroDialogoStandardComponent],
   templateUrl: './clases.component.html',
   styleUrl: './clases.component.css'
 })
