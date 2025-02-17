@@ -10,4 +10,7 @@ import { LayoutListElementOfClassComponent } from "../layout-list-element-of-cla
 })
 export class ContainerClassComponent {
 
+  nombreClase: string = "Clase 1"
+
+
 }
