@@ -10,7 +10,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
   }
   
   .right-section {
@@ -50,6 +49,7 @@
     height: 35px;
     border-radius: 5px;
     font-size: medium;
+    border: gray 1px solid;
   }
  
   .tituloLogin {
