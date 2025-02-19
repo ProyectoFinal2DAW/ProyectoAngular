@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { Login1Component } from './components/login1/login1.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { VideoExperimentsComponent } from './components/video-experiments/video-experiments.component';
 import { ExperimentsComponent } from './components/experiments/experiments.component';
