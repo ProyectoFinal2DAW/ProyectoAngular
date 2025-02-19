@@ -5,8 +5,8 @@
   }
 
   .imagenUserProfile {
-    width: 25%;
-    height: 25%;
+    width: 20%;
+    height: 20%;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -17,7 +17,7 @@
     padding: 20px;
     border: solid 2px gray;
     border-radius: 5px;
-    margin-top: 40px;
+    margin-top: 90px;
   }
   .contenedorSuperiorProfile {
     display: flex;
@@ -27,4 +27,42 @@
   .buttonCambiarFoto {
     margin-left: 20px;
   }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 100%;
+  }
   
+  .buttonEditar {
+    background-color: aquamarine;
+    padding: 10px;
+    cursor: pointer;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 15px;
+  }
+
+  .buttonEditar:hover {
+    background-color: aqua;
+  }
+
+  .buttonGuardar {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.buttonCancelar {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
