@@ -6,7 +6,7 @@ import { CuadroDialogoStandardComponent } from "../cuadro-dialogo-standard/cuadr
 
 @Component({
   selector: 'app-clases',
-  imports: [ItemClasroomComponent, CuadroDialogoCrearExperimentoComponent, CuadroDialogoStandardComponent],
+  imports: [ItemClasroomComponent],
   templateUrl: './clases.component.html',
   styleUrl: './clases.component.css'
 })
