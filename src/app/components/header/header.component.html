@@ -1,26 +1,20 @@
-<div class="h-[80px] flex flex-row justify-space-between items-center p-3 bg-blue-800">
+<div class="h-[80px] flex flex-row justify-space-between items-center p-3 ">
 
     <a href="/home" class="w-32">
         <img src="images/logoMonlab3.png" alt="Logo" />
     </a>
 
-    <div class="w-full flex justify-end items-center ">
-        <div class="w-full flex justify-around lg:w-[50%]">
+    <div class="w-full flex justify-start items-center ">
+        <div class="w-full flex ml-10 lg:w-[50%]">
 
-            <a class="no-underline transition duration-300 hover:text-orange-500 hover:scale-110" routerLink="home">
-                <p>Home</p>
+            <a class="no-underline transition duration-300 hover:scale-110" routerLink="experimentos">
+                <p class="text-black">Experimentos</p>
             </a>
 
-            <p>|</p>
+            <p class="mx-10">|</p>
 
-            <a class="no-underline transition duration-300 hover:text-orange-500 hover:scale-110" routerLink="experimentos">
-                <p>Experimentos</p>
-            </a>
-
-            <p>|</p>
-
-            <a class="no-underline transition duration-300 hover:text-orange-500 hover:scale-110" routerLink="clases">
-                <p>Clases</p>
+            <a class="no-underline transition text-black duration-300 hover:scale-110" routerLink="clases">
+                <p class="text-black">Clases</p>
             </a>
 
         </div>
@@ -28,8 +22,8 @@
 
 
 
-    <button class="w-20"  [matMenuTriggerFor]="menu">
-        <img class="w-3/4" src="icons/circle-user-regular.svg">
+    <button class="w-14"  [matMenuTriggerFor]="menu">
+        <img  src="icons/circle-user-regular.svg">
     </button>
 
     <mat-menu #menu="matMenu">
