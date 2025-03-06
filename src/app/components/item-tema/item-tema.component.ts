@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Tema } from '../../../interfaces/tema';
+import { Temario } from '../../../interfaces/temario';
 
 @Component({
   selector: 'app-item-tema',
@@ -9,7 +9,7 @@ import { Tema } from '../../../interfaces/tema';
 })
 export class ItemTemaComponent {
 
-  @Input() tema: Tema = {
+  @Input() tema: Temario = {
     id_clases: 0,
     id_temario: 0,
     nombre_temario: "",

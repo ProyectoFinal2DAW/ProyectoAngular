@@ -1,9 +1,0 @@
-<div class="mt-[80px] w-full flex flex-wrap flex-col gap-8 p-10 items-center justify-center lg:px-24">
-
-    <h1 class="text-4xl">Temas</h1>    
-
-    @for (tema of listaTemas; track $index; let idx = $index) {
-        <app-item-tema routerLink="../tema" [tema]=tema [queryParams]="{ id: tema.id_temario }" class="hover:shadow-xl" ></app-item-tema>
-    }
-
-</div>

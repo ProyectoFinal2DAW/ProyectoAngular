@@ -2,10 +2,11 @@
 
 
 
-    <div class="w-full h-[10rem] flex justify-end p-5 rounded-xl divCabeceraClase">
+    <div class="w-full h-[10rem] flex flex-col p-5 rounded-xl divCabeceraClase">
 
-        <h1 class="w-full text-4xl text-white"><!-- {{ nombreClase }} --></h1>
-
+        <h1 class="w-full text-4xl text-white"> {{ class.nombre_clases }}</h1>
+<!--         <h6 class="w-full text-xl text-white"> {{ class.descripcion_clases }}</h6>
+ -->
     </div>
 
 
@@ -25,11 +26,14 @@
         <!--Contenido teoria-->
         <div class="w-full flex flex-col gap-4">
 
-            <app-layout-list-element-of-class></app-layout-list-element-of-class>
-            <app-layout-list-element-of-class></app-layout-list-element-of-class>
-            <app-layout-list-element-of-class></app-layout-list-element-of-class>
-
-
+            @if (listaTemarios.length > 0) {
+                @for (temario of listaTemarios; track $index) {
+                    <app-layout-list-element-of-class [temario]=temario></app-layout-list-element-of-class>
+                }
+            } @else {
+                <h1>No hay temarios disponibles</h1>
+            }
+            
         </div>
 
     </div>
@@ -53,11 +57,13 @@
         <!--Contenido videos-->
         <div class="flex flex-row flex-wrap justify-around gap-3 lg:justify-start">
 
-            <app-item-video-list-class-content></app-item-video-list-class-content>
-            <app-item-video-list-class-content></app-item-video-list-class-content>
-            <app-item-video-list-class-content></app-item-video-list-class-content>
-            <app-item-video-list-class-content></app-item-video-list-class-content>
-            <app-item-video-list-class-content></app-item-video-list-class-content>
+            @if (listaVideos.length > 0) {
+                @for (video of listaVideos; track $index) {
+                    <app-item-video-list-class-content [video]=video></app-item-video-list-class-content>
+                }
+            } @else {
+                <h1>No hay videos disponibles</h1>
+            }
 
         </div>
 
@@ -78,8 +84,15 @@
 
         <!--Contenido examenes-->
         <div class="w-full flex flex-col gap-4">
-            <app-layout-list-element-of-class></app-layout-list-element-of-class>
-            <app-layout-list-element-of-class></app-layout-list-element-of-class>
+
+            @if (listaCuestionarios.length > 0) {
+                @for (cuestionario of listaCuestionarios; track $index) {
+                    <app-layout-list-exams-of-class [cuestionario]=cuestionario></app-layout-list-exams-of-class>
+                }
+            } @else {
+                <h1>No hay cuestionarios disponibles</h1>
+            }
+
         </div>
 
     </div>

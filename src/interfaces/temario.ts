@@ -1,4 +1,4 @@
-export interface Tema {
+export interface Temario {
     id_temario: number;
     id_clases: number;
     nombre_temario: string;
