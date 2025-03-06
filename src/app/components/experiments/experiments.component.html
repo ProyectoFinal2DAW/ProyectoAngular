@@ -2,10 +2,16 @@
 
 <div class="mt-[80px] w-full flex flex-wrap flex-col gap-8 p-10 items-center justify-center lg:px-24">
 
-    <h1 class="text-3xl">Experimentos</h1>    
+    <h1 class="text-4xl mb-4">Experimentos</h1>    
+
 
     @for (experiment of listExperiments; track $index; let idx = $index) {
-        <app-item-experiment [nombreExperimento]=experiment.nombre [imagenExperimento]=experiment.imagen [contadorExperimento]=idx></app-item-experiment>
+        <app-item-experiment 
+            routerLink="../experimentDescription" 
+            [queryParams]="{ id: experiment.id_experimento }" 
+            [experiment]=experiment 
+            [contadorExperimento]=idx>
+        </app-item-experiment>
     }
 
 </div>

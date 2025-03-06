@@ -11,6 +11,8 @@ import { ClasesComponent } from './components/clases/clases.component';
 import { ConfigurationsComponent } from './components/configurations/configurations.component';
 import { BoxQuestionFormComponentComponent } from './components/box-question-form-component/box-question-form-component.component';
 import { ContainerClassComponent } from './components/container-class/container-class.component';
+import { ContenedorTemasComponent } from './components/contenedor-temas/contenedor-temas.component';
+import { ExperimentoDescriptionComponent } from './components/experimento-description/experimento-description.component';
 
 export const routes: Routes = [
   { path: '', component: Login1Component }, // Ruta principal (index)
@@ -21,10 +23,13 @@ export const routes: Routes = [
   { path: 'userProfile', component: ProfileComponent }, // Ruta para /userProfile
   { path: 'videoExperiments', component: VideoExperimentsComponent }, // Ruta para /userProfile
   { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
+  { path: 'experimentDescription', component: ExperimentoDescriptionComponent }, // Ruta para /experimentos
+
   { path: 'clases', component: ClasesComponent }, // Ruta para /clases
+  { path: 'temas', component: ContenedorTemasComponent }, // Ruta para /clases
   { path: 'configuration', component: ConfigurationsComponent }, // Ruta para /configuration
 
   { path: 'form', component: BoxQuestionFormComponentComponent }, // Ruta para /configuration
-  { path: 'clase', component: ContainerClassComponent }, // Ruta para /configuration
+  { path: 'tema', component: ContainerClassComponent }, // Ruta para /configuration
 
 ];

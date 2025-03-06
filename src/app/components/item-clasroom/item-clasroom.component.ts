@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Class } from '../../../interfaces/class';
 
 @Component({
   selector: 'app-item-clasroom',
@@ -7,7 +8,12 @@ import { Component, Input } from '@angular/core';
   styleUrl: './item-clasroom.component.css'
 })
 export class ItemClasroomComponent {
-  @Input() nombre_clases: string = "";
-  @Input() descripcion_clases: string = "";
-
+  @Input() classroom: Class = {
+    contenido: "",
+    id_clases: 0,
+    video_clases: "",
+    descripcion_clases: "",
+    foto_clases: "",
+    nombre_clases: "",
+  };
 }

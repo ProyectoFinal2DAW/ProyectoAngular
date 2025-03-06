@@ -1,7 +1,4 @@
-.divSuperiorHomePage {
-    background-image: url('../../../../public/images/fondo.jpg');
-    background-size: cover;
-}
+
 
 .scroll-container {
     display: flex;

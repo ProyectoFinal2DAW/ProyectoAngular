@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Experiment } from '../../../interfaces/experiment';
 
 
 @Component({
@@ -8,8 +9,13 @@ import { Component, Input } from '@angular/core';
   styleUrl: './item-experiment.component.css'
 })
 export class ItemExperimentComponent {
-  @Input() nombreExperimento: string = "";
-  @Input() imagenExperimento: string = "";
-  @Input() descripcionExperimento: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+  @Input() experiment: Experiment = {
+    id_experimento: 0,
+    nombre_experimento: "",
+    descrip_experimento: "",
+    foto_experimento: "",
+    video_experimento: "",
+  };
+
   @Input() contadorExperimento: number = 0;
 }

@@ -1,14 +1,14 @@
 <div class="mt-[120px]">
 
-    <h1 class="text-center text-3xl">Mis clases</h1>
+    <h1 class="text-center text-4xl">Mis clases</h1>
 
     <br>
 
     <div class="flex flex-wrap flex-row gap-5 items-center justify-center">
     
     
-        @for (class of listClasses; track $index) {
-            <app-item-clasroom class="hover:bg-gray-200 hover:shadow-lg transition-all duration-300" [nombre_clases]=class.nombre_clases [descripcion_clases]=class.descripcion_clases></app-item-clasroom>
+        @for (classroom of listClasses; track $index) {
+            <app-item-clasroom routerLink="../temas" [queryParams]="{ id: classroom.id_clases }" class="hover:shadow-xl transition-all duration-300" [classroom]=classroom></app-item-clasroom>
         }
     
     </div>
