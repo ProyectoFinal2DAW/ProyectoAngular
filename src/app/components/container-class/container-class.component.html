@@ -5,96 +5,117 @@
     <div class="w-full h-[10rem] flex flex-col p-5 rounded-xl divCabeceraClase">
 
         <h1 class="w-full text-4xl text-white"> {{ class.nombre_clases }}</h1>
-<!--         <h6 class="w-full text-xl text-white"> {{ class.descripcion_clases }}</h6>
+        <!--         <h6 class="w-full text-xl text-white"> {{ class.descripcion_clases }}</h6>
  -->
     </div>
 
 
-    <!--Div temario-->
-    <div class="w-full">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
 
-        <div class="w-full flex flex-row items-center gap-5 p-2">
-            <h2 class="text-3xl">Teoría</h2>
-            <button class="hover:bg-blue-100 p-2 rounded-xl">
-                <img src="icons/plus-solid-black.svg" class="icon-class">
-            </button>
-        </div>
+        <mat-tab label="Tablero">
+            <!--Div temario-->
+            <div class="w-full">
 
-        <hr>
-        <br>
+                <div class="w-full flex flex-row items-center gap-5 p-2">
+                    <h2 class="text-3xl">Teoría</h2>
+                    <button class="hover:bg-blue-100 p-2 rounded-xl">
+                        <img src="icons/plus-solid-black.svg" class="icon-class">
+                    </button>
+                </div>
 
-        <!--Contenido teoria-->
-        <div class="w-full flex flex-col gap-4">
+                <hr>
+                <br>
 
-            @if (listaTemarios.length > 0) {
-                @for (temario of listaTemarios; track $index) {
+                <!--Contenido teoria-->
+                <div class="w-full flex flex-col gap-4">
+
+                    @if (listaTemarios.length > 0) {
+                    @for (temario of listaTemarios; track $index) {
                     <app-layout-list-element-of-class [temario]=temario></app-layout-list-element-of-class>
-                }
-            } @else {
-                <h1>No hay temarios disponibles</h1>
-            }
-            
-        </div>
+                    }
+                    } @else {
+                    <h1>No hay temarios disponibles</h1>
+                    }
 
-    </div>
+                </div>
 
-
-
-    <!--Div Videos-->
-    <div class="w-full">
-
-        <div class="w-full flex flex-row items-center gap-5 p-2">
-            <h2 class="text-3xl">Vídeos</h2>
-            <button class="hover:bg-blue-100 p-2 rounded-xl">
-                <img src="icons/plus-solid-black.svg" class="icon-class">
-            </button>
-        </div>
+            </div>
 
 
-        <hr>
-        <br>
 
-        <!--Contenido videos-->
-        <div class="flex flex-row flex-wrap justify-around gap-3 lg:justify-start">
+            <!--Div Videos-->
+            <div class="w-full">
 
-            @if (listaVideos.length > 0) {
-                @for (video of listaVideos; track $index) {
+                <div class="w-full flex flex-row items-center gap-5 p-2">
+                    <h2 class="text-3xl">Vídeos</h2>
+                    <button class="hover:bg-blue-100 p-2 rounded-xl">
+                        <img src="icons/plus-solid-black.svg" class="icon-class">
+                    </button>
+                </div>
+
+
+                <hr>
+                <br>
+
+                <!--Contenido videos-->
+                <div class="flex flex-row flex-wrap justify-around gap-3 lg:justify-start">
+
+                    @if (listaVideos.length > 0) {
+                    @for (video of listaVideos; track $index) {
                     <app-item-video-list-class-content [video]=video></app-item-video-list-class-content>
-                }
-            } @else {
-                <h1>No hay videos disponibles</h1>
-            }
+                    }
+                    } @else {
+                    <h1>No hay videos disponibles</h1>
+                    }
 
-        </div>
+                </div>
 
-    </div>
+            </div>
 
-    <!--Div examenes-->
-    <div class="w-full">
+            <!--Div examenes-->
+            <div class="w-full">
 
-        <div class="w-full flex flex-row items-center gap-5 p-2">
-            <h2 class="text-3xl">Exámenes</h2>
-            <button class="hover:bg-blue-100 p-2 rounded-xl">
-                <img src="icons/plus-solid-black.svg" class="icon-class">
-            </button>
-        </div>
+                <div class="w-full flex flex-row items-center gap-5 p-2">
+                    <h2 class="text-3xl">Exámenes</h2>
+                    <button class="hover:bg-blue-100 p-2 rounded-xl">
+                        <img src="icons/plus-solid-black.svg" class="icon-class">
+                    </button>
+                </div>
 
-        <hr>
-        <br>
+                <hr>
+                <br>
 
-        <!--Contenido examenes-->
-        <div class="w-full flex flex-col gap-4">
+                <!--Contenido examenes-->
+                <div class="w-full flex flex-col gap-4">
 
-            @if (listaCuestionarios.length > 0) {
-                @for (cuestionario of listaCuestionarios; track $index) {
+                    @if (listaCuestionarios.length > 0) {
+                    @for (cuestionario of listaCuestionarios; track $index) {
                     <app-layout-list-exams-of-class [cuestionario]=cuestionario></app-layout-list-exams-of-class>
-                }
-            } @else {
-                <h1>No hay cuestionarios disponibles</h1>
-            }
+                    }
+                    } @else {
+                    <h1>No hay cuestionarios disponibles</h1>
+                    }
 
-        </div>
+                </div>
 
-    </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Participantes">
+            <div class="flex flex-col gap-3 mt-10">
+                <app-item-participante-clase></app-item-participante-clase>
+                <app-item-participante-clase></app-item-participante-clase>
+                <app-item-participante-clase></app-item-participante-clase>
+
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Calificaciones">
+
+        </mat-tab>
+
+    </mat-tab-group>
+
+
 
 </div>

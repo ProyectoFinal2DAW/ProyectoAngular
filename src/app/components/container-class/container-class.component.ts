@@ -7,10 +7,12 @@ import { Class } from '../../../interfaces/class';
 import { videoClass } from '../../../interfaces/videoClass';
 import { Temario } from '../../../interfaces/temario';
 import { CuestionarioInfoGeneral } from '../../../interfaces/cuestionarioInfoGeneral';
+import {MatTabsModule} from '@angular/material/tabs';
+import { ItemParticipanteClaseComponent } from "../item-participante-clase/item-participante-clase.component";
 
 @Component({
   selector: 'app-container-class',
-  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent],
+  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent],
   templateUrl: './container-class.component.html',
   styleUrl: './container-class.component.css'
 })
