@@ -4,16 +4,34 @@ import { ItemClasroomComponent } from "../item-clasroom/item-clasroom.component"
 import { Class } from '../../../interfaces/class';
 import { CuadroDialogoCrearExperimentoComponent } from "../cuadro-dialogo-crear-experimento/cuadro-dialogo-crear-experimento.component";
 import { CuadroDialogoStandardComponent } from "../cuadro-dialogo-standard/cuadro-dialogo-standard.component";
+import { CuadroDialogoAddClassComponent } from "../cuadro-dialogo-add-class/cuadro-dialogo-add-class.component";
 
 @Component({
   selector: 'app-clases',
-  imports: [ItemClasroomComponent, RouterLink],
+  imports: [ItemClasroomComponent, RouterLink, CuadroDialogoAddClassComponent],
   templateUrl: './clases.component.html',
   styleUrl: './clases.component.css'
 })
 export class ClasesComponent {
 
   listClasses: Class[] = [];
+
+  crearClaseVisible: Boolean = false;
+
+
+  showPanelAddClass() {
+
+     /* if (this.crearClaseVisible) {
+      this.crearClaseVisible = false;
+    } else {
+      this.crearClaseVisible = true;
+    } */
+    this.crearClaseVisible = !this.crearClaseVisible;
+    console.log("Show pop up add class");
+
+    
+
+  }
 
   async fetchData() {
 
