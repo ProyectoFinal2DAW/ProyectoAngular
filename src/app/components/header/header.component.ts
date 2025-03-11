@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from  '@angular/material/button' ;
@@ -8,9 +8,21 @@ import {MatButtonModule} from  '@angular/material/button' ;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true, 
-  imports: [MatMenuModule, MatButtonModule, RouterLink] 
+  imports: [MatMenuModule, MatButtonModule, RouterLink], 
 })
 
 export class HeaderComponent {
+  isOpen = false;
 
+  toggleMenu() {
+    this.isOpen = !this.isOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeMenu(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.menu-container')) {
+      this.isOpen = false;
+    }
+  }
 }

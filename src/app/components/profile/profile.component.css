@@ -1,68 +1,232 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-  .imagenUserProfile {
-    width: 20%;
-    height: 20%;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .contenedorMainUserProfile {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border: solid 2px gray;
-    border-radius: 5px;
-    margin-top: 90px;
-  }
-  .contenedorSuperiorProfile {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .buttonCambiarFoto {
-    margin-left: 20px;
-  }
+.profile-component {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  justify-content: space-around;
+  align-items: center;
+}
 
-  .buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    width: 100%;
-  }
-  
-  .buttonEditar {
-    background-color: aquamarine;
-    padding: 10px;
-    cursor: pointer;
-    border-color: black;
-    border-width: 1px;
-    border-radius: 15px;
-  }
+.columna {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-width: 850px;
+  gap: 15px;
+}
 
-  .buttonEditar:hover {
-    background-color: aqua;
-  }
+.col1 {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  height: 50%;
+  overflow-y: auto;
+  border-radius: 1%;
+  border: 4px solid rgb(138, 170, 198);
+}
 
-  .buttonGuardar {
-    background-color: green;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-right: 10px;
+.col1 h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.ajustes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ajuste-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.ajuste-item label {
+  font-size: 14px;
+  color: #555;
+}
+
+.ajuste-item input,
+.ajuste-item select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.col2 {
+  background-color: #ffffff;
+  max-height: 370px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  height: 50%;
+  overflow-y: auto;
+  border-radius: 1%;
+  border: 4px solid rgb(138, 170, 198);
+}
+
+.col2 h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+  color: #333;
+}
+
+table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.estado-leido {
+  color: green;
+  font-weight: bold;
+}
+
+.estado-no-leido {
+  color: red;
+  font-weight: bold;
+}
+
+.contenedorMainUserProfile {
+  width: 50%;
+  max-width: 850px;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 4px solid rgb(138, 170, 198);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.imagenUserProfile {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgb(138, 170, 198);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.imagenUserProfile:hover {
+  transform: scale(1.05);
+}
+
+.contenedorSuperiorProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.buttonCambiarFoto {
+  background: rgb(138, 170, 198);
+  border: none;
+  padding: 10px;
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease-in-out, transform 0.2s;
+  cursor: pointer;
+}
+
+.buttonCambiarFoto:hover {
+  background: rgb(105, 136, 163);
+  transform: scale(1.1);
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.buttonEditar,
+.buttonGuardar,
+.buttonCancelar {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.buttonEditar {
+  background-color: rgb(138, 170, 198);
+  color: white;
+}
+
+.buttonEditar:hover {
+  background-color: rgb(105, 136, 163);
+}
+
+.buttonGuardar {
+  background-color: #2196F3;
+  color: white;
+}
+
+.buttonGuardar:hover {
+  background-color: #1976D2;
 }
 
 .buttonCancelar {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 18px;
+  background-color: #F44336;
+  color: white;
+}
+
+.buttonCancelar:hover {
+  background-color: #D32F2F;
+}
+
+.icon {
+  width: 23px;
+  height: 23px;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

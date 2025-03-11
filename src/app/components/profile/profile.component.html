@@ -1,50 +1,135 @@
-<div class="contenedorMainUserProfile">
+<div class="profile-component">
+    <div class="contenedorMainUserProfile">
 
-    <div class="contenedorSuperiorProfile">
+        <div class="contenedorSuperiorProfile">
 
-        <img src="images/persona.jpg" class="imagenUserProfile">
+            <img src="images/persona.jpg" class="imagenUserProfile">
 
-        <button class="buttonCambiarFoto" mat-raised-button>Cambiar foto</button>
+            <button class="buttonCambiarFoto" mat-raised-button>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+                    <path
+                        d="M149.1 64.8L138.7 96 64 96C28.7 96 0 124.7 0 160L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64l-74.7 0L362.9 64.8C356.4 45.2 338.1 32 317.4 32L194.6 32c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z" />
+                </svg>
+            </button>
+        </div>
 
-    </div>
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput>
+        </mat-form-field>
 
+        <mat-form-field>
+            <mat-label>Apellidos</mat-label>
+            <input matInput>
+        </mat-form-field>
 
-    <br>
+        <mat-form-field>
+            <mat-label>Correo</mat-label>
+            <input matInput>
+        </mat-form-field>
 
-    <label for="mat-form-field">Nombre de usuario</label>
-    <mat-form-field>
-        <mat-label>Nombre</mat-label>
-        <input matInput>
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput>
+        </mat-form-field>
 
-    <label for="mat-form-field">Apellidos</label>
-    <mat-form-field>
-        <mat-label>Apellidos</mat-label>
-        <input matInput>
-    </mat-form-field>
-
-    <label for="mat-form-field">Correo</label>
-    <mat-form-field>
-        <mat-label>Correo</mat-label>
-        <input matInput>
-    </mat-form-field>
-
-    <label for="mat-form-field">Contraseña</label>
-    <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input matInput>
-    </mat-form-field>
-
-    <div class="buttons">
-        @if (!editando) {
+        <div class="buttons">
+            @if (!editando) {
             <input type="button" value="Editar" class="buttonEditar" (click)="activarEdicion()">
-        }
+            }
 
-        @if (editando) {
+            @if (editando) {
             <button class="buttonGuardar" (click)="guardar()">✔</button>
             <button class="buttonCancelar" (click)="cancelar()">✖</button>
-        }
-        
+            }
+
+        </div>
+
     </div>
 
+    <div class="columna">
+        <div class="col1">
+            <div class="title">
+                <img class="icon" src="/icons/gear-solid.svg">
+                <h3>Configuración</h3>
+            </div>
+            <div class="ajustes">
+                <div class="ajuste-item">
+                    <label for="hora">Hora</label>
+                    <input type="time" id="hora" name="hora" [(ngModel)]="horaActual">
+                </div>
+                <div class="ajuste-item">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" name="fecha" [(ngModel)]="fechaActual">
+                </div>
+                <div class="ajuste-item">
+                    <label for="idioma">Idioma</label>
+                    <select id="idioma" name="idioma">
+                        <option value="es">Español</option>
+                        <option value="en">Inglés</option>
+                        <option value="fr">Francés</option>
+                        <option value="de">Alemán</option>
+                    </select>
+                </div>
+                <div class="ajuste-item">
+                    <label for="zona-horaria">Zona Horaria</label>
+                    <select id="zona-horaria" name="zona-horaria">
+                        <option value="gmt-3">GMT-3</option>
+                        <option value="gmt-2">GMT-2</option>
+                        <option value="gmt-1">GMT-1</option>
+                        <option value="gmt+0">GMT+0</option>
+                        <option value="gmt+1">GMT+1</option>
+                        <option value="gmt+2">GMT+2</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col2">
+            <div class="title">
+                <img class="icon" src="/icons/bell-solid.svg">
+                <h3>Notificaciones</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Hora</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nuevo mensaje</td>
+                        <td>10:30 AM</td>
+                        <td><span class="estado-leido">Leído</span></td>
+                    </tr>
+                    <tr>
+                        <td>Actualización de perfil</td>
+                        <td>9:15 AM</td>
+                        <td><span class="estado-no-leido">No Leído</span></td>
+                    </tr>
+                    <tr>
+                        <td>Alerta de seguridad</td>
+                        <td>8:50 AM</td>
+                        <td><span class="estado-leido">Leído</span></td>
+                    </tr>
+                    <tr>
+                        <td>Calificaciones</td>
+                        <td>12:30 AM</td>
+                        <td><span class="estado-leido">Leído</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tarea a entergar</td>
+                        <td>11:50 AM</td>
+                        <td><span class="estado-no-leido">No Leído</span></td>
+                    </tr>
+                    <tr>
+                        <td>Correo enviado</td>
+                        <td>9:45 AM</td>
+                        <td><span class="estado-leido">Leído</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

@@ -20,35 +20,18 @@
         </div>
     </div>
 
-
-
-    <button class="w-14"  [matMenuTriggerFor]="menu">
-        <img  src="icons/circle-user-regular.svg">
-    </button>
-
-    <mat-menu #menu="matMenu">
-        <a mat-menu-item href="/configuration" class="itemMenu">
-            <img class="iconItemMenu" src="icons/gear-solid.svg">
-            <label>General</label>
-        </a>
-        <a mat-menu-item href="/userProfile">
-            <img class="iconItemMenu" src="icons/user-solid.svg">
-            <label>Perfil</label>
-        </a>
-        <a mat-menu-item>
-            <img class="iconItemMenu" src="icons/lock-solid.svg">
-            <label>Cuenta</label>
-        </a>
-        <a mat-menu-item>
-            <img class="iconItemMenu" src="icons/bell-solid.svg">
-            <label>Notificaciones</label>
-        </a>
-        <a mat-menu-item href="/login">
-            <img class="iconItemMenu" src="icons/logout-solid.svg">
-            <label>Cerrar sesión</label>
-        </a>
-    </mat-menu>
-
-
+    <div class="menu-container">
+        <button class="menu-button" (click)="toggleMenu()">☰</button>
+        <div class="menu" [class.active]="isOpen">
+            <a routerLink="/userProfile">
+                <img src="icons/user-solid.svg" alt="Cuenta">
+                Cuenta
+            </a>
+            <a routerLink="/login">
+                <img src="icons/logout-solid.svg" alt="Cerrar sesión">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
 
 </div>
