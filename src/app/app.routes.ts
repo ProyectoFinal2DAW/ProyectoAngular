@@ -12,10 +12,12 @@ import { ConfigurationsComponent } from './components/configurations/configurati
 import { BoxQuestionFormComponentComponent } from './components/box-question-form-component/box-question-form-component.component';
 import { ContainerClassComponent } from './components/container-class/container-class.component';
 import { ExperimentoDescriptionComponent } from './components/experimento-description/experimento-description.component';
+import { Login2Component } from './components/login2/login2.component';
 
 export const routes: Routes = [
-  { path: '', component: Login1Component }, // Ruta principal (index)
-  { path: 'login', component: Login1Component }, // Ruta para /login
+  { path: '', component: Login2Component }, // Ruta principal (index)
+  { path: 'login', component: Login2Component }, // Ruta para /login
+  //{ path: 'login2', component: Login2Component }, // Ruta para /login
   { path: 'register', component: RegisterComponent }, // Ruta para /register
 
   { path: 'home', component: HomeComponent }, // Ruta para /home
