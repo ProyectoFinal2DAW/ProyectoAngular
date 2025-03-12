@@ -1,0 +1,42 @@
+<div class="flex flex-col items-center justify-center p-10 border-gray-500 border-2 bg-white shadow-lg rounded-lg">
+
+    
+
+    <!-- nombre_clases, descripcion_clases, contenido, foto_clases, video_clases -->
+
+    <form [formGroup]="addClassForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
+
+        <h1 class="text-3xl text-center">Añadir clase</h1>
+
+        <br>
+
+        <mat-form-field>
+            <mat-label>Nombre:</mat-label>
+            <input placeholder="Nombre" formControlName="nombreClase" matInput required />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Descripción:</mat-label>
+            <textarea type="text" formControlName="descripcionClase" matInput ></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Contenido:</mat-label>
+            <input type="text" formControlName="contenidoClase" matInput />
+        </mat-form-field>
+
+        <div>
+            <mat-label>Imagen:</mat-label>
+            <input type="file" formControlName="imagenClase" required />
+        </div>
+
+        <br>
+
+        <button class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Guardar</button>
+
+
+    </form>
+
+
+
+</div>

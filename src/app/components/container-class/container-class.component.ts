@@ -4,6 +4,7 @@ import { LayoutListElementOfClassComponent } from "../layout-list-element-of-cla
 import { LayoutListExamsOfClassComponent } from '../layout-list-exams-of-class/layout-list-exams-of-class.component';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { Class } from '../../../interfaces/class';
+import { User } from '../../../interfaces/user';
 import { videoClass } from '../../../interfaces/videoClass';
 import { Temario } from '../../../interfaces/temario';
 import { CuestionarioInfoGeneral } from '../../../interfaces/cuestionarioInfoGeneral';
@@ -32,6 +33,8 @@ export class ContainerClassComponent {
   listaTemarios: Temario[] = [];
   listaVideos: videoClass[] = [];
   listaCuestionarios: CuestionarioInfoGeneral[] = [];
+
+  listaParticipantesClase: User[] = [];
 
   constructor(private route: ActivatedRoute) { }
 
