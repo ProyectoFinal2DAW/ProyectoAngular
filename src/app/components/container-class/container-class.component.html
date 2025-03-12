@@ -103,9 +103,14 @@
 
         <mat-tab label="Participantes">
             <div class="flex flex-col gap-3 mt-10">
-                <app-item-participante-clase></app-item-participante-clase>
-                <app-item-participante-clase></app-item-participante-clase>
-                <app-item-participante-clase></app-item-participante-clase>
+
+                @if (listaParticipantesClase.length > 0) {
+                    @for (participante of listaParticipantesClase; track $index) {
+                        <app-item-participante-clase [participante]="participante"></app-item-participante-clase>
+                    }
+                }
+                <!-- <app-item-participante-clase></app-item-participante-clase>
+                <app-item-participante-clase></app-item-participante-clase> -->
             </div>
         </mat-tab>
 

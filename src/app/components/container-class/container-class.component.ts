@@ -104,6 +104,20 @@ export class ContainerClassComponent {
     }
 
 
+    //Obtener participantes de la clase
+    try {
+
+      let response = await fetch('http://localhost:8000/clases/' + this.id_clase + '/participantes');
+
+      this.listaParticipantesClase = await response.json();
+      console.log("Lista participantes: ", this.listaParticipantesClase);
+
+    } catch (error) {
+      console.log("Error al obtener los participantes: ", error);
+
+    }
+
+
   }
 
 
