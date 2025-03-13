@@ -5,7 +5,7 @@ import { videoClass } from "../../interfaces/videoClass";
 import { CuestionarioInfoGeneral } from "../../interfaces/cuestionarioInfoGeneral";
 import { User } from "../../interfaces/user";
 
-const baseApiUrl = "http://localhost:8000/";
+const baseApiUrl = "http://172.17.22.114:8000/";
 
 /*----------------------Classes--------------------- */
 //Obtener todas las clases
