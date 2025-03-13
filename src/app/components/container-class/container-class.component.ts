@@ -8,8 +8,9 @@ import { User } from '../../../interfaces/user';
 import { videoClass } from '../../../interfaces/videoClass';
 import { Temario } from '../../../interfaces/temario';
 import { CuestionarioInfoGeneral } from '../../../interfaces/cuestionarioInfoGeneral';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ItemParticipanteClaseComponent } from "../item-participante-clase/item-participante-clase.component";
+import { getClassById, getClassLessons, getClassParticipants, getTestsByClass, getVideosByClass } from '../../DBManagement/DBManagement';
 
 @Component({
   selector: 'app-container-class',
@@ -51,59 +52,16 @@ export class ContainerClassComponent {
 
     console.log("fetchData()");
 
+    this.class = await getClassById(this.id_clase);
 
-    //Obtener datos de la clase
-    try {
+    this.listaTemarios = await getClassLessons(this.id_clase);
 
-      let response = await fetch('http://localhost:8000/clases/' + this.id_clase);
+    this.listaVideos = await getVideosByClass(this.id_clase);
 
-      this.class = await response.json();
-      console.log("Class data: ", this.class);
+    this.listaCuestionarios = await getTestsByClass(this.id_clase);
 
-    } catch (error) {
-      console.log("Error al obtener los datos de la clase: ", error);
-    }
-
-    //Obtener temas de la clase
-    try {
-
-      let response = await fetch('http://localhost:8000/temarios/clase/' + this.id_clase);
-
-      this.listaTemarios = await response.json();
-      console.log("Lista temarios: ", this.listaTemarios);
-
-    } catch (error) {
-      console.log("Error al obtener los temarios: ", error);
-    }
-
-
-    //Obtener videos de la clase
-    try {
-
-      let response = await fetch('http://localhost:8000/videos/' + this.id_clase);
-
-      this.listaVideos = await response.json();
-      console.log("Lista videos: ", this.listaVideos);
-
-    } catch (error) {
-      console.log("Error al obtener los videos: ", error);
-
-    }
-
-    //Obtener cuestionarios de la clase
-    try {
-
-      let response = await fetch('http://localhost:8000/cuestionarios/clase/' + this.id_clase);
-
-      this.listaCuestionarios = await response.json();
-      console.log("Lista cuestionarios: ", this.listaCuestionarios);
-
-    } catch (error) {
-      console.log("Error al obtener los cuestionarios: ", error);
-
-    }
-
-
+    this.listaParticipantesClase = await getClassParticipants(this.id_clase);
+    
   }
 
 

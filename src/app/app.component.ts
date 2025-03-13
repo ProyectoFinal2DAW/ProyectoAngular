@@ -13,11 +13,4 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'miProyectoAngular';
-
-  constructor(private router: Router) {}
-
-  isLoginOrRegister(): boolean {
-    const currentRoute = this.router.url;
-    return currentRoute === '/login' || currentRoute === '/register' || currentRoute === '/';
-  }
 }

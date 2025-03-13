@@ -4,7 +4,7 @@ export interface User {
     usuario: string,
     email: string,
     estado: string,
-    fecha_creacion: Date,
+    fecha_creacion: Date | null,
     rol: {
         id_roles: Number,
         rol: string,
