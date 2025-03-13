@@ -4,6 +4,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from "./components/footer/footer.component";
 
+import { DataServiceService } from './services/data-service.service';
 
 
 @Component({
@@ -14,4 +15,10 @@ import { FooterComponent } from "./components/footer/footer.component";
 })
 export class AppComponent {
   title = 'miProyectoAngular';
+
+
+  ngOnInit() {
+    
+    
+  }
 }

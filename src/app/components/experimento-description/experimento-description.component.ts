@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { Experiment } from '../../../interfaces/experiment';
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-experimento-description',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './experimento-description.component.html',
   styleUrl: './experimento-description.component.css'
 })
 export class ExperimentoDescriptionComponent {
+
+  @ViewChild('chartCanvas') chartCanvas!: ElementRef; // Referencia al canvas
 
   id_experiment: number = 0;
 
@@ -36,7 +39,33 @@ export class ExperimentoDescriptionComponent {
 
     this.experiment = await response.json();
     console.log("Experiment: ", this.experiment);
-    
+
   }
 
+  ngAfterViewInit() {
+    this.renderChart();
+  }
+
+  renderChart() {
+    if (!this.chartCanvas) return;
+
+    new Chart(this.chartCanvas.nativeElement, {
+      type: 'line',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [
+          {
+            label: 'Datos del Experimento',
+            data: [10, 20, 15, 30, 25],
+            borderColor: 'blue',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
 }

@@ -14,6 +14,8 @@ export class ExperimentsComponent {
   // Definir un array de experimentos con id, nombre e imagen
   listExperiments: Experiment[] = [];
 
+  createExperimentVisible: Boolean = false;
+
   async fetchData() {
 
     console.log("fetchData()");
@@ -26,6 +28,10 @@ export class ExperimentsComponent {
 
   ngOnInit() {
     this.fetchData();
+  }
+
+  showPanelAddExperiment() {
+    this.createExperimentVisible = !this.createExperimentVisible;
   }
 
 
