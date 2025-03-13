@@ -4,6 +4,7 @@ import { Temario } from "../../interfaces/temario";
 import { videoClass } from "../../interfaces/videoClass";
 import { CuestionarioInfoGeneral } from "../../interfaces/cuestionarioInfoGeneral";
 import { User } from "../../interfaces/user";
+import { Experiment } from "../../interfaces/experiment";
 
 const baseApiUrl = "http://172.17.22.114:8000/";
 
@@ -151,5 +152,25 @@ export async function getClassParticipants(id_clase: Number) {
     }
 
     return listParticipants;
+
+}
+
+
+/*--------------------------Experimentos-------------------- */
+export async function getExperiments() {
+
+    let listExperiments: Experiment[] = [];
+
+    try {
+
+        let response = await fetch(baseApiUrl + 'experimentos/');
+
+        listExperiments = await response.json();
+
+    } catch (error) {
+        console.log("Error al obtener los experimentos: ", error);
+    }
+
+    return listExperiments;
 
 }
