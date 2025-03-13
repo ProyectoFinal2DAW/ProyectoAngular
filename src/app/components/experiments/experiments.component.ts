@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ItemExperimentComponent } from "../item-experiment/item-experiment.component";
 import { Experiment } from '../../../interfaces/experiment';
+import { getExperiments } from '../../DBManagement/DBManagement';
 
 @Component({
   selector: 'app-experiments',
@@ -16,18 +17,14 @@ export class ExperimentsComponent {
 
   createExperimentVisible: Boolean = false;
 
-  async fetchData() {
-
-    console.log("fetchData()");
-
-    let response = await fetch('http://localhost:8000/experimentos/');
-
-    this.listExperiments = await response.json();
-    console.log("Lista temas: ", this.listExperiments);
-  }
+  
 
   ngOnInit() {
     this.fetchData();
+  }
+
+  async fetchData() {
+    this.listExperiments = await getExperiments();
   }
 
   showPanelAddExperiment() {
