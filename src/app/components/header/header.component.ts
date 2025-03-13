@@ -18,6 +18,10 @@ export class HeaderComponent {
     this.isOpen = !this.isOpen;
   }
 
+  closeMenuOnNavigation() {
+    this.isOpen = false;
+  }
+
   @HostListener('document:click', ['$event'])
   closeMenu(event: Event) {
     const target = event.target as HTMLElement;

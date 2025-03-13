@@ -23,11 +23,11 @@
     <div class="menu-container">
         <button class="menu-button" (click)="toggleMenu()">☰</button>
         <div class="menu" [class.active]="isOpen">
-            <a routerLink="/userProfile">
+            <a routerLink="/userProfile" (click)="closeMenuOnNavigation()">
                 <img src="icons/user-solid.svg" alt="Cuenta">
                 Cuenta
             </a>
-            <a routerLink="/login">
+            <a routerLink="/login" (click)="closeMenuOnNavigation()">
                 <img src="icons/logout-solid.svg" alt="Cerrar sesión">
                 Cerrar sesión
             </a>

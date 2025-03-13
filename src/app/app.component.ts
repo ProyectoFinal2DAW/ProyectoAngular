@@ -18,6 +18,6 @@ export class AppComponent {
 
   isLoginOrRegister(): boolean {
     const currentRoute = this.router.url;
-    return currentRoute === '/login' || currentRoute === '/register';
+    return currentRoute === '/login' || currentRoute === '/register' || currentRoute === '/';
   }
 }
