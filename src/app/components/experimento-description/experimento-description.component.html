@@ -1,11 +1,38 @@
-<div class="mt-[80px] w-full flex flex-wrap flex-col gap-8 p-10 items-center justify-center lg:px-24">
-    <p>id_experimento: {{ experiment.id_experimento }}</p>
-    <p>nombre_experimento: {{ experiment.nombre_experimento }}</p>
-    <p>descrip_experimento: {{ experiment.descrip_experimento }}</p>
-    <p>foto_experimento: {{ experiment.foto_experimento }}</p>
-    <p>video_experimento: {{ experiment.video_experimento }}</p>
+<div class="mt-[80px] mb-[10rem] w-full flex flex-wrap flex-col gap-8 p-10 items-center justify-center lg:px-24">
 
-    <div style="width: 100%; height: 400px;">
-        <canvas #chartCanvas></canvas>
+    <div class="w-full bg-blue-200 rounded-2xl p-10 shadow-lg flex items-center justify-center">
+
+        <h1 class="text-5xl "> {{ experiment.nombre_experimento }}</h1>
+
     </div>
+
+    <div class="w-full h-[25rem] grid grid-cols-2 gap-4 bg-yellow-200 rounded-2xl p-10 shadow-lg">
+
+        <div>
+            <h1 class="w-full text-center text-2xl">Explicación</h1>
+            <h1 class="text-justify">{{ experiment.descrip_experimento }}</h1>
+        </div>
+
+        <img class="w-full h-[20rem] object-contain" [src]="experiment.foto_experimento">
+
+    </div>
+
+    <div class="w-full flex flex-wrap flex-row gap-5  items-center justify-center">
+
+        <div class="w-[25rem] h-[30rem] bg-pink-200 rounded-2xl p-5 shadow-lg flex flex-col gap-4 lg:w-[52rem]">
+            <h1 class="w-full text-center text-2xl">Video</h1>
+
+            <iframe class="w-full h-[25rem]" [src]="videoUrl" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="w-[25rem] h-[30rem] bg-purple-200 rounded-2xl p-5 shadow-lg lg:w-[52rem]">
+            <canvas #chartCanvas></canvas>
+        </div>
+
+    </div>
+
+
 </div>

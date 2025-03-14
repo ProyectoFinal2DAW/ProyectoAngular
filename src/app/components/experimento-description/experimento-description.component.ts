@@ -2,6 +2,9 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { Experiment } from '../../../interfaces/experiment';
 import Chart from 'chart.js/auto';
+import { getExperimentById } from '../../DBManagement/DBManagement';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-experimento-description',
@@ -14,6 +17,7 @@ export class ExperimentoDescriptionComponent {
   @ViewChild('chartCanvas') chartCanvas!: ElementRef; // Referencia al canvas
 
   id_experiment: number = 0;
+  videoUrl?: SafeResourceUrl;
 
   experiment: Experiment = {
     id_experimento: 0,
@@ -23,7 +27,7 @@ export class ExperimentoDescriptionComponent {
     video_experimento: "",
   }
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -32,13 +36,13 @@ export class ExperimentoDescriptionComponent {
     });
 
     this.fetchData();
+
   }
 
   async fetchData() {
-    let response = await fetch('http://localhost:8000/experimentos/' + this.id_experiment);
+    this.experiment = await getExperimentById(this.id_experiment);
 
-    this.experiment = await response.json();
-    console.log("Experiment: ", this.experiment);
+    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.experiment.video_experimento);
 
   }
 
