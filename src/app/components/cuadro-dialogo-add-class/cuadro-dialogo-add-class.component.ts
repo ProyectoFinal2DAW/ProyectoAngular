@@ -45,11 +45,14 @@ export class CuadroDialogoAddClassComponent {
       contenido: this.addClassForm.value.classContent,
       foto_clases: "",
       video_clases: "",
+
     }
 
     apiPostResponse = postClasses(newClass);
  
     console.log("ApiPostResponse: ", apiPostResponse);
+
+    
 
 
   }

@@ -1,4 +1,4 @@
-<div class="w-full h-[15rem] grid grid-cols-[1fr_0.1fr_1fr_1fr] gap-4 p-8 bg-gray-100 text-gray-500 shadow-xl rounded-3xl duration-100 hover:scale-105">
+<div class="w-[50rem] h-[15rem] grid grid-cols-[1fr_0.1fr_1fr_1fr] gap-4 p-8 bg-gray-100 text-gray-500 shadow-xl rounded-3xl duration-100 hover:scale-105 lg:w-[80rem]">
 
     <div class="flex flex-col items-center justify-center">
         <h1 class="text-xl text-center mr-20">Experimento</h1>
@@ -17,7 +17,7 @@
 
 
         <h1 class="text-xl"> {{ experiment.nombre_experimento }}</h1>
-        <h5>{{ experiment.descrip_experimento }}</h5>
+        <h5 class="line-clamp-2">{{ experiment.descrip_experimento }}</h5>
     </div>
     
 

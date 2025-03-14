@@ -30,12 +30,19 @@ export async function postClasses(newClass: NewClass) {
 
     console.log("postClasses()");
 
-    const response = await fetch(baseApiUrl + "clases/", {
+    const response = await fetch(
+        baseApiUrl + "clases/?" + 
+        "nombre_clases=" + newClass.nombre_clases + 
+        "&descripcion_clases=" + newClass.descripcion_clases + 
+        "&contenido=" + newClass.contenido + 
+        "&foto_clases=" + newClass.foto_clases + 
+        "&video_clases=" + newClass.video_clases, {
+
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newClass)
+        //body: JSON.stringify(newClass)
     });
 
     if (!response.ok) {
@@ -172,5 +179,29 @@ export async function getExperiments() {
     }
 
     return listExperiments;
+
+}
+
+export async function getExperimentById(id_experiment: Number) {
+
+    let experiment: Experiment = {
+        id_experimento: 0,
+        nombre_experimento: "",
+        descrip_experimento: "",
+        foto_experimento: "",
+        video_experimento: "",
+    };
+
+    try {
+
+        let response = await fetch(baseApiUrl + 'experimentos/' + id_experiment);
+
+        experiment = await response.json();
+
+    } catch (error) {
+        console.log("Error al obtener el experimento: ", error);
+    }
+
+    return experiment;
 
 }
