@@ -5,6 +5,9 @@ import { videoClass } from "../../interfaces/videoClass";
 import { CuestionarioInfoGeneral } from "../../interfaces/cuestionarioInfoGeneral";
 import { User } from "../../interfaces/user";
 import { Experiment } from "../../interfaces/experiment";
+import { Question } from "../../interfaces/question";
+import { QuestionarioApi } from "../../interfaces/questionarioApi";
+import { NotasUsuarioClase } from "../../interfaces/notasUsuarioClase";
 
 const baseApiUrl = "http://172.17.22.114:8000/";
 
@@ -203,5 +206,45 @@ export async function getExperimentById(id_experiment: Number) {
     }
 
     return experiment;
+
+}
+
+/*---------------------Preguntas Cuestionario-------------------- */
+
+export async function getPreguntasCuestionario(idCuestionario: Number) {
+
+    let listaPreguntasCuestionario: Question[] = [];
+
+    try {
+
+        let response = await fetch(baseApiUrl + 'preguntas/questionario/' + idCuestionario);
+
+        listaPreguntasCuestionario = await response.json();
+
+    } catch (error) {
+        console.log("Error al obtener las preguntas del cuestionario: ", error);
+    }
+
+    return listaPreguntasCuestionario;
+
+}
+
+/*---------------------Notas usuario clase-------------------- */
+
+export async function getNotasUsuarioClase(idUsuario: number, idClase: number) {
+
+    let listaNotasUsuarioClase: NotasUsuarioClase[] = [];
+
+    try {
+
+        let response = await fetch(baseApiUrl + 'notas/clase/' + idClase + '/usuario/' + idUsuario);
+
+        listaNotasUsuarioClase = await response.json();
+
+    } catch (error) {
+        console.log("Error al obtener las notas del usuario en la clase: ", error);
+    }
+
+    return listaNotasUsuarioClase;
 
 }

@@ -1,17 +1,64 @@
+<div class="flex flex-col gap-2">
+    <!-- Item 1 -->
+    <label class="flex flex-row bg-gray-200 rounded-md hover:bg-white">
 
-<div class="flex flex-row bg-gray-200 rounded-md hover:bg-white">
-
-    <div class="w-[4px] bg-blue-500 ">
-
-    </div>
-
-    <div class="w-full flex flex-row  justify-between p-5">
-
-        <h4 class="ml-8 text-lg">{{ opcionRespuesta }}</h4>
-
-        <input class="mr-4" type="radio" id="opcion" name="opciones" [value]="opcionRespuesta">
+        <div class="w-[4px] bg-blue-500"></div>
+    
+        <div class="w-full flex flex-row  justify-between p-5">
+    
+            <h4 class="ml-4 text-lg"> a. &nbsp;&nbsp; {{ question.respuesta1 }}</h4>
+    
+            <input class="mr-4" type="radio" id="opcion" [name]="question.id_pregunta" [value]="question.respuesta1">
+            
+        </div>
         
-    </div>
+    </label>
+
+    <!-- Item 2 -->
+    <label class="flex flex-row bg-gray-200 rounded-md hover:bg-white">
+
+        <div class="w-[4px] bg-blue-500"></div>
     
+        <div class="w-full flex flex-row  justify-between p-5">
     
+            <h4 class="ml-4 text-lg"> b. &nbsp;&nbsp; {{ question.respuesta2 }}</h4>
+    
+            <input class="mr-4" type="radio" id="opcion" [name]="question.id_pregunta" [value]="question.respuesta2">
+            
+        </div>
+        
+    </label>
+
+    <!-- Item 3 -->
+    <label class="flex flex-row bg-gray-200 rounded-md hover:bg-white">
+
+        <div class="w-[4px] bg-blue-500"></div>
+    
+        <div class="w-full flex flex-row  justify-between p-5">
+    
+            <h4 class="ml-4 text-lg"> c. &nbsp;&nbsp; {{ question.respuesta3 }}</h4>
+    
+            <input class="mr-4" type="radio" id="opcion" [name]="question.id_pregunta" [value]="question.respuesta3">
+            
+        </div>
+        
+    </label>
+
+    <!-- Item 4 -->
+    <label class="flex flex-row bg-gray-200 rounded-md hover:bg-white">
+
+        <div class="w-[4px] bg-blue-500"></div>
+    
+        <div class="w-full flex flex-row  justify-between p-5">
+    
+            <h4 class="ml-4 text-lg"> d. &nbsp;&nbsp; {{ question.correcta }}</h4>
+    
+            <input class="mr-4" type="radio" id="opcion" [name]="question.id_pregunta" [value]="question.correcta">
+            
+        </div>
+        
+    </label>
 </div>
+
+
+

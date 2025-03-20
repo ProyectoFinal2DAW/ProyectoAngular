@@ -10,11 +10,13 @@ import { Temario } from '../../../interfaces/temario';
 import { CuestionarioInfoGeneral } from '../../../interfaces/cuestionarioInfoGeneral';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ItemParticipanteClaseComponent } from "../item-participante-clase/item-participante-clase.component";
-import { getClassById, getClassLessons, getClassParticipants, getTestsByClass, getVideosByClass } from '../../DBManagement/DBManagement';
+import { getClassById, getClassLessons, getClassParticipants, getNotasUsuarioClase, getTestsByClass, getVideosByClass } from '../../DBManagement/DBManagement';
+import { Router } from 'express';
+import { NotasUsuarioClase } from '../../../interfaces/notasUsuarioClase';
 
 @Component({
   selector: 'app-container-class',
-  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent],
+  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent, RouterLink],
   templateUrl: './container-class.component.html',
   styleUrl: './container-class.component.css'
 })
@@ -34,6 +36,10 @@ export class ContainerClassComponent {
   listaTemarios: Temario[] = [];
   listaVideos: videoClass[] = [];
   listaCuestionarios: CuestionarioInfoGeneral[] = [];
+  listaNotasUsuarioClase: NotasUsuarioClase[] = [];
+
+  idUsuario = 1;
+  //Number(localStorage.getItem('idUsuario'));
 
   listaParticipantesClase: User[] = [];
 
@@ -61,7 +67,10 @@ export class ContainerClassComponent {
     this.listaCuestionarios = await getTestsByClass(this.id_clase);
 
     this.listaParticipantesClase = await getClassParticipants(this.id_clase);
-    
+
+    this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
+    console.log("Notas: ", this.listaNotasUsuarioClase);
+
   }
 
 

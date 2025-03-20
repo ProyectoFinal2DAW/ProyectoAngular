@@ -90,7 +90,9 @@
 
                     @if (listaCuestionarios.length > 0) {
                     @for (cuestionario of listaCuestionarios; track $index) {
-                    <app-layout-list-exams-of-class [cuestionario]=cuestionario></app-layout-list-exams-of-class>
+                    <app-layout-list-exams-of-class routerLink="../form"
+                        [queryParams]="{ id: cuestionario.id_questionario, nombre: cuestionario.nombre_cuestionario }"
+                        [cuestionario]=cuestionario></app-layout-list-exams-of-class>
                     }
                     } @else {
                     <h1>No hay cuestionarios disponibles</h1>
@@ -105,9 +107,9 @@
             <div class="flex flex-col gap-3 mt-10">
 
                 @if (listaParticipantesClase.length > 0) {
-                    @for (participante of listaParticipantesClase; track $index) {
-                        <app-item-participante-clase [participante]="participante"></app-item-participante-clase>
-                    }
+                @for (participante of listaParticipantesClase; track $index) {
+                <app-item-participante-clase [participante]="participante"></app-item-participante-clase>
+                }
                 }
                 <!-- <app-item-participante-clase></app-item-participante-clase>
                 <app-item-participante-clase></app-item-participante-clase> -->
@@ -115,6 +117,31 @@
         </mat-tab>
 
         <mat-tab label="Calificaciones">
+
+            <div class="flex flex-col gap-4 mt-10">
+                @if (listaNotasUsuarioClase) {
+                @for (nota of listaNotasUsuarioClase; track $index) {
+                <div class="flex flex-row flex-wrap bg-blue-100 p-4 justify-between items-center rounded-lg">
+
+                    <div class="flex-[1fr]">
+                        <h1 class="text-xl"> Cuestionario: {{ nota.nombre_cuestionario }} </h1>
+                        
+                        <h2> Aciertos: {{ nota.total_correctas }} / Fallos: {{ nota.total_falladas }}</h2>
+                        <h2> Fecha de realización: {{ nota.fecha_completado }}</h2>
+                    </div>
+
+                    <div class="flex-[1fr] justify-center items-center">
+                        <h2 class="w-full text-center"> Calificación</h2>
+                        <h2 class="w-full text-center"> {{ nota.nota }} </h2>
+                    </div>
+
+                </div>
+                }
+                } @else {
+                <h1>No hay calificaciones disponibles</h1>
+                }
+            </div>
+
 
         </mat-tab>
 
