@@ -8,8 +8,9 @@ import { Experiment } from "../../interfaces/experiment";
 import { Question } from "../../interfaces/question";
 import { QuestionarioApi } from "../../interfaces/questionarioApi";
 import { NotasUsuarioClase } from "../../interfaces/notasUsuarioClase";
+import { NewTemario } from "../../interfaces/newTemario";
 
-const baseApiUrl = "http://172.17.22.114:8000/";
+const baseApiUrl = "http://localhost:8000/";
 
 /*----------------------Classes--------------------- */
 //Obtener todas las clases
@@ -34,11 +35,11 @@ export async function postClasses(newClass: NewClass) {
     console.log("postClasses()");
 
     const response = await fetch(
-        baseApiUrl + "clases/?" + 
-        "nombre_clases=" + newClass.nombre_clases + 
-        "&descripcion_clases=" + newClass.descripcion_clases + 
-        "&contenido=" + newClass.contenido + 
-        "&foto_clases=" + newClass.foto_clases + 
+        baseApiUrl + "clases/?" +
+        "nombre_clases=" + newClass.nombre_clases +
+        "&descripcion_clases=" + newClass.descripcion_clases +
+        "&contenido=" + newClass.contenido +
+        "&foto_clases=" + newClass.foto_clases +
         "&video_clases=" + newClass.video_clases, {
 
         method: "POST",
@@ -104,6 +105,46 @@ export async function getClassLessons(id_clase: Number) {
 
 }
 
+export async function postTemario(newTemario: NewTemario) {
+
+    console.log("postClasses()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "temarios/?" +
+            "id_clases=" + newTemario.id_clases +
+            "&nombre_temario=" + newTemario.nombre_temario +
+            "&descrip_temario=" + newTemario.descrip_temario +
+            "&contenido=" + newTemario.contenido +
+            "&foto_temario=" + newTemario.foto_temario +
+            "&video_clases=" + newTemario.videos_temario, {
+
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al crear la clase');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener el experimento: ", error);
+        alert("No se ha podido guardar el temario");
+        return error;
+    }
+
+
+
+
+}
+
+
 /*--------------------------Videos-------------------------------*/
 //Obtener videos de una clase
 export async function getVideosByClass(id_clase: Number) {
@@ -112,7 +153,7 @@ export async function getVideosByClass(id_clase: Number) {
 
     try {
 
-        let response = await fetch(baseApiUrl + 'videos/' + id_clase);
+        let response = await fetch(baseApiUrl + 'temarios/clase/' + id_clase + "/videos");
 
         listVideos = await response.json();
 

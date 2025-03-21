@@ -8,7 +8,14 @@
     
             <h4 class="ml-4 text-lg"> a. &nbsp;&nbsp; {{ question.respuesta1 }}</h4>
     
-            <input class="mr-4" type="radio" id="opcion" [name]="question.id_pregunta" [value]="question.respuesta1">
+            <input 
+                class="mr-4" 
+                type="radio" 
+                id="opcion" 
+                [name]="question.id_pregunta" 
+                [value]="question.respuesta1"
+                (change)="onSelectedRespuesta(question.respuesta1)"
+                >
             
         </div>
         
@@ -23,7 +30,14 @@
     
             <h4 class="ml-4 text-lg"> b. &nbsp;&nbsp; {{ question.respuesta2 }}</h4>
     
-            <input class="mr-4" type="radio" id="opcion" [name]="question.id_pregunta" [value]="question.respuesta2">
+            <input 
+                class="mr-4" 
+                type="radio" 
+                id="opcion" 
+                [name]="question.id_pregunta" 
+                [value]="question.respuesta2"
+                (change)="onSelectedRespuesta(question.respuesta2)"
+                >
             
         </div>
         
@@ -38,7 +52,14 @@
     
             <h4 class="ml-4 text-lg"> c. &nbsp;&nbsp; {{ question.respuesta3 }}</h4>
     
-            <input class="mr-4" type="radio" id="opcion" [name]="question.id_pregunta" [value]="question.respuesta3">
+            <input 
+                class="mr-4" 
+                type="radio" 
+                id="opcion" 
+                [name]="question.id_pregunta" 
+                [value]="question.respuesta3"
+                (change)="onSelectedRespuesta(question.respuesta3)"
+                >
             
         </div>
         
@@ -53,7 +74,14 @@
     
             <h4 class="ml-4 text-lg"> d. &nbsp;&nbsp; {{ question.correcta }}</h4>
     
-            <input class="mr-4" type="radio" id="opcion" [name]="question.id_pregunta" [value]="question.correcta">
+            <input 
+                class="mr-4" 
+                type="radio" 
+                id="opcion" 
+                [name]="question.id_pregunta" 
+                [value]="question.correcta"
+                (change)="onSelectedRespuesta(question.correcta)"
+                >
             
         </div>
         

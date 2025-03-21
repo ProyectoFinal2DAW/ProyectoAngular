@@ -9,6 +9,9 @@ import { CuestionarioInfoGeneral } from '../../../interfaces/cuestionarioInfoGen
 })
 export class LayoutListExamsOfClassComponent {
 
+  //TODO: Cambiar por el usuario logeado
+  teacherUser: boolean = false;
+
   @Input() cuestionario: CuestionarioInfoGeneral = {
     id_questionario: 0,
     nombre_cuestionario: "",

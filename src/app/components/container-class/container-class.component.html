@@ -1,10 +1,12 @@
 <div class="mt-[80px] p-10 flex flex-col gap-8 overflow-auto">
 
-
+    @if (showAddTemario) {
+    <app-cuadro-dialogo-crear-temario [datosClase]=datosClase class="absolute z-20"></app-cuadro-dialogo-crear-temario>
+    }
 
     <div class="w-full h-[10rem] flex flex-col p-5 rounded-xl divCabeceraClase">
 
-        <h1 class="w-full text-4xl text-white"> {{ class.nombre_clases }}</h1>
+        <h1 class="w-full text-4xl text-white"> {{ datosClase.nombre_clases }}</h1>
         <!--         <h6 class="w-full text-xl text-white"> {{ class.descripcion_clases }}</h6>
  -->
     </div>
@@ -18,12 +20,14 @@
 
                 <div class="w-full flex flex-row items-center gap-5 p-2">
                     <h2 class="text-3xl">Teoría</h2>
-                    <button class="hover:bg-blue-100 p-2 rounded-xl">
+                    @if (teacherUser) {
+                    <button class="hover:bg-blue-100 p-2 rounded-xl" (click)="addTemario()">
                         <img src="icons/plus-solid-black.svg" class="icon-class">
                     </button>
+                    }
+
                 </div>
 
-                <hr>
                 <br>
 
                 <!--Contenido teoria-->
@@ -41,20 +45,23 @@
 
             </div>
 
-
+            <br>
 
             <!--Div Videos-->
             <div class="w-full">
 
                 <div class="w-full flex flex-row items-center gap-5 p-2">
                     <h2 class="text-3xl">Vídeos</h2>
-                    <button class="hover:bg-blue-100 p-2 rounded-xl">
+
+                    @if (teacherUser) {
+                    <button class="hover:bg-blue-100 p-2 rounded-xl" (click)="addVideo()">
                         <img src="icons/plus-solid-black.svg" class="icon-class">
                     </button>
+                    }
+
                 </div>
 
 
-                <hr>
                 <br>
 
                 <!--Contenido videos-->
@@ -72,17 +79,22 @@
 
             </div>
 
+            <br>
+
             <!--Div examenes-->
             <div class="w-full">
 
                 <div class="w-full flex flex-row items-center gap-5 p-2">
                     <h2 class="text-3xl">Exámenes</h2>
-                    <button class="hover:bg-blue-100 p-2 rounded-xl">
+
+                    @if (teacherUser) {
+                    <button class="hover:bg-blue-100 p-2 rounded-xl" (click)="addExamen()">
                         <img src="icons/plus-solid-black.svg" class="icon-class">
                     </button>
+                    }
+
                 </div>
 
-                <hr>
                 <br>
 
                 <!--Contenido examenes-->
@@ -125,7 +137,7 @@
 
                     <div class="flex-[1fr]">
                         <h1 class="text-xl"> Cuestionario: {{ nota.nombre_cuestionario }} </h1>
-                        
+
                         <h2> Aciertos: {{ nota.total_correctas }} / Fallos: {{ nota.total_falladas }}</h2>
                         <h2> Fecha de realización: {{ nota.fecha_completado }}</h2>
                     </div>

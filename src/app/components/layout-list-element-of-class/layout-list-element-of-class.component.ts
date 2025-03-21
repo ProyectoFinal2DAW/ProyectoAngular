@@ -8,6 +8,10 @@ import { Temario } from '../../../interfaces/temario';
   styleUrl: './layout-list-element-of-class.component.css'
 })
 export class LayoutListElementOfClassComponent {
+
+  //TODO: Cambiar por el usuario logeado
+  teacherUser: boolean = false;
+
   @Input() temario: Temario = {
     id_temario: 0,
     id_clases: 0,

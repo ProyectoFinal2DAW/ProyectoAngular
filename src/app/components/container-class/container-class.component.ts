@@ -13,19 +13,24 @@ import { ItemParticipanteClaseComponent } from "../item-participante-clase/item-
 import { getClassById, getClassLessons, getClassParticipants, getNotasUsuarioClase, getTestsByClass, getVideosByClass } from '../../DBManagement/DBManagement';
 import { Router } from 'express';
 import { NotasUsuarioClase } from '../../../interfaces/notasUsuarioClase';
+import { CuadroDialogoCrearTemarioComponent } from "../cuadro-dialogo-crear-temario/cuadro-dialogo-crear-temario.component";
 
 @Component({
   selector: 'app-container-class',
-  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent, RouterLink],
+  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent, RouterLink, CuadroDialogoCrearTemarioComponent],
   templateUrl: './container-class.component.html',
   styleUrl: './container-class.component.css'
 })
 export class ContainerClassComponent {
 
+  //TODO: Cambiar por el usuario logeado
+  teacherUser: boolean = true;
+  showAddTemario: boolean = false;
+
   //listaTareas: ;
   id_clase: number = 0;
 
-  class: Class = {
+  datosClase: Class = {
     contenido: "",
     id_clases: 0,
     video_clases: "",
@@ -58,7 +63,7 @@ export class ContainerClassComponent {
 
     console.log("fetchData()");
 
-    this.class = await getClassById(this.id_clase);
+    this.datosClase = await getClassById(this.id_clase);
 
     this.listaTemarios = await getClassLessons(this.id_clase);
 
@@ -70,6 +75,27 @@ export class ContainerClassComponent {
 
     this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
     console.log("Notas: ", this.listaNotasUsuarioClase);
+
+  }
+
+
+  addTemario() {
+
+    console.log("addTemario()");
+
+    this.showAddTemario = !this.showAddTemario;
+
+  }
+
+  addVideo() {
+
+    console.log("addVideo()");
+
+  }
+
+  addExamen() {
+
+    console.log("addExamen()");
 
   }
 

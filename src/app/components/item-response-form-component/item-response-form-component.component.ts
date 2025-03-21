@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { Question } from '../../../interfaces/question';
 import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -19,4 +19,13 @@ export class ItemResponseFormComponentComponent {
     respuesta3: "",
     id_pregunta: 0,
   }
+
+  @Output() respuestaSeleccionada = new EventEmitter<{ id: number, respuesta: string }>(); 
+
+  onSelectedRespuesta(respuesta: string) {
+    console.log("Seleccionaste:", respuesta);
+    this.respuestaSeleccionada.emit({ id: this.question.id_pregunta, respuesta });
+  }
+
+
 }
