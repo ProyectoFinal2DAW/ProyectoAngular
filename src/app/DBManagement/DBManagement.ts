@@ -198,12 +198,19 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
     console.log("postCuestionario()");
 
     try {
+
+        console.log("ruta API: ", baseApiUrl + "cuestionarios/?" +
+            "nombre_cuestionario=" + newCuestionario.nombre_cuestionario +
+            "&descrip_cuestionario=" + newCuestionario.descrip_cuestionario +
+            "&foto_cuestionario=" + (newCuestionario.foto_cuestionario || "") +
+            "&video_cuestionario=" + (newCuestionario.video_cuestionario || ""));
+
         const response = await fetch(
             baseApiUrl + "cuestionarios/?" +
             "nombre_cuestionario=" + newCuestionario.nombre_cuestionario +
-            "&nombre_temario=" + newCuestionario.descrip_cuestionario +
-            "&descrip_temario=" + newCuestionario.foto_cuestionario +
-            "&contenido=" + newCuestionario.video_cuestionario,
+            "&descrip_cuestionario=" + newCuestionario.descrip_cuestionario +
+            "&foto_cuestionario=" + (newCuestionario.foto_cuestionario || "") +
+            "&video_cuestionario=" + (newCuestionario.video_cuestionario || ""),
             {
                 method: "POST",
                 headers: {
@@ -218,7 +225,11 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
 
         const data = await response.json();
 
+        console.log("data: ", data);
+
         const idCuestionario = data.id_questionario;
+
+
 
         //Si hay algun valor en idCuestionario hacer...
         if (idCuestionario) {
@@ -228,7 +239,7 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
                 for (let i = 0; i < listaPreguntas.length; i++) {
                     const element = listaPreguntas[i];
 
-                    postPregunta(element);
+                    postPregunta(element, idCuestionario);
 
                 }
             }
@@ -248,17 +259,27 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
         return false;
     }
 }
-export async function postPregunta(newPregunta: NewPregunta) {
+export async function postPregunta(newPregunta: NewPregunta, idCuestionario: number) {
 
 
     console.log("postPregunta()");
 
     try {
+
+        console.log("ruta API: ", baseApiUrl + "preguntas/?" +
+            "id_questionario=" + idCuestionario +
+            "&enunciado=" + newPregunta.enunciado +
+            "&respuesta=" + "11" +
+            "&correcta=" + newPregunta.correcta +
+            "&respuesta1=" + newPregunta.respuesta1 +
+            "&respuesta2=" + newPregunta.respuesta2 +
+            "&respuesta3=" + newPregunta.respuesta3);
+
         const response = await fetch(
             baseApiUrl + "preguntas/?" +
-            "id_questionario=" + newPregunta.id_questionario +
+            "id_questionario=" + idCuestionario +
             "&enunciado=" + newPregunta.enunciado +
-            "&respuesta=" + newPregunta.respuesta +
+            "&respuesta=" + "11" +
             "&correcta=" + newPregunta.correcta +
             "&respuesta1=" + newPregunta.respuesta1 +
             "&respuesta2=" + newPregunta.respuesta2 +
@@ -291,6 +312,12 @@ export async function postTemariosCuestionarios(id_clases: number, id_questionar
     console.log("postTemariosCuestionarios()");
 
     try {
+
+        console.log("ruta API: ", baseApiUrl + "temarios_cuestionarios/?" +
+            "id_clases=" + id_clases +
+            "&id_questionario=" + id_questionario +
+            "&id_temario=" + 1);
+
         const response = await fetch(
             baseApiUrl + "temarios_cuestionarios/?" +
             "id_clases=" + id_clases +
