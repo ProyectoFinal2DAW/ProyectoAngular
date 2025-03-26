@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Inject, inject } from '@angular/core';
 import { ItemVideoListClassContentComponent } from "../item-video-list-class-content/item-video-list-class-content.component";
 import { LayoutListElementOfClassComponent } from "../layout-list-element-of-class/layout-list-element-of-class.component";
 import { LayoutListExamsOfClassComponent } from '../layout-list-exams-of-class/layout-list-exams-of-class.component';
@@ -14,6 +14,10 @@ import { getClassById, getClassLessons, getClassParticipants, getNotasUsuarioCla
 import { Router } from 'express';
 import { NotasUsuarioClase } from '../../../../interfaces/notasUsuarioClase';
 import { CuadroDialogoCrearTemarioComponent } from "../cuadro-dialogo-crear-temario/cuadro-dialogo-crear-temario.component";
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialog, MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-container-class',
@@ -83,6 +87,20 @@ export class ContainerClassComponent {
 
   }
 
+  //---------------------Cuadro de diálogo-------------------------------
+  readonly dialog = inject(MatDialog);
+
+  openDialog(video: videoClass) {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+      data: { video } // Pasar objeto por parámetros
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  //---------------------------------------------------------------------
+
 
   addTemario() {
 
@@ -105,4 +123,28 @@ export class ContainerClassComponent {
   }
 
 
+
+}
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+  imports: [MatDialogModule, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DialogContentExampleDialog {
+  video: videoClass;
+
+  videoUrl?: SafeResourceUrl;
+  
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { video: videoClass }, private sanitizer: DomSanitizer) {
+    this.video = data.video;
+    console.log("Received video object: ", this.video);
+  }
+
+  ngOnInit() {
+    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video.videos_temario);
+
+  }
 }

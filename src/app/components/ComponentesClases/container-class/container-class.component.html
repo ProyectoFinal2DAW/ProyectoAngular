@@ -4,7 +4,7 @@
     <app-cuadro-dialogo-crear-temario [datosClase]=datosClase class="absolute z-20"></app-cuadro-dialogo-crear-temario>
     }
 
-    <div class="w-full h-[10rem] flex flex-col p-5 rounded-xl"
+    <div class="w-full h-[14rem] flex flex-col p-5 rounded-xl"
     [style]="{'background-image': 'url(' + datosClase.foto_clases + ')', 'background-size': 'cover', 'background-position': 'center'}">
 
         <h1 class="w-full text-4xl text-white"> {{ datosClase.nombre_clases }}</h1>
@@ -70,7 +70,7 @@
 
                     @if (listaVideos.length > 0) {
                     @for (video of listaVideos; track $index) {
-                    <app-item-video-list-class-content [video]=video></app-item-video-list-class-content>
+                    <app-item-video-list-class-content [video]=video (click)="openDialog(video)"></app-item-video-list-class-content>
                     }
                     } @else {
                     <h1>No hay videos disponibles</h1>
