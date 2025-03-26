@@ -1,24 +1,17 @@
-<div class="w-[50rem] h-[15rem] grid grid-cols-[1fr_0.1fr_1fr_1fr] gap-4 p-8 bg-gray-100 text-gray-500 shadow-xl rounded-3xl duration-100 hover:scale-105 lg:w-[80rem]">
-
-    <div class="flex flex-col items-center justify-center">
-        <h1 class="text-xl text-center mr-20">Experimento</h1>
-        <h1 class="text-6xl text-center">{{  "0" + (contadorExperimento + 1) }}</h1>
+<div class="experiment-card-container">
+    <div class="experiment-card">
+        <a class="experiment-image-link">
+            <img class="experiment-image" src={{experiment.foto_experimento}} alt="Imagen del experimento" />
+        </a>
+        <div class="experiment-info">
+            <a>
+                <h5 class="experiment-title">
+                    {{ experiment.nombre_experimento }}
+                </h5>
+            </a>
+            <p class="experiment-description">
+                {{ experiment.descrip_experimento }}
+            </p>
+        </div>
     </div>
-
-    <div class="flex flex-col items-center justify-center">
-        <div class="w-full h-full rounded-full bg-gradient-to-br from-blue-900 to-blue-500"></div>
-    </div>
-
-    <div class="flex flex-col items-center justify-center">
-        <img class="w-1/3 lg:w-1/4" src="icons/microscope-solid-gray.svg">
-    </div>
-
-    <div class="flex flex-col justify-center gap-2">
-
-
-        <h1 class="text-xl"> {{ experiment.nombre_experimento }}</h1>
-        <h5 class="line-clamp-2">{{ experiment.descrip_experimento }}</h5>
-    </div>
-    
-
 </div>

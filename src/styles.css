@@ -49,3 +49,6 @@ h6 {
   width: 24px;
   height: 24px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

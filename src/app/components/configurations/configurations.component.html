@@ -1,1 +1,35 @@
-<p>configurations works!</p>
+<div class="profile-component pt-6">
+    <div class="libreta">
+        <div class="espirales">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="contenedorMainUserProfile">
+            <div class="contenedorSuperiorProfile">
+                <img src="images/persona.jpg" class="imagenUserProfile">
+                <button class="buttonCambiarFoto" mat-raised-button>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+                        <path d="M149.1 64.8L138.7 96 64 96C28.7 96 0 124.7 0 160L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64l-74.7 0L362.9 64.8C356.4 45.2 338.1 32 317.4 32L194.6 32c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z" />
+                    </svg>
+                </button>
+            </div>
+            <mat-form-field><mat-label>Nombre</mat-label><input matInput readonly></mat-form-field>
+            <mat-form-field><mat-label>Apellidos</mat-label><input matInput readonly></mat-form-field>
+            <mat-form-field><mat-label>Correo</mat-label><input matInput readonly></mat-form-field>
+            <mat-form-field><mat-label>Contraseña</mat-label><input matInput readonly></mat-form-field>
+            <div class="buttons">
+                @if (!editando) {
+                    <input type="button" value="Editar" class="buttonEditar" (click)="activarEdicion()">
+                }
+                @if (editando) {
+                    <button class="buttonGuardar" (click)="guardar()">✔</button>
+                    <button class="buttonCancelar" (click)="cancelar()">✖</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

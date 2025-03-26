@@ -4,11 +4,12 @@ import { Experiment } from '../../../../interfaces/experiment';
 import Chart from 'chart.js/auto';
 import { getExperimentById } from '../../../DBManagement/DBManagement';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Router } from 'express';
 
 
 @Component({
   selector: 'app-experimento-description',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './experimento-description.component.html',
   styleUrl: './experimento-description.component.css'
 })

@@ -1,23 +1,18 @@
+<h1 class="mt-[100px] w-full text-center text-4xl mb-4">Experimentos</h1>
 
-
-<div class="mt-[80px] w-full flex flex-wrap flex-col gap-8 p-10 items-center justify-center lg:px-24">
-
-    <h1 class="text-4xl mb-4">Experimentos</h1>    
+<div class="mt-[30px] w-full flex flex-wrap flex-row gap-8 p-8 justify-center lg:px-24">
 
 
     @for (experiment of listExperiments; track $index; let idx = $index) {
-        <app-item-experiment 
-            routerLink="../experimentDescription" 
-            [queryParams]="{ id: experiment.id_experimento }" 
-            [experiment]=experiment 
-            [contadorExperimento]=idx>
-        </app-item-experiment>
+    <app-item-experiment routerLink="../experimentDescription" [queryParams]="{ id: experiment.id_experimento }"
+        [experiment]=experiment [contadorExperimento]=idx>
+    </app-item-experiment>
     }
 
     <button
-            class="fixed bottom-7 right-5 bg-blue-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300"
-            (click)="showPanelAddExperiment()">
-            <img class="icon-class" src="icons/plus-solid.svg">
-        </button>
+        class="fixed bottom-7 right-5 bg-blue-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300"
+        (click)="showPanelAddExperiment()">
+        <img class="icon-class" src="icons/plus-solid.svg">
+    </button>
 
 </div>
