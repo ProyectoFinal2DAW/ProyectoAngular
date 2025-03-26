@@ -1,0 +1,114 @@
+<div class="mt-[80px] mb-[40px] flex flex-row flex-wrap p-4 gap-4">
+
+    <div class="flex-1 flex-col gap-4 justify-center items-center">
+
+        <form [formGroup]="addCuestionarioform" (ngSubmit)="onSubmitCrearCuestionario()" class="flex flex-col gap-3 p-6 rounded-xl bg-white">
+
+
+            <h1 class="text-3xl text-center">Nuevo cuestionario</h1>
+
+            <mat-form-field>
+                <mat-label>Nombre cuestionario:</mat-label>
+                <input placeholder="Escriba aquí el nombre del cuestionario" formControlName="nombreCuestionario" matInput
+                    required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Descripción cuestionario:</mat-label>
+                <input type="text" placeholder="Descripción del cuestionario" formControlName="descripcionCuestionario" matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Imagen cuestionario:</mat-label>
+                <input type="text" placeholder="Descripción del cuestionario" formControlName="imagenCuestionario" matInput />
+            </mat-form-field>
+
+            <button class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Crear cuestionario</button>
+
+
+        </form>
+
+        <br>
+
+
+        <h1 class="w-full text-center text-2xl">Preguntas</h1>
+
+        <br>
+
+        <mat-accordion>
+
+            @if (listaPreguntas.length > 0) {
+
+            @for (pregunta of listaPreguntas; track $index; let idx = $index) {
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> {{ idx + 1 }} . {{ pregunta.enunciado }} </mat-panel-title>
+                    <!--                 <mat-panel-description> Enunciado </mat-panel-description>
+                --> </mat-expansion-panel-header>
+
+                <p class="text-blue-500"> {{ pregunta.respuesta1}} </p>
+                <p class="text-blue-500"> {{ pregunta.respuesta2}} </p>
+                <p class="text-blue-500"> {{ pregunta.respuesta3}} </p>
+                <p class="text-green-500"> {{ pregunta.correcta}} </p>
+
+            </mat-expansion-panel>
+            }
+
+            } @else {
+            <h1 class="w-full text-center">No hay preguntas</h1>
+            }
+
+
+
+
+
+        </mat-accordion>
+
+    </div>
+
+    <div class="flex-1">
+
+        <form [formGroup]="addPreguntaForm" (ngSubmit)="onSubmitCrearPregunta()" class="flex flex-col gap-3 p-6 rounded-xl bg-white">
+
+
+            <h1 class="text-3xl text-center">Añadir clase</h1>
+
+            <mat-form-field>
+                <mat-label>Enunciado:</mat-label>
+                <input placeholder="Escriba aquí el enunciado de la pregunta" formControlName="enunciado" matInput
+                    required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Respuesta 1:</mat-label>
+                <input type="text" placeholder="Respuesta 1" formControlName="respuesta1" matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Respuesta 2:</mat-label>
+                <input type="text" placeholder="Respuesta 2" formControlName="respuesta2" matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Respuesta 3:</mat-label>
+                <input type="text" placeholder="Respuesta 3" formControlName="respuesta3" matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Respuesta correcta:</mat-label>
+                <input type="text" placeholder="Respuesta correcta" formControlName="respuestaCorrecta" matInput />
+            </mat-form-field>
+
+
+            <button class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Crear pregunta</button>
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+</div>

@@ -10,6 +10,7 @@ import { BoxQuestionFormComponentComponent } from './components/ComponentesFormu
 import { ContainerClassComponent } from './components/ComponentesClases/container-class/container-class.component';
 import { ExperimentoDescriptionComponent } from './components/ComponentesExperimentos/experimento-description/experimento-description.component';
 import { Login2Component } from './components/login2/login2.component';
+import { FormCreateExamComponent } from './components/ComponentesFormularioExamenes/form-create-exam/form-create-exam.component';
 
 export const routes: Routes = [
   { path: '', component: Login2Component }, // Ruta principal (index)
@@ -22,12 +23,13 @@ export const routes: Routes = [
   { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
   { path: 'experimentDescription', component: ExperimentoDescriptionComponent }, // Ruta para /experimentos
 
-  { path: 'clases', component: ClasesComponent }, // Ruta para /clases
-  { path: 'clase', component: ContainerClassComponent }, // Ruta para /configuration
+  { path: 'clases', component: ClasesComponent }, // Ruta para lista de clases
+  { path: 'clase', component: ContainerClassComponent }, // Ruta para /Detalles clase
 
   { path: 'configuration', component: ConfigurationsComponent }, // Ruta para /configuration
 
-  { path: 'form', component: BoxQuestionFormComponentComponent }, // Ruta para /configuration
+  { path: 'form', component: BoxQuestionFormComponentComponent }, // Ruta para /formularioExamen
+  { path: 'createExam', component: FormCreateExamComponent }, // Ruta para /configuration
 
 
 ];

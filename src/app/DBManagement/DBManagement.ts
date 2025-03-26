@@ -9,6 +9,8 @@ import { Question } from "../../interfaces/question";
 import { QuestionarioApi } from "../../interfaces/questionarioApi";
 import { NotasUsuarioClase } from "../../interfaces/notasUsuarioClase";
 import { NewTemario } from "../../interfaces/newTemario";
+import { NewCuestionario } from "../../interfaces/newCuestionario";
+import { NewPregunta } from "../../interfaces/newPregunta";
 
 const baseApiUrl = "http://localhost:8000/";
 
@@ -184,6 +186,136 @@ export async function getTestsByClass(id_clase: Number) {
 
     return listTests;
 
+}
+export async function postCuestionario(newCuestionario: NewCuestionario, listaPreguntas: NewPregunta[], id_clases: number) {
+
+    //1. Crear POST Cuestionarios y obtener el id
+    //2. Crear POST Preguntas por cada pregunta utilizando los datos del formulario
+    //   y el id devuelto en el POST 1
+    //3. Crear POST Temarios Cuestionarios con el id de la clase 
+    //   seleccionada, el id cuestionario devuelto en el POST 1 y poner 1 en el temario
+
+    console.log("postCuestionario()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "cuestionarios/?" +
+            "nombre_cuestionario=" + newCuestionario.nombre_cuestionario +
+            "&nombre_temario=" + newCuestionario.descrip_cuestionario +
+            "&descrip_temario=" + newCuestionario.foto_cuestionario +
+            "&contenido=" + newCuestionario.video_cuestionario,
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                //body: JSON.stringify(newClass)
+            });
+
+        if (!response.ok) {
+            throw new Error('Error al crear el cuestionario');
+        }
+
+        const data = await response.json();
+
+        const idCuestionario = data.id_questionario;
+
+        //Si hay algun valor en idCuestionario hacer...
+        if (idCuestionario) {
+
+            //Crear un post para cada pregunta del array
+            if (listaPreguntas.length > 0) {
+                for (let i = 0; i < listaPreguntas.length; i++) {
+                    const element = listaPreguntas[i];
+
+                    postPregunta(element);
+
+                }
+            }
+
+            //Crear un post en la tabla de la relacion N:M
+            postTemariosCuestionarios(id_clases, idCuestionario)
+
+
+            return true;
+        }
+        return false;
+
+
+    } catch (error) {
+        console.log("Error al obtener el cuestionario: ", error);
+        alert("No se ha podido guardar el cuestionario");
+        return false;
+    }
+}
+export async function postPregunta(newPregunta: NewPregunta) {
+
+
+    console.log("postPregunta()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "preguntas/?" +
+            "id_questionario=" + newPregunta.id_questionario +
+            "&enunciado=" + newPregunta.enunciado +
+            "&respuesta=" + newPregunta.respuesta +
+            "&correcta=" + newPregunta.correcta +
+            "&respuesta1=" + newPregunta.respuesta1 +
+            "&respuesta2=" + newPregunta.respuesta2 +
+            "&respuesta3=" + newPregunta.respuesta3,
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                //body: JSON.stringify(newClass)
+            });
+
+        if (!response.ok) {
+            throw new Error('Error al crear la pregunta');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener la pregunta: ", error);
+        alert("No se ha podido guardar la pregunta");
+        return error;
+    }
+}
+
+export async function postTemariosCuestionarios(id_clases: number, id_questionario: number) {
+
+
+    console.log("postTemariosCuestionarios()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "temarios_cuestionarios/?" +
+            "id_clases=" + id_clases +
+            "&id_questionario=" + id_questionario +
+            "&id_temario=" + 1,
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                //body: JSON.stringify(newClass)
+            });
+
+        if (!response.ok) {
+            throw new Error('Error al crear temarios-cuestionarios');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener temarios-cuestionarios: ", error);
+        alert("No se ha podido guardar temarios-cuestionarios");
+        return error;
+    }
 }
 
 /*----------------------------Usuarios------------------------------ */

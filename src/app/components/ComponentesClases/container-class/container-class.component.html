@@ -88,7 +88,7 @@
                     <h2 class="text-3xl">Exámenes</h2>
 
                     @if (teacherUser) {
-                    <button class="hover:bg-blue-100 p-2 rounded-xl" (click)="addExamen()">
+                    <button class="hover:bg-blue-100 p-2 rounded-xl" routerLink="../createExam" [queryParams]="{ id_class: id_clase }" (click)="addExamen()">
                         <img src="icons/plus-solid-black.svg" class="icon-class">
                     </button>
                     }
