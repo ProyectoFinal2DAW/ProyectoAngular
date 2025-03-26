@@ -1,6 +1,5 @@
 export interface videoClass {
-    idVideo: number;
-    imagenVideo: string;
-    rutaVideo: string;
-    tituloVideo: string;
+    foto_temario: string;
+    titulo_video: string;
+    videos_temario: string;
 }

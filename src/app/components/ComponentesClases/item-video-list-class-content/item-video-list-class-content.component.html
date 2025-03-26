@@ -1,11 +1,12 @@
-<div class="w-[10rem] h-[8rem] bg-blue-800 rounded-3xl flex flex-col justify-end overflow-hidden relative">
+<div class="w-[16rem] h-[12rem] rounded-3xl flex flex-col justify-end overflow-hidden relative"
+[style]="{'background-image': 'url(' + video.foto_temario + ')', 'background-size': 'cover', 'background-position': 'center'}">
 
     <div class="top-0 h-2/3 flex items-center justify-center absulute opacity-0 hover:opacity-100 transition-opacity duration-300">
         <img class="icon-class" src="icons/play-solid.svg">
     </div>
 
-    <div class="h-1/3 flex items-center justify-center divTituloVideo">
-        <h2 class="text-lg text-white">Titulo video</h2>
+    <div class="h-1/3 flex items-center justify-center p-4 divTituloVideo">
+        <h2 class="text-lg text-white">{{ video.titulo_video }}</h2>
     </div>
 
 </div>

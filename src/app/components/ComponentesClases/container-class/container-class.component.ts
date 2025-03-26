@@ -65,6 +65,7 @@ export class ContainerClassComponent {
     console.log("fetchData()");
 
     this.datosClase = await getClassById(this.id_clase);
+    console.log("Datos clase: ", this.datosClase);
 
     this.listaTemarios = await getClassLessons(this.id_clase);
 

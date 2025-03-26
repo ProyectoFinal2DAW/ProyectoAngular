@@ -10,10 +10,9 @@ import { videoClass } from '../../../../interfaces/videoClass';
 export class ItemVideoListClassContentComponent {
 
   @Input() video: videoClass = {
-    idVideo: 0,
-    imagenVideo: "",
-    rutaVideo: "",
-    tituloVideo: "",
+    foto_temario: "",
+    titulo_video: "",
+    videos_temario: "",
   }
 
 }
