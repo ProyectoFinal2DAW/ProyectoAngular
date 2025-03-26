@@ -47,6 +47,7 @@ export class ContainerClassComponent {
   //Number(localStorage.getItem('idUsuario'));
 
   listaParticipantesClase: User[] = [];
+  listaDeParticipantesValida: boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -69,9 +70,12 @@ export class ContainerClassComponent {
 
     this.listaVideos = await getVideosByClass(this.id_clase);
 
+    console.log("Lista videos: ", this.listaVideos);
+
     this.listaCuestionarios = await getTestsByClass(this.id_clase);
 
     this.listaParticipantesClase = await getClassParticipants(this.id_clase);
+    console.log("listaParticipantes: ", this.listaParticipantesClase);
 
     this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
     console.log("Notas: ", this.listaNotasUsuarioClase);

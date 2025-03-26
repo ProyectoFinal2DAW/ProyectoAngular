@@ -94,18 +94,23 @@ export async function getClassLessons(id_clase: Number) {
     let lessonsList: Temario[] = [];
 
     try {
-
         let response = await fetch(baseApiUrl + 'temarios/clase/' + id_clase);
 
+        if (response.status === 404) {
+            return lessonsList; 
+        }
+
+        // Si la respuesta es exitosa, se procesan los datos
         lessonsList = await response.json();
 
     } catch (error) {
+        // Solo mostrar el error si no es 404
         console.log("Error al obtener los temarios: ", error);
     }
 
     return lessonsList;
-
 }
+
 
 export async function postTemario(newTemario: NewTemario) {
 
