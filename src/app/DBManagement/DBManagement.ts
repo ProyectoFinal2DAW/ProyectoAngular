@@ -11,6 +11,7 @@ import { NotasUsuarioClase } from "../../interfaces/notasUsuarioClase";
 import { NewTemario } from "../../interfaces/newTemario";
 import { NewCuestionario } from "../../interfaces/newCuestionario";
 import { NewPregunta } from "../../interfaces/newPregunta";
+import { NewVideo } from "../../interfaces/newVideo";
 
 const baseApiUrl = "http://localhost:8000/";
 
@@ -145,12 +146,71 @@ export async function postTemario(newTemario: NewTemario) {
         alert("No se ha podido guardar el temario");
         return error;
     }
+}
+export async function putTemario(newTemario: NewTemario) {
 
+    console.log("postClasses()");
 
+    try {
+        const response = await fetch(
+            baseApiUrl + "temarios/?" +
+            "id_clases=" + newTemario.id_clases +
+            "&nombre_temario=" + newTemario.nombre_temario +
+            "&descrip_temario=" + newTemario.descrip_temario +
+            "&contenido=" + newTemario.contenido +
+            "&foto_temario=" + newTemario.foto_temario +
+            "&video_clases=" + newTemario.videos_temario, {
 
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
 
+        if (!response.ok) {
+            throw new Error('Error al crear la clase');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener el experimento: ", error);
+        alert("No se ha podido guardar el temario");
+        return error;
+    }
 }
 
+export async function deleteTemarioById (idTemario: number) {
+
+    console.log("deleteTemarioById()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "temarios/" + idTemario, {
+
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar el temario');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al eliminar el temario: ", error);
+        alert("No se ha podido eliminar el temario");
+        return error;
+    }
+
+}
 
 /*--------------------------Videos-------------------------------*/
 //Obtener videos de una clase
@@ -172,6 +232,38 @@ export async function getVideosByClass(id_clase: Number) {
     return listVideos;
 
 }
+
+export async function postVideoClass(id_clases: number, newVideo: NewVideo) {
+
+
+    console.log("postVideoClass()");
+
+    try {
+
+        const response = await fetch(
+            baseApiUrl + "temarios/clase/" + id_clases + "/videos",
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newVideo)
+            });
+
+        if (!response.ok) {
+            throw new Error('Error al crear el video');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener el video creado: ", error);
+        alert("No se ha podido guardar el video");
+        return error;
+    }
+}
+
 
 /*-------------------------Cuestionarios----------------------- */
 //Obtener cuestionarios de una clase
@@ -348,6 +440,36 @@ export async function postTemariosCuestionarios(id_clases: number, id_questionar
         alert("No se ha podido guardar temarios-cuestionarios");
         return error;
     }
+}
+
+export async function deleteCuestionarioById (idcuestionario: number) {
+
+    console.log("deleteCuestionarioById()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "cuestionarios/" + idcuestionario, {
+
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar el cuestionario');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al eliminar el cuestionario: ", error);
+        alert("No se ha podido eliminar el cuestionario");
+        return error;
+    }
+
 }
 
 /*----------------------------Usuarios------------------------------ */

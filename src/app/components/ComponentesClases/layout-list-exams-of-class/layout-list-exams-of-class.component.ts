@@ -1,5 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject, EventEmitter, Output } from '@angular/core';
 import { CuestionarioInfoGeneral } from '../../../../interfaces/cuestionarioInfoGeneral';
+import { DialogContentDeleteTemario } from '../container-class/CuadrosDeDialogo/DeleteTemario/dialog-content-delete-temario';
+import { MatDialog } from '@angular/material/dialog';
+import { deleteCuestionarioById } from '../../../DBManagement/DBManagement';
+
 
 @Component({
   selector: 'app-layout-list-exams-of-class',
@@ -9,8 +13,11 @@ import { CuestionarioInfoGeneral } from '../../../../interfaces/cuestionarioInfo
 })
 export class LayoutListExamsOfClassComponent {
 
+  @Output() elementoEliminado = new EventEmitter<boolean>(); // Evento para notificar al padre
+
+
   //TODO: Cambiar por el usuario logeado
-  teacherUser: boolean = false;
+  teacherUser: boolean = true;
 
   @Input() cuestionario: CuestionarioInfoGeneral = {
     id_questionario: 0,
@@ -18,6 +25,26 @@ export class LayoutListExamsOfClassComponent {
     fecha_publicacion: null
   }
 
+  //-----------------Cuadro de diálogo eliminar cuestionario-----------------
+  readonly dialog = inject(MatDialog);
 
+  openDialogDeleteExam(id_questionario: number) {
+    const dialogRef = this.dialog.open(DialogContentDeleteTemario, {
+      data: { id_questionario: this.cuestionario.id_questionario }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result) {
+        //ejecutar la funcion para eliminar el cuestionario
+        deleteCuestionarioById(id_questionario).then(() => {
+          console.log('Eliminación completada');
+          // Aquí puedes actualizar la lista, mostrar un mensaje, etc.
+          this.elementoEliminado.emit(true);
+
+        });
+      }
+    });
+  }
 
 }
