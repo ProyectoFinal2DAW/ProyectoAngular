@@ -12,7 +12,7 @@ import { NewTemario } from "../../interfaces/newTemario";
 import { NewCuestionario } from "../../interfaces/newCuestionario";
 import { NewPregunta } from "../../interfaces/newPregunta";
 
-const baseApiUrl = "http://localhost:8000/";
+const baseApiUrl = "http://172.17.22.114:8000/";
 
 /*----------------------Classes--------------------- */
 //Obtener todas las clases

@@ -11,6 +11,7 @@ import { ContainerClassComponent } from './components/ComponentesClases/containe
 import { ExperimentoDescriptionComponent } from './components/ComponentesExperimentos/experimento-description/experimento-description.component';
 import { Login2Component } from './components/login2/login2.component';
 import { FormCreateExamComponent } from './components/ComponentesFormularioExamenes/form-create-exam/form-create-exam.component';
+import { ProtocolosComponent } from './components/ComponentesHome/protocolos/protocolos.component';
 
 export const routes: Routes = [
   { path: '', component: Login2Component }, // Ruta principal (index)
@@ -30,6 +31,7 @@ export const routes: Routes = [
 
   { path: 'form', component: BoxQuestionFormComponentComponent }, // Ruta para /formularioExamen
   { path: 'createExam', component: FormCreateExamComponent }, // Ruta para /configuration
+  { path: 'protocolos', component: ProtocolosComponent }, // Ruta para /protocolos
 
 
 ];

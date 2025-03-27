@@ -52,3 +52,16 @@ h6 {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* styles.css o en tu archivo CSS global */
+@layer utilities {
+  .text-glow2 {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* En tu archivo CSS */
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 10px rgba(31, 31, 31, 0.6), 0 0 15px rgba(56, 56, 56, 0.4);
+  }
+}
