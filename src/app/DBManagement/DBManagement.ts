@@ -15,7 +15,7 @@ import { NewVideo } from "../../interfaces/newVideo";
 import { UpdateClase } from "../../interfaces/updateClase";
 import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
 
-const baseApiUrl = "http://79.154.105.236:6956/";
+const baseApiUrl = "http://localhost:8000/";
 
 /*----------------------Classes--------------------- */
 //Obtener todas las clases
