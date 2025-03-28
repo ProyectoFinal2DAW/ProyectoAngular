@@ -1,16 +1,17 @@
-<div class="w-96 rounded-lg border bg-white overflow-hidden ">
+<div class="w-96 rounded-lg border bg-white overflow-hidden cursor-pointer">
 
     <div class="relative w-full p-5"
         [style]="{ 'background-image': 'url(' + classroom.foto_clases + ')', 'background-size': 'cover', 'background-position': 'center' }">
         <!-- Imagen de perfil redonda en la esquina superior derecha -->
-        <div class="absolute top-0 right-0 mt-4 mr-4 w-20 h-20 bg-white rounded-full overflow-hidden z-10">
+        <!-- <div class="absolute top-0 right-0 mt-4 mr-4 w-20 h-20 bg-white rounded-full overflow-hidden z-10">
             <img class="w-full h-full object-cover" src="images/juan.png" alt="Imagen de perfil">
-        </div>
+        </div> -->
 
         <!-- Contenido -->
-        <h1 class="text-2xl text-white">{{ classroom.nombre_clases }}</h1>
-        <h4 class="mt-1 text-white">Curso</h4>
-        <h5 class="text-white">Profe</h5>
+        <div class="h-24 flex justify-center items-center">
+            <h1 class="text-3xl text-white text-glow">{{ classroom.nombre_clases }}</h1>
+        </div>
+
     </div>
 
 
@@ -23,7 +24,8 @@
     <div class="w-full flex flex-row justify-end p-2">
 
         @if (usuarioProfesor) {
-        <button class="p-2 rounded-2xl hover:bg-gray-100" (click)="openDialogAddUpdateClass('u', classroom, classroom.id_clases)">
+        <button class="p-2 rounded-2xl hover:bg-gray-100"
+            (click)="openDialogAddUpdateClass('u', classroom, classroom.id_clases, $event)">
             <img class="w-6" src="icons/file-pen-solid.svg">
         </button>
         }

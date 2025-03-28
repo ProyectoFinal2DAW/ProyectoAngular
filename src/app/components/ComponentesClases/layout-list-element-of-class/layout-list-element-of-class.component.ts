@@ -34,7 +34,10 @@ export class LayoutListElementOfClassComponent {
   //-----------------Cuadro de diálogo Add/Update Temario----------------
     readonly dialogAddUpdateTemario = inject(MatDialog);
   
-    openDialogAddUpdateTemario(action: string, temario: Temario) {
+    openDialogAddUpdateTemario(action: string, temario: Temario, event: any) {
+
+      event.stopPropagation();
+
       const dialogRefAddUpdateTemario = this.dialogAddUpdateTemario.open(DialogContentAddTemario, {
         data: {
           action: action,
@@ -49,7 +52,10 @@ export class LayoutListElementOfClassComponent {
   //------------------Cuadro de diálogo eliminar temario-----------------
   readonly dialog = inject(MatDialog);
 
-  async openDialogDeleteTemario(idTemario: number) {
+  async openDialogDeleteTemario(idTemario: number, event: any) {
+
+    event.stopPropagation();
+
     const dialogRef = this.dialog.open(DialogContentDeleteTemario, {
       data: { idTemario: this.temario.id_temario } // Pasar objeto por parámetros
     });

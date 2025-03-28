@@ -27,7 +27,10 @@ export class ItemClasroomComponent {
   //---------------------Cuadro de diálogo Add video-------------------------------
       readonly dialogAddClass = inject(MatDialog);
     
-      openDialogAddUpdateClass(action: string, clase: Class, idClase: number) {
+      openDialogAddUpdateClass(action: string, clase: Class, idClase: number, event: any) {
+
+        event.stopPropagation();
+
         const dialogRefAddClass = this.dialogAddClass.open(DialogContentAddClass, {
           data: { action: action, clase: clase, idClase: idClase }
         });
