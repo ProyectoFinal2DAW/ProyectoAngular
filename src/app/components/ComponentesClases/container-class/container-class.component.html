@@ -38,8 +38,12 @@
 
                     @if (listaTemarios.length > 0) {
                     @for (temario of listaTemarios; track $index) {
-                    <app-layout-list-element-of-class [temario]=temario
-                        (elementoEliminado)="actualizarTemarios($event)"></app-layout-list-element-of-class>
+                    <app-layout-list-element-of-class 
+                        [temario]=temario
+                        (elementoEliminado)="actualizarTemarios($event)"
+                        routerLink="../temarioDescription"
+                        [queryParams]="{ id_class: id_clase, id_temario: temario.id_temario}"
+                        ></app-layout-list-element-of-class>
                     }
                     } @else {
                     <h1>No hay temarios disponibles</h1>

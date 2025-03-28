@@ -1,0 +1,78 @@
+<div class="mt-[80px] flex flex-col p-10">
+
+    <!-- Cabecera -->
+    <div class="w-full h-[14rem] flex flex-col p-5 rounded-xl"
+        [style]="{'background-image': 'url(' + contenidoClase.foto_temario + ')', 'background-size': 'cover', 'background-position': 'center'}">
+
+        <h1 class="w-full text-4xl text-white"> {{ contenidoClase.nombre_temario }}</h1>
+    </div>
+
+    <br><br>
+
+    <div class="flex flex-row gap-5 ">
+
+        <div class="flex flex-[3] flex-col gap-10">
+            <!-- Contenido -->
+            <div>
+                <div class="border-l-4 border-b-4 border-blue-500 p-3 rounded-bl-xl">
+                    <h1 class="text-2xl">Contenidos</h1>
+                </div>
+                <br>
+                <h4>{{ contenidoClase.descrip_temario }}</h4>
+            </div>
+
+
+            <!-- Archivos -->
+            <div>
+                <div class="border-l-4 border-b-4 border-blue-500 p-3 rounded-bl-xl">
+                    <h1 class="text-2xl">Archivos</h1>
+                </div>
+                <br>
+
+                <div>
+                    <h4>{{ contenidoClase.contenido }}</h4>
+                </div>
+            </div>
+
+
+            <div>
+
+            </div>
+
+            <!-- Otros contenidos -->
+            <div>
+                <div class="border-l-4 border-b-4 border-blue-500 p-3 rounded-bl-xl">
+                    <h1 class="text-2xl">Otros contenidos</h1>
+                </div>
+                <br>
+
+                <iframe class="w-[20rem] h-[15rem]" [src]="videoUrl" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+
+
+        <!-- Apartado calificaciones y comentarios con el profe -->
+        <div class="flex flex-[1] flex-col gap-5 p-4">
+
+            <!-- Calificaciones -->
+            <div class="flex flex-[1] bg-blue-200 rounded-xl p-4">
+                <p>Aqui estaran las calificaciones</p>
+            </div>
+
+            <!-- Comentarios -->
+            <div class="flex flex-[1] bg-blue-200 rounded-xl p-4">
+                <p>Aquí estaran los comentarios</p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>

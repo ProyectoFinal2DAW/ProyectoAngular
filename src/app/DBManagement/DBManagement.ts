@@ -13,6 +13,7 @@ import { NewCuestionario } from "../../interfaces/newCuestionario";
 import { NewPregunta } from "../../interfaces/newPregunta";
 import { NewVideo } from "../../interfaces/newVideo";
 import { UpdateClase } from "../../interfaces/updateClase";
+import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
 
 const baseApiUrl = "http://localhost:8000/";
 
@@ -145,6 +146,40 @@ export async function getClassLessons(id_clase: Number) {
     }
 
     return lessonsList;
+}
+
+export async function getContenidoTemario(id_clase: number, id_temario: number) {
+
+    let listaContenidos = [];
+
+    let contenidoTemario: ContenidoTemarioDescripcion = {
+        id_temario: 0,
+        id_clases: 0,
+        nombre_temario: "",
+        descrip_temario: "",
+        contenido: "",
+        foto_temario: "",
+        videos_temario: "",
+    }
+
+    try {
+        let response = await fetch(baseApiUrl + 'temarios/clase/' + id_clase + "/filter?id_temario=" + id_temario);
+
+        if (response.status === 404) {
+            return contenidoTemario; 
+        }
+
+        // Si la respuesta es exitosa, se procesan los datos
+        listaContenidos = await response.json();
+
+        contenidoTemario = listaContenidos[0];
+
+    } catch (error) {
+        // Solo mostrar el error si no es 404
+        console.log("Error al obtener el contenido del temario: ", error);
+    }
+
+    return contenidoTemario;
 }
 
 
