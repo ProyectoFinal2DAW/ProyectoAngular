@@ -12,6 +12,8 @@ import { NewTemario } from "../../interfaces/newTemario";
 import { NewCuestionario } from "../../interfaces/newCuestionario";
 import { NewPregunta } from "../../interfaces/newPregunta";
 import { NewVideo } from "../../interfaces/newVideo";
+import { UpdateClase } from "../../interfaces/updateClase";
+import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
 
 const baseApiUrl = "http://79.154.105.236:6956/";
 
@@ -59,6 +61,40 @@ export async function postClasses(newClass: NewClass) {
     const data = await response.json();
     return data;
 
+}
+
+export async function putClases(claseUpdate: UpdateClase) {
+
+    console.log("putClasses()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "clases/" + claseUpdate.clase_id +
+            "?nombre_clases=" + claseUpdate.nombre_clases +
+            "&descripcion_clases=" + claseUpdate.descripcion_clases +
+            "&contenido=" + claseUpdate.contenido +
+            "&foto_clases=" + claseUpdate.foto_clases +
+            "&video_clases=" + claseUpdate.video_clases, {
+
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al actualizar la clase');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener el la clase: ", error);
+        alert("No se ha podido actualizar la clase");
+        return error;
+    }
 }
 
 //Obtener clase por id
@@ -112,6 +148,40 @@ export async function getClassLessons(id_clase: Number) {
     return lessonsList;
 }
 
+export async function getContenidoTemario(id_clase: number, id_temario: number) {
+
+    let listaContenidos = [];
+
+    let contenidoTemario: ContenidoTemarioDescripcion = {
+        id_temario: 0,
+        id_clases: 0,
+        nombre_temario: "",
+        descrip_temario: "",
+        contenido: "",
+        foto_temario: "",
+        videos_temario: "",
+    }
+
+    try {
+        let response = await fetch(baseApiUrl + 'temarios/clase/' + id_clase + "/filter?id_temario=" + id_temario);
+
+        if (response.status === 404) {
+            return contenidoTemario; 
+        }
+
+        // Si la respuesta es exitosa, se procesan los datos
+        listaContenidos = await response.json();
+
+        contenidoTemario = listaContenidos[0];
+
+    } catch (error) {
+        // Solo mostrar el error si no es 404
+        console.log("Error al obtener el contenido del temario: ", error);
+    }
+
+    return contenidoTemario;
+}
+
 
 export async function postTemario(newTemario: NewTemario) {
 
@@ -149,7 +219,8 @@ export async function postTemario(newTemario: NewTemario) {
 }
 export async function putTemario(newTemario: NewTemario) {
 
-    console.log("postClasses()");
+    //TODO: Sin hacer, creo que no esta hecho !!!!!!!!
+    console.log("putClasses()");
 
     try {
         const response = await fetch(
@@ -161,7 +232,7 @@ export async function putTemario(newTemario: NewTemario) {
             "&foto_temario=" + newTemario.foto_temario +
             "&video_clases=" + newTemario.videos_temario, {
 
-            method: "POST",
+            method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
             },
