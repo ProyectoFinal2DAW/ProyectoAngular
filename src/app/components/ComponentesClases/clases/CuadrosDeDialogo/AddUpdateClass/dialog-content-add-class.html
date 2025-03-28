@@ -3,7 +3,11 @@
     <mat-dialog-content class="mat-typography">
         <form [formGroup]="addClassForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
 
+            @if (action === 'a') {
             <h1 class="text-3xl text-center">Añadir clase</h1>
+            } @else {
+            <h1 class="text-3xl text-center">Modificar clase</h1>
+            }
 
             <br>
 
@@ -29,7 +33,11 @@
 
             <br>
 
+            @if (action === 'a') {
             <button class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Guardar</button>
+            } @else {
+            <button class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Actualizar</button>
+            }
 
 
         </form>

@@ -6,18 +6,27 @@ import { CuadroDialogoAddClassComponent } from "../cuadro-dialogo-add-class/cuad
 import { getClasses } from '../../../DBManagement/DBManagement';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Dialog } from '@angular/cdk/dialog';
-import { DialogContentAddClass } from './CuadrosDeDialogo/AddClass/dialog-content-add-class';
+import { DialogContentAddClass } from './CuadrosDeDialogo/AddUpdateClass/dialog-content-add-class';
 
 
 @Component({
   selector: 'app-clases',
-  imports: [ItemClasroomComponent, RouterLink, CuadroDialogoAddClassComponent],
+  imports: [ItemClasroomComponent, RouterLink],
   templateUrl: './clases.component.html',
   styleUrl: './clases.component.css'
 })
 export class ClasesComponent {
 
   listClasses: Class[] = [];
+
+  claseVacia: Class = {
+    contenido: "",
+    id_clases: 0,
+    video_clases: "",
+    descripcion_clases: "",
+    foto_clases: "",
+    nombre_clases: ""
+  }
 
   /* crearClaseVisible: Boolean = false;
 
@@ -37,9 +46,9 @@ export class ClasesComponent {
     //---------------------Cuadro de diálogo Add video-------------------------------
     readonly dialogAddClass = inject(MatDialog);
   
-    openDialogAddClass() {
+    openDialogAddUpdateClass(action: string, clase: Class, idClase: number) {
       const dialogRefAddClass = this.dialogAddClass.open(DialogContentAddClass, {
-  
+        data: { action: action, clase: clase, idClase: idClase }
       });
   
       dialogRefAddClass.afterClosed().subscribe(result => {
