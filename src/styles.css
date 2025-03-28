@@ -10,7 +10,7 @@ html {
 
 body {
   height: 100%;
-  background-image: url('../public/images/fondo.jpg');
+ /* background-image: url('../public/images/fondo.jpg'); */
   background-size: cover;
   background-attachment: fixed;
   /* background-color:#FDF5E6; */
@@ -40,8 +40,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Neucha", serif;
-  font-weight: bold;
+  /* font-family: "Neucha", serif; */
+  /* font-weight: bold; */
   color: #3B82F6;
 }
 
@@ -49,6 +49,9 @@ h6 {
   width: 24px;
   height: 24px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
