@@ -1,11 +1,11 @@
 <div class="mt-[120px] flex flex-col justify-center items-center">
 
-    @if (crearClaseVisible) {
+    <!-- @if (crearClaseVisible) {
         <app-cuadro-dialogo-add-class class="absolute z-20"></app-cuadro-dialogo-add-class>
-     }
+     } -->
 
 
-    <div class=" flex flex-col items-center">
+    <div class="mb-10 flex flex-col items-center">
 
         <h1 class="text-center text-4xl">Mis clases</h1>
 
@@ -23,7 +23,7 @@
 
         <button
             class="fixed bottom-7 right-5 bg-blue-800 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300"
-            (click)="showPanelAddClass()">
+            (click)="openDialogAddUpdateClass('a', claseVacia, 0)">
             <img class="icon-class" src="icons/plus-solid.svg">
         </button>
 

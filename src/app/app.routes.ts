@@ -11,6 +11,7 @@ import { ContainerClassComponent } from './components/ComponentesClases/containe
 import { ExperimentoDescriptionComponent } from './components/ComponentesExperimentos/experimento-description/experimento-description.component';
 import { Login2Component } from './components/login2/login2.component';
 import { FormCreateExamComponent } from './components/ComponentesFormularioExamenes/form-create-exam/form-create-exam.component';
+import { DescripcionTemarioComponent } from './components/ComponentesClases/descripcion-temario/descripcion-temario.component';
 import { ProtocolosComponent } from './components/ComponentesHome/protocolos/protocolos.component';
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
 
   { path: 'clases', component: ClasesComponent }, // Ruta para lista de clases
   { path: 'clase', component: ContainerClassComponent }, // Ruta para /Detalles clase
+  { path: 'temarioDescription', component: DescripcionTemarioComponent }, // Ruta para /configuration
 
   { path: 'configuration', component: ConfigurationsComponent }, // Ruta para /configuration
 

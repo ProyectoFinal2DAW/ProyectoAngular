@@ -1,6 +1,8 @@
 <div class="w-96 rounded-lg border bg-white overflow-hidden cursor-pointer">
+<div class="w-96 rounded-lg border bg-white overflow-hidden cursor-pointer">
 
     <div class="relative w-full p-5"
+        [style]="{ 'background-image': 'url(' + classroom.foto_clases + ')', 'background-size': 'cover', 'background-position': 'center' }">
         [style]="{ 'background-image': 'url(' + classroom.foto_clases + ')', 'background-size': 'cover', 'background-position': 'center' }">
         <!-- Imagen de perfil redonda en la esquina superior derecha -->
         <!-- <div class="absolute top-0 right-0 mt-4 mr-4 w-20 h-20 bg-white rounded-full overflow-hidden z-10">
@@ -22,9 +24,15 @@
     <hr>
 
     <div class="w-full flex flex-row justify-end p-2">
-        <a class="p-2 rounded-2xl hover:bg-gray-100">
+
+        @if (usuarioProfesor) {
+        <button class="p-2 rounded-2xl hover:bg-gray-100"
+            (click)="openDialogAddUpdateClass('u', classroom, classroom.id_clases, $event)">
             <img class="w-6" src="icons/file-pen-solid.svg">
-        </a>
+        </button>
+        }
+
+
     </div>
 
 </div>

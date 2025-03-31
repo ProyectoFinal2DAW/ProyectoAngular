@@ -11,6 +11,9 @@ import { NotasUsuarioClase } from "../../interfaces/notasUsuarioClase";
 import { NewTemario } from "../../interfaces/newTemario";
 import { NewCuestionario } from "../../interfaces/newCuestionario";
 import { NewPregunta } from "../../interfaces/newPregunta";
+import { NewVideo } from "../../interfaces/newVideo";
+import { UpdateClase } from "../../interfaces/updateClase";
+import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
 
 const baseApiUrl = "http://172.17.22.114:8000/";
 
@@ -58,6 +61,40 @@ export async function postClasses(newClass: NewClass) {
     const data = await response.json();
     return data;
 
+}
+
+export async function putClases(claseUpdate: UpdateClase) {
+
+    console.log("putClasses()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "clases/" + claseUpdate.clase_id +
+            "?nombre_clases=" + claseUpdate.nombre_clases +
+            "&descripcion_clases=" + claseUpdate.descripcion_clases +
+            "&contenido=" + claseUpdate.contenido +
+            "&foto_clases=" + claseUpdate.foto_clases +
+            "&video_clases=" + claseUpdate.video_clases, {
+
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al actualizar la clase');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener el la clase: ", error);
+        alert("No se ha podido actualizar la clase");
+        return error;
+    }
 }
 
 //Obtener clase por id
@@ -111,6 +148,40 @@ export async function getClassLessons(id_clase: Number) {
     return lessonsList;
 }
 
+export async function getContenidoTemario(id_clase: number, id_temario: number) {
+
+    let listaContenidos = [];
+
+    let contenidoTemario: ContenidoTemarioDescripcion = {
+        id_temario: 0,
+        id_clases: 0,
+        nombre_temario: "",
+        descrip_temario: "",
+        contenido: "",
+        foto_temario: "",
+        videos_temario: "",
+    }
+
+    try {
+        let response = await fetch(baseApiUrl + 'temarios/clase/' + id_clase + "/filter?id_temario=" + id_temario);
+
+        if (response.status === 404) {
+            return contenidoTemario; 
+        }
+
+        // Si la respuesta es exitosa, se procesan los datos
+        listaContenidos = await response.json();
+
+        contenidoTemario = listaContenidos[0];
+
+    } catch (error) {
+        // Solo mostrar el error si no es 404
+        console.log("Error al obtener el contenido del temario: ", error);
+    }
+
+    return contenidoTemario;
+}
+
 
 export async function postTemario(newTemario: NewTemario) {
 
@@ -145,12 +216,72 @@ export async function postTemario(newTemario: NewTemario) {
         alert("No se ha podido guardar el temario");
         return error;
     }
+}
+export async function putTemario(newTemario: NewTemario) {
 
+    //TODO: Sin hacer, creo que no esta hecho !!!!!!!!
+    console.log("putClasses()");
 
+    try {
+        const response = await fetch(
+            baseApiUrl + "temarios/?" +
+            "id_clases=" + newTemario.id_clases +
+            "&nombre_temario=" + newTemario.nombre_temario +
+            "&descrip_temario=" + newTemario.descrip_temario +
+            "&contenido=" + newTemario.contenido +
+            "&foto_temario=" + newTemario.foto_temario +
+            "&video_clases=" + newTemario.videos_temario, {
 
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
 
+        if (!response.ok) {
+            throw new Error('Error al crear la clase');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener el experimento: ", error);
+        alert("No se ha podido guardar el temario");
+        return error;
+    }
 }
 
+export async function deleteTemarioById (idTemario: number) {
+
+    console.log("deleteTemarioById()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "temarios/" + idTemario, {
+
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar el temario');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al eliminar el temario: ", error);
+        alert("No se ha podido eliminar el temario");
+        return error;
+    }
+
+}
 
 /*--------------------------Videos-------------------------------*/
 //Obtener videos de una clase
@@ -172,6 +303,38 @@ export async function getVideosByClass(id_clase: Number) {
     return listVideos;
 
 }
+
+export async function postVideoClass(id_clases: number, newVideo: NewVideo) {
+
+
+    console.log("postVideoClass()");
+
+    try {
+
+        const response = await fetch(
+            baseApiUrl + "temarios/clase/" + id_clases + "/videos",
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newVideo)
+            });
+
+        if (!response.ok) {
+            throw new Error('Error al crear el video');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al obtener el video creado: ", error);
+        alert("No se ha podido guardar el video");
+        return error;
+    }
+}
+
 
 /*-------------------------Cuestionarios----------------------- */
 //Obtener cuestionarios de una clase
@@ -348,6 +511,36 @@ export async function postTemariosCuestionarios(id_clases: number, id_questionar
         alert("No se ha podido guardar temarios-cuestionarios");
         return error;
     }
+}
+
+export async function deleteCuestionarioById (idcuestionario: number) {
+
+    console.log("deleteCuestionarioById()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "cuestionarios/" + idcuestionario, {
+
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar el cuestionario');
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log("Error al eliminar el cuestionario: ", error);
+        alert("No se ha podido eliminar el cuestionario");
+        return error;
+    }
+
 }
 
 /*----------------------------Usuarios------------------------------ */

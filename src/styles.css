@@ -10,7 +10,7 @@ html {
 
 body {
   height: 100%;
-  background-image: url('../public/images/fondo.jpg');
+ /* background-image: url('../public/images/fondo.jpg'); */
   background-size: cover;
   background-attachment: fixed;
   /* background-color:#FDF5E6; */
@@ -40,8 +40,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Neucha", serif;
-  font-weight: bold;
+  /* font-family: "Neucha", serif; */
+  /* font-weight: bold; */
   color: #3B82F6;
 }
 
@@ -52,7 +52,8 @@ h6 {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-/* styles.css o en tu archivo CSS global */
+
+
 @layer utilities {
   .text-glow2 {
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
