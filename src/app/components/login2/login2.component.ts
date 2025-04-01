@@ -3,6 +3,7 @@ import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormBuilder, 
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { RouterLink } from '@angular/router';
+import { HomeComponent } from '../ComponentesHome/home/home.component';
 
 @Component({
   selector: 'app-login2',
@@ -27,6 +28,7 @@ export class Login2Component {
       email: this.loginForm.value.emailFormControl,
       password: this.loginForm.value.textViewContrasenya,
     }
+
 
     //LLamada a la api
 

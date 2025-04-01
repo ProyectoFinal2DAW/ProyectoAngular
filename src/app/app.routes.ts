@@ -13,6 +13,7 @@ import { Login2Component } from './components/login2/login2.component';
 import { FormCreateExamComponent } from './components/ComponentesFormularioExamenes/form-create-exam/form-create-exam.component';
 import { DescripcionTemarioComponent } from './components/ComponentesClases/descripcion-temario/descripcion-temario.component';
 import { ProtocolosComponent } from './components/ComponentesHome/protocolos/protocolos.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: Login2Component }, // Ruta principal (index)
@@ -20,7 +21,7 @@ export const routes: Routes = [
   //{ path: 'login2', component: Login2Component }, // Ruta para /login
   { path: 'register', component: RegisterComponent }, // Ruta para /register
 
-  { path: 'home', component: HomeComponent }, // Ruta para /home
+  { path: 'home', component: HomeComponent }, //canActivate: [AuthGuard] poner esto en todas las rutas para protegerlas si no has iniciado sesión // Ruta para /home
   { path: 'userProfile', component: ProfileComponent }, // Ruta para /userProfile
   { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
   { path: 'experimentDescription', component: ExperimentoDescriptionComponent }, // Ruta para /experimentos

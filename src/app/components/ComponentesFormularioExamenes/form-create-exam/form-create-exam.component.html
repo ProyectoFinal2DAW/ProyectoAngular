@@ -14,6 +14,15 @@
             </mat-form-field>
 
             <mat-form-field>
+                <mat-label>Selecciona el temario</mat-label>
+                <mat-select formControlName="temarioCuestionario" required>
+                    <mat-option *ngFor="let temario of nombresTemarios" [value]="temario.id">
+                        {{ temario.nombre }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>            
+
+            <mat-form-field>
                 <mat-label>Descripción cuestionario:</mat-label>
                 <input type="text" placeholder="Descripción del cuestionario" formControlName="descripcionCuestionario" matInput />
             </mat-form-field>

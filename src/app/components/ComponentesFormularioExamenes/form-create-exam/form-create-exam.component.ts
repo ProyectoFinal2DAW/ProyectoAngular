@@ -7,11 +7,13 @@ import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { NewPregunta } from '../../../../interfaces/newPregunta';
 import { postCuestionario } from '../../../DBManagement/DBManagement';
 import { NewCuestionario } from '../../../../interfaces/newCuestionario';
-
+import { CommonModule } from '@angular/common';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-form-create-exam',
-  imports: [MatExpansionModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
+  imports: [MatExpansionModule, MatOptionModule, MatSelectModule, CommonModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
   templateUrl: './form-create-exam.component.html',
   styleUrl: './form-create-exam.component.css'
 })
@@ -28,7 +30,7 @@ export class FormCreateExamComponent {
 
   id_clase: number = 0;
 
-  id_temario: number = 0;
+  nombresTemarios: { id: number, nombre: string }[] = [];
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
 
@@ -42,6 +44,7 @@ export class FormCreateExamComponent {
 
     this.addCuestionarioform = this.fb.group({
       nombreCuestionario: ['', Validators.required],
+      temarioCuestionario: ['', Validators.required],
       descripcionCuestionario: ['', Validators.required],
       imagenCuestionario: [''],
     });
@@ -53,12 +56,13 @@ export class FormCreateExamComponent {
       this.id_clase = params['id_class'];
       console.log("Id recibido: " + this.id_clase);
     });
+
+    const nombresGuardados = sessionStorage.getItem("nombresTemarios");
+    if (nombresGuardados) {
+      this.nombresTemarios = JSON.parse(nombresGuardados);
+      console.log("Nombres de temarios cargados:" , this.nombresTemarios);
+    }
   }
-
-
-
-
-
 
   onSubmitCrearPregunta() {
 
@@ -85,38 +89,36 @@ export class FormCreateExamComponent {
   }
 
   async onSubmitCrearCuestionario() {
-
-
-
-    if (this.listaPreguntas.length > 0) {
-
-      if (this.addCuestionarioform.invalid) {
-        console.log("Formulario inválido");
-        alert("Compruebe los campos del formulario");
-        return;
-      }
-
-      const cuestionarioForm: NewCuestionario = {
-        nombre_cuestionario: this.addCuestionarioform.value.nombreCuestionario,
-        descrip_cuestionario: this.addCuestionarioform.value.descripcionCuestionario,
-        foto_cuestionario: this.addCuestionarioform.value.imagenCuestionario,
-        video_cuestionario: ""
-      }
-
-      const response = await postCuestionario(cuestionarioForm, this.listaPreguntas, this.id_clase, this.id_temario);
-
-      console.log("ApiResponse: ", response);
-
-      if (response) {
-        this.router.navigate(['/clases'], { queryParams: { id: this.id_clase } });
-      } else {
-        alert("No se ha podido guardar el cuestionario");
-      }
-
-    } else {
+    if (this.listaPreguntas.length === 0) {
       alert("No has insertado ninguna pregunta al cuestionario");
+      return;
     }
 
+    if (this.addCuestionarioform.invalid) {
+      console.log("Formulario inválido");
+      alert("Compruebe los campos del formulario");
+      return;
+    }
+
+    // ✅ Obtener `id_temario` correctamente
+    const id_temario = this.addCuestionarioform.value.temarioCuestionario;
+
+    const cuestionarioForm: NewCuestionario = {
+      nombre_cuestionario: this.addCuestionarioform.value.nombreCuestionario,
+      temario_cuestionario: id_temario,
+      descrip_cuestionario: this.addCuestionarioform.value.descripcionCuestionario,
+      foto_cuestionario: this.addCuestionarioform.value.imagenCuestionario,
+      video_cuestionario: ""
+    };
+
+    const response = await postCuestionario(cuestionarioForm, this.listaPreguntas, this.id_clase, id_temario);
+    console.log("ApiResponse: ", response);
+
+    if (response) {
+      this.router.navigate(['/clases'], { queryParams: { id: this.id_clase } });
+    } else {
+      alert("No se ha podido guardar el cuestionario");
+    }
   }
 
 
