@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CuadroDialogoCrearTemarioComponent } from './cuadro-dialogo-crear-temario.component';
 
 describe('CuadroDialogoCrearTemarioComponent', () => {
@@ -8,7 +8,7 @@ describe('CuadroDialogoCrearTemarioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CuadroDialogoCrearTemarioComponent]
+      imports: [CuadroDialogoCrearTemarioComponent, BrowserAnimationsModule]
     })
     .compileComponents();
 

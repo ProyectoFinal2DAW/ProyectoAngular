@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { ItemResponseFormComponentComponent } from "../item-response-form-component/item-response-form-component.component";
 import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Question } from '../../../../interfaces/question';
-import { RouterLink, ActivatedRoute } from '@angular/router';
-import { getPreguntasCuestionario } from '../../../DBManagement/DBManagement';
+import { RouterLink, ActivatedRoute, Route } from '@angular/router';
+import { Router } from '@angular/router';
+import { getPreguntasCuestionario, postResultadosCuestionarios } from '../../../DBManagement/DBManagement';
 import { ItemListaRespuestaUsuario } from '../../../../interfaces/itemListaRespuestaUsuario';
+import { PostResultadoCuestionario } from '../../../../interfaces/postResultadoCuestionario';
 
 
 @Component({
@@ -15,6 +17,10 @@ import { ItemListaRespuestaUsuario } from '../../../../interfaces/itemListaRespu
 })
 
 export class BoxQuestionFormComponentComponent {
+
+  //TODO: Poner id del usuario iniciado login
+  idUsuario = 1;
+  //Number(localStorage.getItem('idUsuario'));
 
   id_questionario: number = 0;
   nombre_cuestionario: string = "";
@@ -30,7 +36,7 @@ export class BoxQuestionFormComponentComponent {
 
   formCuestionario: FormGroup;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
 
     this.formCuestionario = this.fb.group({
 
@@ -84,7 +90,21 @@ export class BoxQuestionFormComponentComponent {
     console.log("Cantidad aciertos: ", this.cantidadAciertos);
     console.log("Cantidad fallos: ", this.cantidadFallos);
 
+    const postResultadoCuestionario: PostResultadoCuestionario = {
+      id_questionario: this.id_questionario,
+      id_usuarios: this.idUsuario,
+      nota: Number(nota.toFixed(2)),
+      fecha_completado: new Date(),
+      total_correctas: this.cantidadAciertos,
+      total_falladas: this.cantidadFallos
+    }
 
+    const resultado = postResultadosCuestionarios(postResultadoCuestionario);
+    console.log("Resultado Api Resultado cuestionarios", resultado);
+
+    //TODO: Mostrar cuadro de dialogo de confirmacion de envio
+    //: ¿Esta seguro de enviar las respuestas?
+    this.router.navigate(['/clases']);
   }
   
   buscarRespuesta(element: Question) {

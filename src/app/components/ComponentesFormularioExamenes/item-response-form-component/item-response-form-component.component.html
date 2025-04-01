@@ -3,13 +3,13 @@
     <label class="flex flex-row bg-white rounded-md hover:bg-blue-100 hover:border-blue-300
      hover:border-l-blue-500 border border-blue-100 border-l-[4px] border-l-blue-500">
         <div class="w-full flex flex-row justify-between p-5">
-            <h4 class="ml-4 text-lg text-black"> a. &nbsp;&nbsp; {{ question.respuesta1 }}</h4>
+            <h4 class="ml-4 text-lg text-black"> {{ opcionesMezcladas[0].texto }}</h4>
             <input 
                 class="mr-4" 
                 type="radio" 
                 id="opcion" 
                 [name]="question.id_pregunta" 
-                [value]="question.respuesta1"
+                [value]="opcionesMezcladas[0].valor"
                 (change)="onSelectedRespuesta(question.respuesta1)">
         </div>
     </label>
@@ -18,13 +18,13 @@
     <label class="flex flex-row bg-white rounded-md hover:bg-blue-100 hover:border-blue-300 
                    hover:border-l-blue-500 border border-blue-100 border-l-[4px] border-l-blue-500">
         <div class="w-full flex flex-row justify-between p-5">
-            <h4 class="ml-4 text-lg text-black"> b. &nbsp;&nbsp; {{ question.respuesta2 }}</h4>
+            <h4 class="ml-4 text-lg text-black"> {{ opcionesMezcladas[1].texto }} </h4>
             <input 
                 class="mr-4" 
                 type="radio" 
                 id="opcion" 
                 [name]="question.id_pregunta" 
-                [value]="question.respuesta2"
+                [value]="opcionesMezcladas[1].valor"
                 (change)="onSelectedRespuesta(question.respuesta2)">
         </div>
     </label>
@@ -33,13 +33,13 @@
     <label class="flex flex-row bg-white rounded-md hover:bg-blue-100 hover:border-blue-300 
                    hover:border-l-blue-500 border border-blue-100 border-l-[4px] border-l-blue-500">
         <div class="w-full flex flex-row justify-between p-5">
-            <h4 class="ml-4 text-lg text-black"> c. &nbsp;&nbsp; {{ question.respuesta3 }}</h4>
+            <h4 class="ml-4 text-lg text-black"> {{ opcionesMezcladas[2].texto }} </h4>
             <input 
                 class="mr-4" 
                 type="radio" 
                 id="opcion" 
                 [name]="question.id_pregunta" 
-                [value]="question.respuesta3"
+                [value]="opcionesMezcladas[2].valor"
                 (change)="onSelectedRespuesta(question.respuesta3)">
         </div>
     </label>
@@ -48,13 +48,13 @@
     <label class="flex flex-row bg-white rounded-md hover:bg-blue-100 hover:border-blue-300 
                    hover:border-l-blue-500 border border-blue-100 border-l-[4px] border-l-blue-500">
         <div class="w-full flex flex-row justify-between p-5">
-            <h4 class="ml-4 text-lg text-black"> d. &nbsp;&nbsp; {{ question.correcta }}</h4>
+            <h4 class="ml-4 text-lg text-black"> {{ opcionesMezcladas[3].texto }} </h4>
             <input 
                 class="mr-4" 
                 type="radio" 
                 id="opcion" 
                 [name]="question.id_pregunta" 
-                [value]="question.correcta"
+                [value]="opcionesMezcladas[3].valor"
                 (change)="onSelectedRespuesta(question.correcta)">
         </div>
     </label>

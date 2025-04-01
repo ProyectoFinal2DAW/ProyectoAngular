@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CuadroDialogoAddClassComponent } from './cuadro-dialogo-add-class.component';
 
 describe('CuadroDialogoAddClassComponent', () => {
@@ -8,7 +8,7 @@ describe('CuadroDialogoAddClassComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CuadroDialogoAddClassComponent]
+      imports: [CuadroDialogoAddClassComponent, BrowserAnimationsModule]
     })
     .compileComponents();
 

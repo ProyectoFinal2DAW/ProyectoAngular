@@ -65,6 +65,7 @@ export class ContainerClassComponent {
   listaCuestionarios: CuestionarioInfoGeneral[] = [];
   listaNotasUsuarioClase: NotasUsuarioClase[] = [];
 
+  //TODO: Poner el id de usuario iniciado login
   idUsuario = 1;
   //Number(localStorage.getItem('idUsuario'));
 

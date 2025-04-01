@@ -14,6 +14,7 @@ import { NewPregunta } from "../../interfaces/newPregunta";
 import { NewVideo } from "../../interfaces/newVideo";
 import { UpdateClase } from "../../interfaces/updateClase";
 import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
+import { PostResultadoCuestionario } from "../../interfaces/postResultadoCuestionario";
 
 const baseApiUrl = "http://localhost:8000/";
 
@@ -644,5 +645,37 @@ export async function getNotasUsuarioClase(idUsuario: number, idClase: number) {
     }
 
     return listaNotasUsuarioClase;
+
+}
+
+/*---------------------Respuestas cuestionarios-------------------- */
+
+//Crear un intento de cuestionario
+export async function postResultadosCuestionarios(postResultadoCuestionario: PostResultadoCuestionario) {
+
+    console.log("postResultadosCuestionarios()");
+
+    const response = await fetch(
+        baseApiUrl + "resultados_cuestionarios/?" +
+        "id_questionario=" + postResultadoCuestionario.id_questionario +
+        "&id_usuarios=" + postResultadoCuestionario.id_usuarios +
+        "&nota=" + postResultadoCuestionario.nota +
+        "&fecha_completado=" + postResultadoCuestionario.fecha_completado +
+        "&total_correctas=" + postResultadoCuestionario.total_correctas +
+        "&total_falladas=" + postResultadoCuestionario.total_falladas, {
+
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        //body: JSON.stringify(newClass)
+    });
+
+    if (!response.ok) {
+        throw new Error('Error al crear intento de cuestionario');
+    }
+
+    const data = await response.json();
+    return data;
 
 }

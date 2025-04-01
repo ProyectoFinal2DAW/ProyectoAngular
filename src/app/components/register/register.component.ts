@@ -19,9 +19,9 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
       textFormControl: ['', [Validators.required, Validators.email]],
-      textViewApellido: ['', [Validators.required]],
+      inputApellido: ['', [Validators.required]],
       emailFormControl: ['', [Validators.required, Validators.email]],
-      textViewContrasenya: ['', [Validators.required]]
+      inputContrasenya: ['', [Validators.required]]
     })
   }
 
@@ -29,9 +29,9 @@ export class RegisterComponent {
 
     const registerObject = {
       text: this.registerForm.value.textFormControl,
-      apellido: this.registerForm.value.textViewApellido,
+      apellido: this.registerForm.value.inputApellido,
       email: this.registerForm.value.emailFormControl,
-      password: this.registerForm.value.textViewContrasenya,
+      password: this.registerForm.value.inputContrasenya,
     }
 
     //LLamada a la api

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BoxQuestionFormComponentComponent } from './box-question-form-component.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('BoxQuestionFormComponentComponent', () => {
   let component: BoxQuestionFormComponentComponent;
@@ -8,7 +9,15 @@ describe('BoxQuestionFormComponentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BoxQuestionFormComponentComponent]
+      imports: [BoxQuestionFormComponentComponent],
+      providers: [
+        {
+          provide: ActivatedRoute, 
+          useValue: {
+            queryParams: of({ id: 1, nombre: 'Test Cuestionario' }) 
+          }
+        }
+      ]
     })
     .compileComponents();
 
