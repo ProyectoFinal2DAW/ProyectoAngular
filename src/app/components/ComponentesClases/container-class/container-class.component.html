@@ -113,7 +113,7 @@
                     @if (listaCuestionarios.length > 0) {
                     @for (cuestionario of listaCuestionarios; track $index) {
                     <app-layout-list-exams-of-class routerLink="../form"
-                        [queryParams]="{ id: cuestionario.id_questionario, nombre: cuestionario.nombre_cuestionario }"
+                        [queryParams]="{ id: cuestionario.id_questionario, nombre: cuestionario.nombre_cuestionario, id_clase: id_clase }"
                         [cuestionario]=cuestionario
                         (elementoEliminado)="actualizarCuestionarios($event)"></app-layout-list-exams-of-class>
                     }
