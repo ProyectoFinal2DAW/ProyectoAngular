@@ -90,6 +90,14 @@ export class ContainerClassComponent {
     console.log("Datos clase: ", this.datosClase);
 
     this.listaTemarios = await getClassLessons(this.id_clase);
+    console.log("Datos temarios: ", this.listaTemarios);
+    
+    const temariosParaStorage = this.listaTemarios.map(temario => ({
+      id: temario.id_temario,
+      nombre: temario.nombre_temario
+    }));
+
+    sessionStorage.setItem("nombresTemarios", JSON.stringify(temariosParaStorage));
 
     this.listaVideos = await getVideosByClass(this.id_clase);
 
@@ -155,8 +163,13 @@ export class ContainerClassComponent {
   readonly dialogAddUpdateTemario = inject(MatDialog);
 
   openDialogAddUpdateTemario(action: string, temario: Temario) {
+
+    console.log("id_clase: ", this.id_clase, " action: ", action, " temario: ", temario);
+
     const dialogRefAddUpdateTemario = this.dialogAddUpdateTemario.open(DialogContentAddTemario, {
+      
       data: {
+        id_clase: this.id_clase,
         action: action,
         temario: temario
       }

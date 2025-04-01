@@ -22,6 +22,7 @@ export class DialogContentAddTemario {
 
     temarioUpdate: Temario;
     action: string;
+    id_clase: number;
 
     @Input() datosClase: Class = {
         contenido: "",
@@ -35,7 +36,7 @@ export class DialogContentAddTemario {
     addTemarioForm: FormGroup;
 
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: { action: string, temario: Temario }, private fb: FormBuilder) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: { id_clase: number, action: string, temario: Temario }, private fb: FormBuilder) {
         this.addTemarioForm = this.fb.group({
             nombreTemario: ['', Validators.required],
             descripcionTemario: [''],
@@ -46,6 +47,7 @@ export class DialogContentAddTemario {
 
         this.temarioUpdate = data.temario;
         this.action = data.action;
+        this.id_clase = data.id_clase;
 
         if (this.action === 'u') {
             this.addTemarioForm.patchValue({ nombreTemario: this.temarioUpdate.nombre_temario });
@@ -72,7 +74,7 @@ export class DialogContentAddTemario {
         if (this.action === 'a') {
 
             const newTemario: NewTemario = {
-                id_clases: this.datosClase.id_clases,
+                id_clases: this.id_clase,
                 nombre_temario: this.addTemarioForm.value.nombreTemario,
                 descrip_temario: this.addTemarioForm.value.descripcionTemario,
                 contenido: this.addTemarioForm.value.contenidoTemario,

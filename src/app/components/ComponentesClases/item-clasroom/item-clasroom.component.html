@@ -1,9 +1,10 @@
 <div class="w-96 rounded-lg border bg-white overflow-hidden cursor-pointer">
-<div class="w-96 rounded-lg border bg-white overflow-hidden cursor-pointer">
 
     <div class="relative w-full p-5"
-        [style]="{ 'background-image': 'url(' + classroom.foto_clases + ')', 'background-size': 'cover', 'background-position': 'center' }">
-        [style]="{ 'background-image': 'url(' + classroom.foto_clases + ')', 'background-size': 'cover', 'background-position': 'center' }">
+        [style]="{ 'background-image': 'url(' + classroom.foto_clases + ')', 
+            'background-size': 'cover', 
+            'background-position': 'center' 
+            }">
         <!-- Imagen de perfil redonda en la esquina superior derecha -->
         <!-- <div class="absolute top-0 right-0 mt-4 mr-4 w-20 h-20 bg-white rounded-full overflow-hidden z-10">
             <img class="w-full h-full object-cover" src="images/juan.png" alt="Imagen de perfil">
@@ -11,7 +12,7 @@
 
         <!-- Contenido -->
         <div class="h-24 flex justify-center items-center">
-            <h1 class="text-3xl text-white text-glow">{{ classroom.nombre_clases }}</h1>
+            <h1 class="text-3xl text-white text-glow">{{classroom.nombre_clases}}</h1>
         </div>        
         
     </div>

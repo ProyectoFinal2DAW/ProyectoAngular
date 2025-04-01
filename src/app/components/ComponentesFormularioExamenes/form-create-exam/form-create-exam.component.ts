@@ -28,6 +28,8 @@ export class FormCreateExamComponent {
 
   id_clase: number = 0;
 
+  id_temario: number = 0;
+
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
 
     this.addPreguntaForm = this.fb.group({
@@ -101,7 +103,7 @@ export class FormCreateExamComponent {
         video_cuestionario: ""
       }
 
-      const response = await postCuestionario(cuestionarioForm, this.listaPreguntas, this.id_clase);
+      const response = await postCuestionario(cuestionarioForm, this.listaPreguntas, this.id_clase, this.id_temario);
 
       console.log("ApiResponse: ", response);
 

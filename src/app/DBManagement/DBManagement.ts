@@ -212,7 +212,7 @@ export async function postTemario(newTemario: NewTemario) {
         return data;
 
     } catch (error) {
-        console.log("Error al obtener el experimento: ", error);
+        console.log("Error al obtener el temario: ", error);
         alert("No se ha podido guardar el temario");
         return error;
     }
@@ -314,7 +314,7 @@ export async function postVideoClass(id_clases: number, newVideo: NewVideo) {
         const response = await fetch(
             baseApiUrl + "temarios/clase/" + id_clases + "/videos",
             {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -355,7 +355,7 @@ export async function getTestsByClass(id_clase: Number) {
     return listTests;
 
 }
-export async function postCuestionario(newCuestionario: NewCuestionario, listaPreguntas: NewPregunta[], id_clases: number) {
+export async function postCuestionario(newCuestionario: NewCuestionario, listaPreguntas: NewPregunta[], id_clases: number, id_temario: number) {
 
     //1. Crear POST Cuestionarios y obtener el id
     //2. Crear POST Preguntas por cada pregunta utilizando los datos del formulario
@@ -413,7 +413,7 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
             }
 
             //Crear un post en la tabla de la relacion N:M
-            postTemariosCuestionarios(id_clases, idCuestionario)
+            postTemariosCuestionarios(id_clases, idCuestionario, id_temario)
 
 
             return true;
@@ -474,7 +474,7 @@ export async function postPregunta(newPregunta: NewPregunta, idCuestionario: num
     }
 }
 
-export async function postTemariosCuestionarios(id_clases: number, id_questionario: number) {
+export async function postTemariosCuestionarios(id_clases: number, id_questionario: number, id_temario: number) {
 
 
     console.log("postTemariosCuestionarios()");
@@ -484,13 +484,13 @@ export async function postTemariosCuestionarios(id_clases: number, id_questionar
         console.log("ruta API: ", baseApiUrl + "temarios_cuestionarios/?" +
             "id_clases=" + id_clases +
             "&id_questionario=" + id_questionario +
-            "&id_temario=" + 1);
+            "&id_temario=" + id_temario);
 
         const response = await fetch(
             baseApiUrl + "temarios_cuestionarios/?" +
             "id_clases=" + id_clases +
             "&id_questionario=" + id_questionario +
-            "&id_temario=" + 1,
+            "&id_temario=" + id_temario,
             {
                 method: "POST",
                 headers: {

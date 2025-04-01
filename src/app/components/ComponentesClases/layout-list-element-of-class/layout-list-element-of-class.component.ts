@@ -40,6 +40,7 @@ export class LayoutListElementOfClassComponent {
 
       const dialogRefAddUpdateTemario = this.dialogAddUpdateTemario.open(DialogContentAddTemario, {
         data: {
+          id_clase: 0,
           action: action,
           temario: temario
         }

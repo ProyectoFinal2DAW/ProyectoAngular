@@ -6,13 +6,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { NewVideo } from '../../../../../../interfaces/newVideo';
+import {MatSelectModule} from '@angular/material/select';
 import { postVideoClass } from '../../../../../DBManagement/DBManagement';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
     selector: 'dialog-content-add-video',
     templateUrl: 'dialog-content-add-video.html',
-    imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
+    imports: [MatDialogModule, CommonModule, MatSelectModule ,MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
   })
   export class DialogContentAddVideo {
@@ -20,10 +22,13 @@ import { postVideoClass } from '../../../../../DBManagement/DBManagement';
     addVideoForm: FormGroup;
     
     id_clase: number = 0;
+
+    nombresTemarios: { id: number, nombre: string}[] = [];
   
     constructor(private fb: FormBuilder, private route: ActivatedRoute) {
       this.addVideoForm = this.fb.group({
         tituloVideo: ['', Validators.required],
+        temarioVideo: ['', Validators.required],
         imagenVideo: ['', Validators.required],
         videoRuta: ['', Validators.required]
       });
@@ -34,6 +39,12 @@ import { postVideoClass } from '../../../../../DBManagement/DBManagement';
         this.id_clase = params['id'];
         console.log("Id recibido: " + this.id_clase);
       });
+      
+      const nombresGuardados = sessionStorage.getItem("nombresTemarios");
+      if (nombresGuardados) {
+        this.nombresTemarios = JSON.parse(nombresGuardados);
+        console.log("Nombres de temarios cargados: ", this.nombresTemarios);
+      }
     }
   
   
@@ -47,9 +58,11 @@ import { postVideoClass } from '../../../../../DBManagement/DBManagement';
   
       const newVideo: NewVideo = {
         titulo_video: this.addVideoForm.value.tituloVideo,
+        temario_video: this.addVideoForm.value.temarioVideo,
         foto_temario: this.addVideoForm.value.imagenVideo,
         videos_temario: this.addVideoForm.value.videoRuta
       }
+      console.log(newVideo);
   
       const response = await postVideoClass(this.id_clase, newVideo);
   
