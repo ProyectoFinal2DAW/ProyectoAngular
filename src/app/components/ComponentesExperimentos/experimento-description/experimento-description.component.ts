@@ -43,7 +43,18 @@ export class ExperimentoDescriptionComponent {
   async fetchData() {
     this.experiment = await getExperimentById(this.id_experiment);
 
-    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.experiment.video_experimento);
+
+    let url = this.experiment.video_experimento;
+    let urlBase = "https://www.youtube.com/embed/";
+    let urlVideoId = url.split('?v=')[1]
+
+    let urlEnbed = urlBase + urlVideoId; 
+    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlEnbed);
+
+    console.log("VideoURL: ", this.videoUrl);
+    //console.log("contenido clase: ", this.contenidoClase);
+
+    //this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.experiment.video_experimento);
 
   }
 
