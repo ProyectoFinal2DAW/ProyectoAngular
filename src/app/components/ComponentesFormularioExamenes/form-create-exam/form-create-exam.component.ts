@@ -21,7 +21,6 @@ export class FormCreateExamComponent {
 
   readonly panelOpenState = signal(false);
 
-  //Formulario crear pregunta
   addPreguntaForm: FormGroup;
 
   addCuestionarioform: FormGroup;
@@ -84,7 +83,6 @@ export class FormCreateExamComponent {
 
     this.listaPreguntas.push(preguntaForm);
 
-    //Vaciar todos los campos de texto del formulario
     this.addPreguntaForm.reset();
   }
 
@@ -100,7 +98,6 @@ export class FormCreateExamComponent {
       return;
     }
 
-    // ✅ Obtener `id_temario` correctamente
     const id_temario = this.addCuestionarioform.value.temarioCuestionario;
 
     const cuestionarioForm: NewCuestionario = {
