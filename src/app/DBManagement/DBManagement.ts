@@ -14,6 +14,8 @@ import { NewPregunta } from "../../interfaces/newPregunta";
 import { NewVideo } from "../../interfaces/newVideo";
 import { UpdateClase } from "../../interfaces/updateClase";
 import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
+import { PostResultadoCuestionario } from "../../interfaces/postResultadoCuestionario";
+import { NewExperimento } from "../../interfaces/newExperimento";
 
 const baseApiUrl = "http://172.17.22.114:8000/";
 
@@ -607,6 +609,35 @@ export async function getExperimentById(id_experiment: Number) {
 
 }
 
+export async function postExperimento(newExperimento: NewExperimento) {
+
+    console.log("postExperimento()");
+
+    const response = await fetch(
+        baseApiUrl + "experimentos/?" +
+        "nombre_experimento=" + newExperimento.nombre_experimento +
+        "&descrip_experimento=" + newExperimento.descrip_experimento +
+        "&foto_experimento=" + newExperimento.foto_experimento +
+        "&video_experimento=" + newExperimento.video_experimento, {
+
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        //body: JSON.stringify(newClass)
+    });
+
+    if (!response.ok) {
+        throw new Error('Error al crear el experimento');
+    } else {
+        alert("Experimento creado correctamente");
+    }
+
+    const data = await response.json();
+    return data;
+
+}
+
 /*---------------------Preguntas Cuestionario-------------------- */
 
 export async function getPreguntasCuestionario(idCuestionario: Number) {
@@ -644,5 +675,37 @@ export async function getNotasUsuarioClase(idUsuario: number, idClase: number) {
     }
 
     return listaNotasUsuarioClase;
+
+}
+
+/*---------------------Respuestas cuestionarios-------------------- */
+
+//Crear un intento de cuestionario
+export async function postResultadosCuestionarios(postResultadoCuestionario: PostResultadoCuestionario) {
+
+    console.log("postResultadosCuestionarios()");
+
+    const response = await fetch(
+        baseApiUrl + "resultados_cuestionarios/?" +
+        "id_questionario=" + postResultadoCuestionario.id_questionario +
+        "&id_usuarios=" + postResultadoCuestionario.id_usuarios +
+        "&nota=" + postResultadoCuestionario.nota +
+        "&fecha_completado=" + postResultadoCuestionario.fecha_completado +
+        "&total_correctas=" + postResultadoCuestionario.total_correctas +
+        "&total_falladas=" + postResultadoCuestionario.total_falladas, {
+
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        //body: JSON.stringify(newClass)
+    });
+
+    if (!response.ok) {
+        throw new Error('Error al crear intento de cuestionario');
+    }
+
+    const data = await response.json();
+    return data;
 
 }

@@ -24,10 +24,11 @@ import { NewVideo } from '../../../../interfaces/newVideo';
 import { DialogContentAddVideo } from './CuadrosDeDialogo/AddVideo/dialog-content-add-video';
 import { DialogContentShowVideo } from './CuadrosDeDialogo/ShowVideo/dialog-content-show-video';
 import { DialogContentAddTemario } from './CuadrosDeDialogo/AddTemario/dialog-content-add-temario';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-container-class',
-  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent, RouterLink, CuadroDialogoCrearTemarioComponent],
+  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent, RouterLink, CuadroDialogoCrearTemarioComponent, DatePipe],
   templateUrl: './container-class.component.html',
   styleUrl: './container-class.component.css'
 })
@@ -65,6 +66,7 @@ export class ContainerClassComponent {
   listaCuestionarios: CuestionarioInfoGeneral[] = [];
   listaNotasUsuarioClase: NotasUsuarioClase[] = [];
 
+  //TODO: Poner el id de usuario iniciado login
   idUsuario = 1;
   //Number(localStorage.getItem('idUsuario'));
 
@@ -110,7 +112,6 @@ export class ContainerClassComponent {
 
     this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
     console.log("Notas: ", this.listaNotasUsuarioClase);
-
   }
 
   async actualizarTemarios(evento: boolean) {

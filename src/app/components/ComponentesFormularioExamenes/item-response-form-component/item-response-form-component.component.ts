@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { Question } from '../../../../interfaces/question';
 import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-item-response-form-component',
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, 
   templateUrl: './item-response-form-component.component.html',
   styleUrl: './item-response-form-component.component.css'
 })
-export class ItemResponseFormComponentComponent {
+export class ItemResponseFormComponentComponent implements OnInit {
   @Input() question: Question = {
     id_questionario: 0,
     enunciado: "",
@@ -18,6 +18,24 @@ export class ItemResponseFormComponentComponent {
     respuesta2: "",
     respuesta3: "",
     id_pregunta: 0,
+  }
+
+  opcionesMezcladas: { texto: string }[] = [];
+
+  ngOnInit() {
+    this.mezclarRespuestas();
+  }
+
+  mezclarRespuestas() {
+    this.opcionesMezcladas = [
+      { texto: this.question.respuesta1},
+      { texto: this.question.respuesta2},
+      { texto: this.question.respuesta3},
+      { texto: this.question.correcta}
+    ];
+
+    // Mezclar las opciones aleatoriamente
+    this.opcionesMezcladas = this.opcionesMezcladas.sort(() => Math.random() - 0.5);
   }
 
   @Output() respuestaSeleccionada = new EventEmitter<{ id: number, respuesta: string }>(); 

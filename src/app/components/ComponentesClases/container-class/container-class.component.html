@@ -113,7 +113,7 @@
                     @if (listaCuestionarios.length > 0) {
                     @for (cuestionario of listaCuestionarios; track $index) {
                     <app-layout-list-exams-of-class routerLink="../form"
-                        [queryParams]="{ id: cuestionario.id_questionario, nombre: cuestionario.nombre_cuestionario }"
+                        [queryParams]="{ id: cuestionario.id_questionario, nombre: cuestionario.nombre_cuestionario, id_clase: id_clase }"
                         [cuestionario]=cuestionario
                         (elementoEliminado)="actualizarCuestionarios($event)"></app-layout-list-exams-of-class>
                     }
@@ -152,7 +152,7 @@
                         <h1 class="text-xl"> Cuestionario: {{ nota.nombre_cuestionario }} </h1>
 
                         <h2> Aciertos: {{ nota.total_correctas }} / Fallos: {{ nota.total_falladas }}</h2>
-                        <h2> Fecha de realización: {{ nota.fecha_completado }}</h2>
+                        <h2> Fecha de realización: {{ nota.fecha_completado | date:'dd/MM/yyyy HH:mm' }}</h2>
                     </div>
 
                     <div class="flex-[1fr] justify-center items-center">

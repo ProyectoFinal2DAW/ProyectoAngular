@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ItemResponseFormComponentComponent } from "../item-response-form-component/item-response-form-component.component";
 import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Question } from '../../../../interfaces/question';
-import { RouterLink, ActivatedRoute } from '@angular/router';
-import { getPreguntasCuestionario } from '../../../DBManagement/DBManagement';
+import { RouterLink, ActivatedRoute, Route } from '@angular/router';
+import { Router } from '@angular/router';
+import { getPreguntasCuestionario, postResultadosCuestionarios } from '../../../DBManagement/DBManagement';
 import { ItemListaRespuestaUsuario } from '../../../../interfaces/itemListaRespuestaUsuario';
+import { PostResultadoCuestionario } from '../../../../interfaces/postResultadoCuestionario';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogContentSendConfirm } from '../CuadrosDeDialogo/SendConfirm/dialog-content-send-confirm';
+import { DialogContentShowResults } from '../CuadrosDeDialogo/ShowResults/dialog-content-show-results';
 
 
 @Component({
@@ -16,6 +21,11 @@ import { ItemListaRespuestaUsuario } from '../../../../interfaces/itemListaRespu
 
 export class BoxQuestionFormComponentComponent {
 
+  //TODO: Poner id del usuario iniciado login
+  idUsuario = 1;
+  //Number(localStorage.getItem('idUsuario'));
+
+  id_clase: number = 0;
   id_questionario: number = 0;
   nombre_cuestionario: string = "";
   listQuestions: Question[] = [];
@@ -30,7 +40,10 @@ export class BoxQuestionFormComponentComponent {
 
   formCuestionario: FormGroup;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  readonly dialog = inject(MatDialog);
+  readonly dialogResults = inject(MatDialog);
+
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
 
     this.formCuestionario = this.fb.group({
 
@@ -39,12 +52,14 @@ export class BoxQuestionFormComponentComponent {
   }
 
 
- 
+
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.id_questionario = params['id'];
       this.nombre_cuestionario = params['nombre'];
+      this.id_clase = params['id_clase'];
+
       console.log("Id recibido: " + this.id_questionario);
     });
 
@@ -61,32 +76,13 @@ export class BoxQuestionFormComponentComponent {
   onSubmit() {
     console.log("onSubmit()");
 
-    for (let i = 0; i < this.listQuestions.length; i++) {
-      const element = this.listQuestions[i];
 
-      //Devuelve true si la respuesta es correcta o false si es incorrecta
-      let respuesta = this.buscarRespuesta(element);
+    this.openDialog();
 
-      if (respuesta) {
-        this.cantidadAciertos++;
-      } else {
-        this.cantidadFallos++;
-      }
-      
-    }
-
-    let nota = (this.cantidadAciertos * 100) / this.listQuestions.length;
-
-    nota = nota/10;
-
-    console.log("idCuestionario: ", this.id_questionario);
-    console.log("Nota: ", nota.toFixed(2));
-    console.log("Cantidad aciertos: ", this.cantidadAciertos);
-    console.log("Cantidad fallos: ", this.cantidadFallos);
 
 
   }
-  
+
   buscarRespuesta(element: Question) {
     let i = 0;
     let encontrado = false;
@@ -94,11 +90,15 @@ export class BoxQuestionFormComponentComponent {
 
     let acierto = false;
 
-    while (!encontrado && i < this.listaRespuestasUsuario.length){
+    console.log("ListaRespuestasUsuario: ", this.listaRespuestasUsuario);
+    console.log("element: ", element);
+
+    while (!encontrado && i < this.listaRespuestasUsuario.length) {
 
       if (this.listaRespuestasUsuario[i].id == element.id_pregunta) {
         encontrado = true;
         posicionEncontrada = i;
+        console.log("Encontado: ", this.listaRespuestasUsuario[i].id, "    ", element.id_pregunta);
       }
 
       i++;
@@ -107,12 +107,79 @@ export class BoxQuestionFormComponentComponent {
     if (encontrado) {
       if (this.listaRespuestasUsuario[posicionEncontrada].respuesta == element.correcta) {
         acierto = true;
+        console.log("acierto: ", this.listaRespuestasUsuario[posicionEncontrada].respuesta);
+        console.log("correcta: ", element.correcta);
       }
     }
-    
+
     return acierto;
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentSendConfirm, {
+      data: { mensaje: "¿Quieres enviar las respuestas?" } // Pasar objeto por parámetros
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+
+      if (result) {
+        for (let i = 0; i < this.listQuestions.length; i++) {
+          const element = this.listQuestions[i];
+
+          //Devuelve true si la respuesta es correcta o false si es incorrecta
+          let respuesta = this.buscarRespuesta(element);
+          console.log("Respuesta: ", respuesta);
+
+          if (respuesta) {
+            this.cantidadAciertos++;
+          } else {
+            this.cantidadFallos++;
+          }
+
+        }
+
+        let nota = (this.cantidadAciertos * 100) / this.listQuestions.length;
+
+        nota = nota / 10;
+
+        console.log("idCuestionario: ", this.id_questionario);
+        console.log("Nota: ", nota.toFixed(2));
+        console.log("Cantidad aciertos: ", this.cantidadAciertos);
+        console.log("Cantidad fallos: ", this.cantidadFallos);
+
+        const postResultadoCuestionario: PostResultadoCuestionario = {
+          id_questionario: this.id_questionario,
+          id_usuarios: this.idUsuario,
+          nota: Number(nota.toFixed(2)),
+          fecha_completado: new Date(),
+          total_correctas: this.cantidadAciertos,
+          total_falladas: this.cantidadFallos
+        }
+
+        const resultado = postResultadosCuestionarios(postResultadoCuestionario);
+        console.log("Resultado Api Resultado cuestionarios", resultado);
+
+
+        this.openDialogShowResults(postResultadoCuestionario)
+
+        //this.router.navigate(['/clase'], { queryParams: { id: this.id_clase } });
+      }
+    });
+  }
+
+
+  openDialogShowResults(resultado: PostResultadoCuestionario) {
+    const dialogRef = this.dialogResults.open(DialogContentShowResults, {
+      data: { resultado: resultado } // Pasar objeto por parámetros
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+
+      this.router.navigate(['/clase'], { queryParams: { id: this.id_clase } });
+    });
+  }
 
 
   procesarRespuesta(evento: ItemListaRespuestaUsuario) {

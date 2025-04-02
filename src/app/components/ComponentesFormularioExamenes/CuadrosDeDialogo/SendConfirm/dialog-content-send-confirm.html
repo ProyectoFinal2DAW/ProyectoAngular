@@ -1,0 +1,12 @@
+<div class="flex flex-col p-5">
+
+    <mat-dialog-content class="mat-typography">
+        <h1 class="text-md text-center">¿Quieres enviar las respuestas?</h1>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancelar</button>
+        <button mat-button (click)="toSend()" [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+    </mat-dialog-actions>
+</div>
