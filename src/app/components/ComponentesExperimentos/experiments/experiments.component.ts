@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ItemExperimentComponent } from "../item-experiment/item-experiment.component";
 import { Experiment } from '../../../../interfaces/experiment';
 import { getExperiments } from '../../../DBManagement/DBManagement';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogContentAddExperiment } from '../CuadrosDeDialogo/AddExperimento/dialog-content-add-experiment';
 
 @Component({
   selector: 'app-experiments',
@@ -15,7 +17,6 @@ export class ExperimentsComponent {
   // Definir un array de experimentos con id, nombre e imagen
   listExperiments: Experiment[] = [];
 
-  createExperimentVisible: Boolean = false;
 
   
 
@@ -27,10 +28,20 @@ export class ExperimentsComponent {
     this.listExperiments = await getExperiments();
   }
 
-  showPanelAddExperiment() {
-    this.createExperimentVisible = !this.createExperimentVisible;
-  }
 
+    readonly dialogAddVideo = inject(MatDialog);
+  
+    dialogAddExperiment() {
+      const dialogRefAddExperiment = this.dialogAddVideo.open(DialogContentAddExperiment, {
+  
+      });
+  
+      dialogRefAddExperiment.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+
+        this.fetchData();
+      });
+    }
 
   /* = [
     { id_experimento: 1, nombre_experimento: 'Experimento 1', descrip_experimento: "", foto_experimento: 'images/fondoLogin.jpg', video_experimento: ""},

@@ -90,11 +90,15 @@ export class BoxQuestionFormComponentComponent {
 
     let acierto = false;
 
+    console.log("ListaRespuestasUsuario: ", this.listaRespuestasUsuario);
+    console.log("element: ", element);
+
     while (!encontrado && i < this.listaRespuestasUsuario.length) {
 
       if (this.listaRespuestasUsuario[i].id == element.id_pregunta) {
         encontrado = true;
         posicionEncontrada = i;
+        console.log("Encontado: ", this.listaRespuestasUsuario[i].id, "    ", element.id_pregunta);
       }
 
       i++;
@@ -103,6 +107,8 @@ export class BoxQuestionFormComponentComponent {
     if (encontrado) {
       if (this.listaRespuestasUsuario[posicionEncontrada].respuesta == element.correcta) {
         acierto = true;
+        console.log("acierto: ", this.listaRespuestasUsuario[posicionEncontrada].respuesta);
+        console.log("correcta: ", element.correcta);
       }
     }
 
@@ -123,6 +129,7 @@ export class BoxQuestionFormComponentComponent {
 
           //Devuelve true si la respuesta es correcta o false si es incorrecta
           let respuesta = this.buscarRespuesta(element);
+          console.log("Respuesta: ", respuesta);
 
           if (respuesta) {
             this.cantidadAciertos++;

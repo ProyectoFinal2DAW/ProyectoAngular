@@ -20,7 +20,7 @@ export class ItemResponseFormComponentComponent implements OnInit {
     id_pregunta: 0,
   }
 
-  opcionesMezcladas: { texto: string; valor: string }[] = [];
+  opcionesMezcladas: { texto: string }[] = [];
 
   ngOnInit() {
     this.mezclarRespuestas();
@@ -28,10 +28,10 @@ export class ItemResponseFormComponentComponent implements OnInit {
 
   mezclarRespuestas() {
     this.opcionesMezcladas = [
-      { texto: this.question.respuesta1, valor: this.question.respuesta1 },
-      { texto: this.question.respuesta2, valor: this.question.respuesta2 },
-      { texto: this.question.respuesta3, valor: this.question.respuesta3 },
-      { texto: this.question.correcta, valor: this.question.correcta }
+      { texto: this.question.respuesta1},
+      { texto: this.question.respuesta2},
+      { texto: this.question.respuesta3},
+      { texto: this.question.correcta}
     ];
 
     // Mezclar las opciones aleatoriamente

@@ -15,6 +15,7 @@ import { NewVideo } from "../../interfaces/newVideo";
 import { UpdateClase } from "../../interfaces/updateClase";
 import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
 import { PostResultadoCuestionario } from "../../interfaces/postResultadoCuestionario";
+import { NewExperimento } from "../../interfaces/newExperimento";
 
 const baseApiUrl = "http://localhost:8000/";
 
@@ -605,6 +606,35 @@ export async function getExperimentById(id_experiment: Number) {
     }
 
     return experiment;
+
+}
+
+export async function postExperimento(newExperimento: NewExperimento) {
+
+    console.log("postExperimento()");
+
+    const response = await fetch(
+        baseApiUrl + "experimentos/?" +
+        "nombre_experimento=" + newExperimento.nombre_experimento +
+        "&descrip_experimento=" + newExperimento.descrip_experimento +
+        "&foto_experimento=" + newExperimento.foto_experimento +
+        "&video_experimento=" + newExperimento.video_experimento, {
+
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        //body: JSON.stringify(newClass)
+    });
+
+    if (!response.ok) {
+        throw new Error('Error al crear el experimento');
+    } else {
+        alert("Experimento creado correctamente");
+    }
+
+    const data = await response.json();
+    return data;
 
 }
 

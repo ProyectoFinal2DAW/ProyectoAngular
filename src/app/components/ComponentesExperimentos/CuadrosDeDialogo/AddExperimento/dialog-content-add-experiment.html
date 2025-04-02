@@ -1,0 +1,45 @@
+<div class="flex flex-col p-5">
+
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="addExperimentForm" (ngSubmit)="onSubmitCrearExperimento()" class="flex flex-col gap-3">
+
+            <h1 class="text-3xl text-center">Añadir experimento</h1>
+            
+            <br>
+
+            <mat-form-field>
+                <mat-label>Nombre experimento:</mat-label>
+                <input placeholder="Nombre experimento" formControlName="nombreExperimento" matInput required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Descripción:</mat-label>
+                <textarea type="text" placeholder="Descripción" formControlName="descripcionExperimento"
+                    matInput></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>URL Imagen:</mat-label>
+                <input type="url" formControlName="imagenExperimento" matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>URL video:</mat-label>
+                <input placeholder="Introduce la url del video" type="url" formControlName="videoExperimento" matInput />
+            </mat-form-field>
+
+
+            <br>
+
+            <button type="submit" class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Guardar</button>
+
+
+        </form>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancelar</button>
+        <button mat-button (click)="toSend()" [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+    </mat-dialog-actions>
+</div>
