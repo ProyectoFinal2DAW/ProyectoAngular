@@ -33,8 +33,6 @@ export class DescripcionTemarioComponent {
 
   async ngOnInit() {
 
-    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.contenidoClase.videos_temario);
-
     this.route.queryParams.subscribe(params => {
       this.id_clase = params['id_class'];
       this.id_temario = params['id_temario'];
@@ -48,6 +46,15 @@ export class DescripcionTemarioComponent {
 
     this.contenidoClase = await getContenidoTemario(this.id_clase, this.id_temario);
 
+    let url = this.contenidoClase.videos_temario;
+    let urlBase = "https://www.youtube.com/embed/";
+    let urlVideoId = url.split('?v=')[1]
+
+    let urlEnbed = urlBase + urlVideoId; 
+    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlEnbed);
+
+    console.log("VideoURL: ", this.videoUrl);
+    console.log("contenido clase: ", this.contenidoClase);
   }
 
 

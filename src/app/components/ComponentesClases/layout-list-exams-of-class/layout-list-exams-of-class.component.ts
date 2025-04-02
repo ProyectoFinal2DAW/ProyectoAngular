@@ -3,11 +3,11 @@ import { CuestionarioInfoGeneral } from '../../../../interfaces/cuestionarioInfo
 import { DialogContentDeleteTemario } from '../container-class/CuadrosDeDialogo/DeleteTemario/dialog-content-delete-temario';
 import { MatDialog } from '@angular/material/dialog';
 import { deleteCuestionarioById } from '../../../DBManagement/DBManagement';
-
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-layout-list-exams-of-class',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './layout-list-exams-of-class.component.html',
   styleUrl: './layout-list-exams-of-class.component.css'
 })
