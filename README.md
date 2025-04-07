@@ -10,6 +10,8 @@ Para iniciar un servidor local de desarrollo, ejecuta:
 
 ```bash
 ng serve
+
+
 Luego abre tu navegador en:
 
 arduino
