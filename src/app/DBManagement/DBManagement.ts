@@ -17,7 +17,7 @@ import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDe
 import { PostResultadoCuestionario } from "../../interfaces/postResultadoCuestionario";
 import { NewExperimento } from "../../interfaces/newExperimento";
 
-const baseApiUrl = "http://172.17.22.114:8000/";
+const baseApiUrl = "http://localhost:8000/";
 
 /*----------------------Classes--------------------- */
 //Obtener todas las clases
