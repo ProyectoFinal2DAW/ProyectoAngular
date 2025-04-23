@@ -51,7 +51,7 @@ export class ExperimentoDescriptionComponent {
     let urlBase = "https://www.youtube.com/embed/";
     let urlVideoId = url.split('?v=')[1]
 
-    let urlEnbed = urlBase + urlVideoId; 
+    let urlEnbed = urlBase + urlVideoId;
     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlEnbed);
 
     console.log("VideoURL: ", this.videoUrl);
@@ -77,19 +77,19 @@ export class ExperimentoDescriptionComponent {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
         datasets: [
           {
-            label: 'Datos del Experimento',
+            label: 'Distancia',
             data: [10, 20, 15, 30, 25],
             borderColor: 'blue',
             fill: false
           },
           {
-            label: 'Datos del Experimento',
+            label: 'Velocidad',
             data: [30, 50, 20, 40, 25],
             borderColor: 'green',
             fill: false
           },
           {
-            label: 'Datos del Experimento',
+            label: 'Aceleración',
             data: [40, 60, 20, 30, 15],
             borderColor: 'red',
             fill: false
@@ -108,11 +108,11 @@ export class ExperimentoDescriptionComponent {
     new Chart(this.chartCanvas1.nativeElement, {
       type: 'line',
       data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        labels: ['0s', '1s', '2s', '3s', '4s'],
         datasets: [
           {
             label: 'Datos del Experimento',
-            data: [10, 20, 15, 30, 25],
+            data: [0, 5, 15, 30, 50],
             borderColor: 'blue',
             fill: false
           }
@@ -120,9 +120,28 @@ export class ExperimentoDescriptionComponent {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false // <- Oculta la leyenda
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Tiempo (s)' // Etiqueta del eje X
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Distancia (m)' // Etiqueta del eje Y
+            }
+          }
+        }
       }
-    });
+    })
   }
   renderChart2() {
     if (!this.chartCanvas2) return;
@@ -130,19 +149,38 @@ export class ExperimentoDescriptionComponent {
     new Chart(this.chartCanvas2.nativeElement, {
       type: 'line',
       data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        labels: ['0s', '1s', '2s', '3s', '4s'],
         datasets: [
           {
             label: 'Datos del Experimento',
-            data: [10, 20, 15, 30, 25],
-            borderColor: 'blue',
+            data: [0, 10, 20, 25, 30],
+            borderColor: 'green',
             fill: false
           }
         ]
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false // <- Oculta la leyenda
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Tiempo (s)' // Eje X
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Velocidad (m/s)' // Eje Y
+            }
+          }
+        }
       }
     });
   }
@@ -152,19 +190,38 @@ export class ExperimentoDescriptionComponent {
     new Chart(this.chartCanvas3.nativeElement, {
       type: 'line',
       data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        labels: ['0s', '1s', '2s', '3s', '4s'],
         datasets: [
           {
             label: 'Datos del Experimento',
-            data: [10, 20, 15, 30, 25],
-            borderColor: 'blue',
+            data: [0, 2, 4, 3, 1],
+            borderColor: 'red',
             fill: false
           }
         ]
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false // <- Oculta la leyenda
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Tiempo (s)' // Eje X
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Aceleración (m/s²)' // Eje Y
+            }
+          }
+        }
       }
     });
   }
