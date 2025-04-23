@@ -29,7 +29,7 @@ export const routes: Routes = [
   { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
   { path: 'experimentDescription', component: ExperimentoDescriptionComponent }, // Ruta para /experimentos
 
-  { path: 'clases', component: ClasesComponent }, // Ruta para lista de clases
+  { path: 'infoComplementaria', component: ClasesComponent }, // Ruta para lista de clases
   { path: 'clase', component: ContainerClassComponent }, // Ruta para /Detalles clase
   { path: 'temarioDescription', component: DescripcionTemarioComponent }, // Ruta para /configuration
 

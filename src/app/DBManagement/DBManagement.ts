@@ -17,7 +17,40 @@ import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDe
 import { PostResultadoCuestionario } from "../../interfaces/postResultadoCuestionario";
 import { NewExperimento } from "../../interfaces/newExperimento";
 
-const baseApiUrl = "http://172.17.22.114:8000/";
+const baseApiUrl = "http://localhost:8000/";
+
+/*------------------ Subir archivos -----------------*/
+
+export async function uploadFile(file: File) {
+
+    console.log("file: "    + file);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    /*     console.log("formData: ", formData);
+     */
+    try {
+        const response = await fetch(baseApiUrl + "upload/", {
+            method: "POST",
+            body: formData,
+        });
+
+        console.log("response: ", response);
+        console.log("Response body:", await response.text());
+
+        if (!response.ok) {
+            throw new Error("Error al subir el archivo");
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error en uploadFile:", error);
+        throw error;
+    }
+}
+
 
 /*----------------------Classes--------------------- */
 //Obtener todas las clases
@@ -136,7 +169,7 @@ export async function getClassLessons(id_clase: Number) {
         let response = await fetch(baseApiUrl + 'temarios/clase/' + id_clase);
 
         if (response.status === 404) {
-            return lessonsList; 
+            return lessonsList;
         }
 
         // Si la respuesta es exitosa, se procesan los datos
@@ -168,7 +201,7 @@ export async function getContenidoTemario(id_clase: number, id_temario: number) 
         let response = await fetch(baseApiUrl + 'temarios/clase/' + id_clase + "/filter?id_temario=" + id_temario);
 
         if (response.status === 404) {
-            return contenidoTemario; 
+            return contenidoTemario;
         }
 
         // Si la respuesta es exitosa, se procesan los datos
@@ -255,7 +288,7 @@ export async function putTemario(newTemario: NewTemario) {
     }
 }
 
-export async function deleteTemarioById (idTemario: number) {
+export async function deleteTemarioById(idTemario: number) {
 
     console.log("deleteTemarioById()");
 
@@ -515,7 +548,7 @@ export async function postTemariosCuestionarios(id_clases: number, id_questionar
     }
 }
 
-export async function deleteCuestionarioById (idcuestionario: number) {
+export async function deleteCuestionarioById(idcuestionario: number) {
 
     console.log("deleteCuestionarioById()");
 

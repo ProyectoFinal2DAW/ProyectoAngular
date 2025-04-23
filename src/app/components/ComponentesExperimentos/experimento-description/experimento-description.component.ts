@@ -16,6 +16,9 @@ import { Router } from 'express';
 export class ExperimentoDescriptionComponent {
 
   @ViewChild('chartCanvas') chartCanvas!: ElementRef; // Referencia al canvas
+  @ViewChild('chartCanvas1') chartCanvas1!: ElementRef;
+  @ViewChild('chartCanvas2') chartCanvas2!: ElementRef;
+  @ViewChild('chartCanvas3') chartCanvas3!: ElementRef;
 
   id_experiment: number = 0;
   videoUrl?: SafeResourceUrl;
@@ -60,12 +63,93 @@ export class ExperimentoDescriptionComponent {
 
   ngAfterViewInit() {
     this.renderChart();
+    this.renderChart1();
+    this.renderChart2();
+    this.renderChart3();
   }
 
   renderChart() {
     if (!this.chartCanvas) return;
 
     new Chart(this.chartCanvas.nativeElement, {
+      type: 'line',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [
+          {
+            label: 'Datos del Experimento',
+            data: [10, 20, 15, 30, 25],
+            borderColor: 'blue',
+            fill: false
+          },
+          {
+            label: 'Datos del Experimento',
+            data: [30, 50, 20, 40, 25],
+            borderColor: 'green',
+            fill: false
+          },
+          {
+            label: 'Datos del Experimento',
+            data: [40, 60, 20, 30, 15],
+            borderColor: 'red',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
+  renderChart1() {
+    if (!this.chartCanvas1) return;
+
+    new Chart(this.chartCanvas1.nativeElement, {
+      type: 'line',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [
+          {
+            label: 'Datos del Experimento',
+            data: [10, 20, 15, 30, 25],
+            borderColor: 'blue',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
+  renderChart2() {
+    if (!this.chartCanvas2) return;
+
+    new Chart(this.chartCanvas2.nativeElement, {
+      type: 'line',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [
+          {
+            label: 'Datos del Experimento',
+            data: [10, 20, 15, 30, 25],
+            borderColor: 'blue',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
+  renderChart3() {
+    if (!this.chartCanvas3) return;
+
+    new Chart(this.chartCanvas3.nativeElement, {
       type: 'line',
       data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
