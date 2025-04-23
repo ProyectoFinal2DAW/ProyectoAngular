@@ -4,7 +4,7 @@
         <form [formGroup]="addExperimentForm" (ngSubmit)="onSubmitCrearExperimento()" class="flex flex-col gap-3">
 
             <h1 class="text-3xl text-center">Añadir experimento</h1>
-            
+
             <br>
 
             <mat-form-field>
@@ -18,14 +18,17 @@
                     matInput></textarea>
             </mat-form-field>
 
-            <mat-form-field>
+            <!-- <mat-form-field> -->
                 <mat-label>URL Imagen:</mat-label>
-                <input type="url" formControlName="imagenExperimento" matInput />
-            </mat-form-field>
+                <input type="file" formControlName="imagenExperimento" />
+            <!-- </mat-form-field> -->
+
+            <br>
 
             <mat-form-field>
                 <mat-label>URL video:</mat-label>
-                <input placeholder="Introduce la url del video" type="url" formControlName="videoExperimento" matInput />
+                <input placeholder="Introduce la url del video" type="url" formControlName="videoExperimento"
+                    matInput />
             </mat-form-field>
 
 

@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NewExperimento } from '../../../../../interfaces/newExperimento';
-import { postExperimento } from '../../../../DBManagement/DBManagement';
+import { postExperimento, uploadFile } from '../../../../DBManagement/DBManagement';
 
 @Component({
     selector: 'dialog-content-add-experiment',
@@ -42,10 +42,12 @@ export class DialogContentAddExperiment {
             return;
         }
 
+        const url = await uploadFile(this.addExperimentForm.value.imagenExperimento);
+
         const newExperimento: NewExperimento = {
             nombre_experimento: this.addExperimentForm.value.nombreExperimento,
             descrip_experimento: this.addExperimentForm.value.descripcionExperimento,
-            foto_experimento: this.addExperimentForm.value.imagenExperimento,
+            foto_experimento: url,
             video_experimento: this.addExperimentForm.value.videoExperimento,
         }
 
