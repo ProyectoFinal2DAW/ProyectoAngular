@@ -81,6 +81,18 @@ export class ExperimentoDescriptionComponent {
             data: [10, 20, 15, 30, 25],
             borderColor: 'blue',
             fill: false
+          },
+          {
+            label: 'Datos del Experimento',
+            data: [30, 50, 20, 40, 25],
+            borderColor: 'green',
+            fill: false
+          },
+          {
+            label: 'Datos del Experimento',
+            data: [40, 60, 20, 30, 15],
+            borderColor: 'red',
+            fill: false
           }
         ]
       },
