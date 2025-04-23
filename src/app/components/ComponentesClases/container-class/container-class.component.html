@@ -127,48 +127,44 @@
         </mat-tab>
 
         <mat-tab label="Participantes">
-            <div class="flex flex-col gap-3 mt-10">
-
+            <div class="flex flex-col gap-4 mt-10 p-6">
                 @if (listaParticipantesClase.length > 0) {
-                @for (participante of listaParticipantesClase; track $index) {
-                <app-item-participante-clase [participante]="participante"></app-item-participante-clase>
-                }
+                    @for (participante of listaParticipantesClase; track $index) {
+                        <div class="bg-white shadow-lg rounded-xl p-4 flex items-center gap-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                            <app-item-participante-clase [participante]="participante" class="flex-1"></app-item-participante-clase>
+                        </div>
+                    }
                 } @else {
-                <h1>No hay participantes disponibles </h1>
+                    <h1 class="text-center text-2xl font-bold text-gray-600">No hay participantes disponibles</h1>
                 }
-                <!-- <app-item-participante-clase></app-item-participante-clase>
-                <app-item-participante-clase></app-item-participante-clase> -->
             </div>
         </mat-tab>
 
         <mat-tab label="Calificaciones">
-
-            <div class="flex flex-col gap-4 mt-10">
+            <div class="flex flex-col gap-6 mt-10 p-6">
                 @if (listaNotasUsuarioClase.length > 0) {
-                @for (nota of listaNotasUsuarioClase; track $index) {
-                <div class="flex flex-row flex-wrap bg-blue-100 p-4 justify-between items-center rounded-lg">
-
-                    <div class="flex-[1fr]">
-                        <h1 class="text-xl"> Cuestionario: {{ nota.nombre_cuestionario }} </h1>
-
-                        <h2> Aciertos: {{ nota.total_correctas }} / Fallos: {{ nota.total_falladas }}</h2>
-                        <h2> Fecha de realización: {{ nota.fecha_completado | date:'dd/MM/yyyy HH:mm' }}</h2>
-                    </div>
-
-                    <div class="flex-[1fr] justify-center items-center">
-                        <h2 class="w-full text-center"> Calificación</h2>
-                        <h2 class="w-full text-center"> {{ nota.nota }} </h2>
-                    </div>
-
-                </div>
-                }
+                    @for (nota of listaNotasUsuarioClase; track $index) {
+                        <div class="flex flex-col md:flex-row bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 shadow-lg rounded-xl hover:shadow-2xl">
+                            
+                            <div class="flex-1">
+                                <h1 class="text-2xl font-bold text-white text-glow">Cuestionario: {{ nota.nombre_cuestionario }}</h1>
+                                <p class="mt-2 text-lg">✅ Aciertos: <span class="font-semibold">{{ nota.total_correctas }}</span> / ❌ Fallos: <span class="font-semibold">{{ nota.total_falladas }}</span></p>
+                                <p class="mt-1 text-sm opacity-90">📅 Fecha de realización: {{ nota.fecha_completado | date:'dd/MM/yyyy HH:mm' }}</p>
+                            </div>
+                            
+                            <div class="flex items-center justify-end flex-1 text-center">
+                                <div class="bg-white text-indigo-600 w-20 py-3 px-6 rounded-lg text-2xl font-bold shadow-md">
+                                     {{ nota.nota }} 🏆
+                                </div>
+                            </div>
+                        </div>
+                    }
                 } @else {
-                <h1>No hay calificaciones disponibles</h1>
+                    <h1 class="text-center text-2xl font-bold text-gray-600">No hay calificaciones disponibles</h1>
                 }
             </div>
-
-
         </mat-tab>
+        
 
     </mat-tab-group>
 

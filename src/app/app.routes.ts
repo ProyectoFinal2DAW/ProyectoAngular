@@ -14,6 +14,9 @@ import { FormCreateExamComponent } from './components/ComponentesFormularioExame
 import { DescripcionTemarioComponent } from './components/ComponentesClases/descripcion-temario/descripcion-temario.component';
 import { ProtocolosComponent } from './components/ComponentesHome/protocolos/protocolos.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProcesosComponent } from './components/ComponentesHome/procesos/procesos.component';
+import { InvestigacionComponent } from './components/ComponentesHome/investigacion/investigacion.component';
+import { InnovacionComponent } from './components/ComponentesHome/innovacion/innovacion.component';
 
 export const routes: Routes = [
   { path: '', component: Login2Component }, // Ruta principal (index)
@@ -35,6 +38,9 @@ export const routes: Routes = [
   { path: 'form', component: BoxQuestionFormComponentComponent }, // Ruta para /formularioExamen
   { path: 'createExam', component: FormCreateExamComponent }, // Ruta para /configuration
   { path: 'protocolos', component: ProtocolosComponent }, // Ruta para /protocolos
+  { path: 'procesos', component: ProcesosComponent }, // Ruta para /procesos
+  { path: 'investigacion', component: InvestigacionComponent }, // Ruta para /investigacion
+  { path: 'innovacion', component: InnovacionComponent }, // Ruta para /innovacion
 
 
 ];
