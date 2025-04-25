@@ -10,9 +10,11 @@ html {
 
 body {
   height: 100%;
- /* background-image: url('../public/images/fondo.jpg'); */
-  background-size: cover;
-  background-attachment: fixed;
+  background-color: #e9f5e9;
+  color: #333;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
   /* background-color:#FDF5E6; */
 }
 
@@ -33,6 +35,11 @@ body {
   font-style: normal;
 }
 
+.bangers-regular {
+  font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
 
 /* h1,
 h2,
@@ -46,8 +53,15 @@ h6 */
   height: 24px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
 @layer utilities {

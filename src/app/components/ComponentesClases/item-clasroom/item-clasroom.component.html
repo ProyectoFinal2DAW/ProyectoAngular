@@ -1,39 +1,30 @@
-<div class="w-96 rounded-lg border bg-white overflow-hidden cursor-pointer">
+<div class="relative w-96 p-5 h-96 rounded-2xl cursor-pointer bg-cover bg-center shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out"
+    [style]="{
+        'background-image': 'url(' + classroom.foto_clases + ')',
+        'background-size': 'cover',
+        'background-position': 'center'
+    }">
 
-    <div class="relative w-full p-5"
-        [style]="{ 'background-image': 'url(' + classroom.foto_clases + ')', 
-            'background-size': 'cover', 
-            'background-position': 'center' 
-            }">
-        <!-- Imagen de perfil redonda en la esquina superior derecha -->
-        <!-- <div class="absolute top-0 right-0 mt-4 mr-4 w-20 h-20 bg-white rounded-full overflow-hidden z-10">
-            <img class="w-full h-full object-cover" src="images/juan.png" alt="Imagen de perfil">
-        </div> -->
-
-        <!-- Contenido -->
-        <div class="h-24 flex justify-center items-center">
-            <h1 class="text-3xl text-white text-glow">{{classroom.nombre_clases}}</h1>
-        </div>        
-        
+    <!-- Título centrado arriba -->
+    <div class="h-24 flex justify-center items-center">
+        <h1 class="text-3xl text-white font-bold text-center drop-shadow-md text-glow">{{ classroom.nombre_clases }}</h1>
     </div>
 
+    <!-- Botones abajo: editar a la izquierda, aprender más a la derecha -->
+    <div class="absolute bottom-4 left-0 w-full px-5 flex justify-between items-center">
 
-    <div class="w-full h-40 flex p-4">
-        <h4 class="text-gray-500">{{ classroom.descripcion_clases }}</h4>
-    </div>
-
-    <hr>
-
-    <div class="w-full flex flex-row justify-end p-2">
-
+        <!-- Botón de editar -->
         @if (usuarioProfesor) {
-        <button class="p-2 rounded-2xl hover:bg-gray-100"
-            (click)="openDialogAddUpdateClass('u', classroom, classroom.id_clases, $event)">
-            <img class="w-6" src="icons/file-pen-solid.svg">
-        </button>
+            <button class="backdrop-blur-sm border border-white bg-white/10 text-gray-800 p-2 rounded-lg shadow hover:bg-white/20 transition duration-200"
+                (click)="openDialogAddUpdateClass('u', classroom, classroom.id_clases, $event)">
+                <img class="w-5 h-5" src="icons/pen-solid.svg" alt="Editar">
+            </button>
         }
 
+        <!-- Botón "Aprender más" -->
+        <button class="text-white text-glow border border-white rounded-lg px-4 py-2 text-sm backdrop-blur-sm bg-white/10 hover:bg-white/20 transition duration-200">
+            Aprender más
+        </button>
 
     </div>
-
 </div>

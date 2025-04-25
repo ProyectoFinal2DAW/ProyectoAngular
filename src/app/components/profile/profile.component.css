@@ -6,6 +6,7 @@
 }
 
 .profile-component {
+  background-color: rgb(221, 221, 221);
   margin-top: 80px;
   display: flex;
   flex-direction: row;
