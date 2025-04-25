@@ -16,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   /* background-color:#FDF5E6; */
+
 }
 
 body {
@@ -25,13 +26,12 @@ body {
 
 .jockey-one-regular {
   font-family: "Jockey One", serif;
-  font-weight: 400;
   font-style: normal;
 }
 
 .neucha-regular {
   font-family: "Neucha", serif;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -53,6 +53,15 @@ h6 */
   height: 24px;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 html,
 body {
   height: 100%;

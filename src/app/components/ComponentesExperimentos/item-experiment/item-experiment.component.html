@@ -1,4 +1,4 @@
-<div class="experiment-card-container">
+<!-- <div class="experiment-card-container">
     <div class="experiment-card">
         <a class="experiment-image-link">
             <img class="experiment-image" src={{experiment.foto_experimento}} alt="Imagen del experimento" />
@@ -14,4 +14,29 @@
             </p>
         </div>
     </div>
+</div> -->
+
+<div class="w-[20rem] h-[22rem] flex flex-col justify-end  gap-4 shadow-lg rounded-2xl bg-cover bg-center hover:shadow-xl"
+    style="background-image: url('{{ experiment.foto_experimento }}');">
+
+
+    <div class="h-2/3 flex flex-col justify-end p-5 gap-4 bg-gradient-to-t from-black/90 to-transparent rounded-2xl">
+
+        <div>
+            <h1 class="text-xl text-glow text-white"> {{ experiment.nombre_experimento }} </h1>
+
+            <h2 class="text-md text-glow text-white/50"> {{experiment.asignatura}} </h2>
+        </div>
+
+
+        <div
+            class="w-full flex justify-between px-4 py-3 rounded-2xl bg-white bg-white/10 backdrop-blur-sm hover:bg-gray-100/20 transition-all duration-200">
+            <h1 class="text-white">Más info</h1>
+
+            <img class="icon-class" src="/icons/chevron-right-solid.svg">
+
+        </div>
+    </div>
+
+
 </div>

@@ -29,6 +29,7 @@ export class ExperimentoDescriptionComponent {
     descrip_experimento: "",
     foto_experimento: "",
     video_experimento: "",
+    asignatura: ""
   }
 
   constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) { }

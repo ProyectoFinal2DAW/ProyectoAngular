@@ -15,6 +15,7 @@ export class ItemExperimentComponent {
     descrip_experimento: "",
     foto_experimento: "",
     video_experimento: "",
+    asignatura: ""
   };
 
   @Input() contadorExperimento: number = 0;

@@ -626,6 +626,7 @@ export async function getExperimentById(id_experiment: Number) {
         descrip_experimento: "",
         foto_experimento: "",
         video_experimento: "",
+        asignatura: ""
     };
 
     try {
