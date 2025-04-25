@@ -4,4 +4,5 @@ export interface Experiment {
     descrip_experimento: string;
     foto_experimento: string;
     video_experimento: string;
+    asignatura: string;
 }

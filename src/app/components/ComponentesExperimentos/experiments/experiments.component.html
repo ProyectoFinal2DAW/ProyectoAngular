@@ -1,6 +1,6 @@
-<h1 class="mt-[100px] w-full text-center text-4xl mb-4">Experimentos</h1>
+<h1 class="mt-[120px] w-full text-center text-4xl mb-4">Experimentos</h1>
 
-<div class="mt-[30px] w-full flex flex-wrap flex-row gap-8 p-8 justify-center lg:px-24">
+<div class="mt-[30px] mb-8 w-full flex flex-wrap flex-row gap-10 p-8 justify-center ">
 
 
     @for (experiment of listExperiments; track $index; let idx = $index) {
@@ -10,7 +10,7 @@
     }
 
     <button
-        class="fixed bottom-7 right-5 bg-green-700 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300"
+        class="fixed bottom-7 right-5 bg-green-700 text-white p-4 rounded-full shadow-lg hover:bg-green-800 transition-all duration-300"
         (click)="dialogAddExperiment()">
         <img class="icon-class" src="icons/plus-solid.svg">
     </button>

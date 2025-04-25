@@ -22,9 +22,10 @@
                 <br>
 
                 <div class="w-full flex flex-row items-center gap-5 p-2">
-                    <h2 class="text-3xl">Teoría</h2>
+                    <h2 class="text-3xl">Teoría complementaria</h2>
                     @if (teacherUser) {
-                    <button class="hover:bg-blue-100 p-2 rounded-xl" (click)="openDialogAddUpdateTemario('a', temarioVacio)">
+                    <button class="hover:bg-blue-100 p-2 rounded-xl"
+                        (click)="openDialogAddUpdateTemario('a', temarioVacio)">
                         <img src="icons/plus-solid-black.svg" class="icon-class">
                     </button>
                     }
@@ -38,12 +39,9 @@
 
                     @if (listaTemarios.length > 0) {
                     @for (temario of listaTemarios; track $index) {
-                    <app-layout-list-element-of-class 
-                        [temario]=temario
-                        (elementoEliminado)="actualizarTemarios($event)"
+                    <app-layout-list-element-of-class [temario]=temario (elementoEliminado)="actualizarTemarios($event)"
                         routerLink="../temarioDescription"
-                        [queryParams]="{ id_class: id_clase, id_temario: temario.id_temario}"
-                        ></app-layout-list-element-of-class>
+                        [queryParams]="{ id_class: id_clase, id_temario: temario.id_temario}"></app-layout-list-element-of-class>
                     }
                     } @else {
                     <h1>No hay temarios disponibles</h1>
@@ -94,7 +92,7 @@
             <div class="w-full">
 
                 <div class="w-full flex flex-row items-center gap-5 p-2">
-                    <h2 class="text-3xl">Exámenes</h2>
+                    <h2 class="text-3xl">Autoevaluación</h2>
 
                     @if (teacherUser) {
                     <button class="hover:bg-blue-100 p-2 rounded-xl" routerLink="../createExam"
@@ -129,13 +127,11 @@
         <mat-tab label="Participantes">
             <div class="flex flex-col gap-4 mt-10 p-6">
                 @if (listaParticipantesClase.length > 0) {
-                    @for (participante of listaParticipantesClase; track $index) {
-                        <div class="bg-white shadow-lg rounded-xl p-4 flex items-center gap-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-                            <app-item-participante-clase [participante]="participante" class="flex-1"></app-item-participante-clase>
-                        </div>
-                    }
+                @for (participante of listaParticipantesClase; track $index) {
+                    <app-item-participante-clase [participante]="participante" class="flex-1"></app-item-participante-clase>
+                }
                 } @else {
-                    <h1 class="text-center text-2xl font-bold text-gray-600">No hay participantes disponibles</h1>
+                <h1 class="text-center text-2xl font-bold text-gray-600">No hay participantes disponibles</h1>
                 }
             </div>
         </mat-tab>
@@ -143,28 +139,32 @@
         <mat-tab label="Calificaciones">
             <div class="flex flex-col gap-6 mt-10 p-6">
                 @if (listaNotasUsuarioClase.length > 0) {
-                    @for (nota of listaNotasUsuarioClase; track $index) {
-                        <div class="flex flex-col md:flex-row bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 shadow-lg rounded-xl hover:shadow-2xl">
-                            
-                            <div class="flex-1">
-                                <h1 class="text-2xl font-bold text-white text-glow">Cuestionario: {{ nota.nombre_cuestionario }}</h1>
-                                <p class="mt-2 text-lg">✅ Aciertos: <span class="font-semibold">{{ nota.total_correctas }}</span> / ❌ Fallos: <span class="font-semibold">{{ nota.total_falladas }}</span></p>
-                                <p class="mt-1 text-sm opacity-90">📅 Fecha de realización: {{ nota.fecha_completado | date:'dd/MM/yyyy HH:mm' }}</p>
-                            </div>
-                            
-                            <div class="flex items-center justify-end flex-1 text-center">
-                                <div class="bg-white text-indigo-600 w-20 py-3 px-6 rounded-lg text-2xl font-bold shadow-md">
-                                     {{ nota.nota }} 🏆
-                                </div>
-                            </div>
+                @for (nota of listaNotasUsuarioClase; track $index) {
+                <div
+                    class="flex flex-col md:flex-row bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 shadow-lg rounded-xl hover:shadow-2xl">
+
+                    <div class="flex-1">
+                        <h1 class="text-2xl font-bold text-white text-glow">Cuestionario: {{ nota.nombre_cuestionario }}
+                        </h1>
+                        <p class="mt-2 text-lg">✅ Aciertos: <span class="font-semibold">{{ nota.total_correctas
+                                }}</span> / ❌ Fallos: <span class="font-semibold">{{ nota.total_falladas }}</span></p>
+                        <p class="mt-1 text-sm opacity-90">📅 Fecha de realización: {{ nota.fecha_completado |
+                            date:'dd/MM/yyyy HH:mm' }}</p>
+                    </div>
+
+                    <div class="flex items-center justify-end flex-1 text-center">
+                        <div class="bg-white text-indigo-600 w-20 py-3 px-6 rounded-lg text-2xl font-bold shadow-md">
+                            {{ nota.nota }} 🏆
                         </div>
-                    }
+                    </div>
+                </div>
+                }
                 } @else {
-                    <h1 class="text-center text-2xl font-bold text-gray-600">No hay calificaciones disponibles</h1>
+                <h1 class="text-center text-2xl font-bold text-gray-600">No hay calificaciones disponibles</h1>
                 }
             </div>
         </mat-tab>
-        
+
 
     </mat-tab-group>
 
