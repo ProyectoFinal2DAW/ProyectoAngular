@@ -20,7 +20,7 @@
 
             <!-- <mat-form-field> -->
                 <mat-label>URL Imagen:</mat-label>
-                <input type="file" formControlName="imagenExperimento" />
+                <input type="file" (change)="onFileSelected($event)" />
             <!-- </mat-form-field> -->
 
             <br>

@@ -36,15 +36,18 @@ export async function uploadFile(file: File) {
             body: formData,
         });
 
-        console.log("response: ", response);
+        console.log("response: ", await response);
         console.log("Response body:", await response.text());
 
         if (!response.ok) {
             throw new Error("Error al subir el archivo");
         }
 
-        const data = await response.json();
-        return data;
+        const url = response.url;
+        //const filename = response.remote_path;
+        console.log ("response", response);
+        //const data = await response.json();
+        return response.url;
     } catch (error) {
         console.error("Error en uploadFile:", error);
         throw error;
