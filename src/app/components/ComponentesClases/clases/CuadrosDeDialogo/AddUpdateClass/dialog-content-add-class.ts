@@ -8,6 +8,7 @@ import { postClasses, putClases } from '../../../../../DBManagement/DBManagement
 import { NewClass } from '../../../../../../interfaces/newClass';
 import { Class } from '../../../../../../interfaces/class';
 import { UpdateClase } from '../../../../../../interfaces/updateClase';
+import { uploadFile } from '../../../../../DBManagement/DBManagement';
 
 @Component({
     selector: 'dialog-content-add-class',
@@ -43,6 +44,16 @@ export class DialogContentAddClass {
         }
     }
 
+    selectedFile: File | null = null;
+
+    onFileSelected(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.selectedFile = input.files[0];
+            console.log("Archivo seleccionado:", this.selectedFile);
+        }
+    }
+
 
     async onSubmit() {
         console.log("OnSubmit");
@@ -53,19 +64,28 @@ export class DialogContentAddClass {
             return;
         }
 
+        let imageUrl = '';
+        if (this.selectedFile) {
+            try {
+                imageUrl = await uploadFile(this.selectedFile);
+                console.log("Imagen subida:", imageUrl);
+            } catch (error) {
+                console.error("Error al subir la imagen:", error);
+                alert("Hubo un error al subir la imagen.");
+                return;
+            }
+        }
 
         if (this.action === 'a') {
             const newClass: NewClass = {
                 nombre_clases: this.addClassForm.value.className,
                 descripcion_clases: this.addClassForm.value.classDescription,
                 contenido: this.addClassForm.value.classContent,
-                foto_clases: "",
+                foto_clases: "http://monlab.ddns.net/images/" + this.selectedFile?.name,
                 video_clases: "",
-
-            }
+            };
 
             const apiPostResponse = await postClasses(newClass);
-
             console.log("ApiPostResponse: ", apiPostResponse);
 
         } else {
@@ -74,20 +94,12 @@ export class DialogContentAddClass {
                 nombre_clases: this.addClassForm.value.className,
                 descripcion_clases: this.addClassForm.value.classDescription,
                 contenido: this.addClassForm.value.classContent,
-                foto_clases: "",
+                foto_clases: imageUrl,
                 video_clases: "",
-            }
+            };
 
-            const apiPutResponse = putClases(updateClase);
-
+            const apiPutResponse = await putClases(updateClase);
             console.log("ApiPutResponse: ", apiPutResponse);
-
         }
-
-
-
-
-
-
     }
 }

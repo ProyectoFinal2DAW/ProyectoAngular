@@ -40,6 +40,7 @@ export class ClasesComponent {
 
   async ngOnInit() {
     this.listClasses = await getClasses();
+    console.log("Lista de clases: ", this.listClasses);
   }
 
 
