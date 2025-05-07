@@ -16,6 +16,8 @@ import { UpdateClase } from "../../interfaces/updateClase";
 import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
 import { PostResultadoCuestionario } from "../../interfaces/postResultadoCuestionario";
 import { NewExperimento } from "../../interfaces/newExperimento";
+import exp from "constants";
+import { ExperimentData } from "../../interfaces/experimentData";
 
 const baseApiUrl = "http://localhost:8000/";
 
@@ -371,6 +373,55 @@ export async function postVideoClass(id_clases: number, newVideo: NewVideo) {
         alert("No se ha podido guardar el video");
         return error;
     }
+}
+
+/*-------------------------Datos experimentos----------------- */
+export async function getExperimentsDataById(id_experiment: number) {
+
+    let experimentsDataList: ExperimentData[] = [];
+    let experimentsData: ExperimentData = {
+        id_datos: 0,
+        id_experimento: 0,
+        masa1: 0,
+        masa2: 0,
+        masa3: 0,
+        masa4: 0,
+        velocidad1: 0,
+        velocidad2: 0,
+        velocidad3: 0,
+        velocidad4: 0,
+        velocidad5: 0,
+        altura1: 0,
+        altura2: 0,
+        altura3: 0,
+        altura4: 0,
+        tiempo1: new Date(),
+        tiempo2: new Date(),
+        tiempo3: new Date(),
+        tiempo4: new Date(),
+        resultado: null,
+        tipoExperimento: "",
+        longitud: 0,
+        gravedad: 9.81,
+        angulo_inclinación: 0,
+        tiempo5: new Date()
+    };
+
+    try {
+
+        let response = await fetch(baseApiUrl + 'datos_experimentos/experimento/' + id_experiment);
+
+        experimentsDataList = await response.json();
+
+        experimentsData = experimentsDataList[experimentsDataList.length - 1];
+
+    } catch (error) {
+        console.log("Error al obtener los videos: ", error);
+
+    }
+
+    return experimentsData;
+
 }
 
 

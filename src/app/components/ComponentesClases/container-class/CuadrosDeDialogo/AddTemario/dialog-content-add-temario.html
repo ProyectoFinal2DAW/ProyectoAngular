@@ -1,13 +1,17 @@
-<div class="flex flex-col p-5">
+<div class="flex flex-col p-5" style="width: 500px;">
+
+    
+    @if (action === 'a') {
+    <h1 class="text-3xl text-center pt-5">Añadir teoría</h1>
+    } @else {
+    <h1 class="text-3xl text-center pt-5 pb-2">Modificar teoría</h1>
+    }
 
     <mat-dialog-content class="mat-typography">
+
         <form [formGroup]="addTemarioForm" (ngSubmit)="onSubmitCrearActualizarTemario()" class="flex flex-col gap-3">
 
-            @if (action === 'a') {
-            <h1 class="text-3xl text-center">Añadir teoría</h1>
-            } @else {
-            <h1 class="text-3xl text-center">Modificar teoría</h1>
-            }
+
 
             <br>
 
@@ -21,7 +25,7 @@
 
             <mat-form-field>
                 <mat-label>Descripción:</mat-label>
-                <textarea type="text" placeholder="Descripción" formControlName="descripcionTemario"
+                <textarea cdkTextareaAutosize type="text" placeholder="Descripción" formControlName="descripcionTemario" #autosize="cdkTextareaAutosize"
                     matInput></textarea>
             </mat-form-field>
 
@@ -37,7 +41,8 @@
 
             <mat-form-field>
                 <mat-label>URL Imagen:</mat-label>
-                <input placeholder="Introduce la url de la imagen" type="url" formControlName="imagenTemario" matInput />
+                <input placeholder="Introduce la url de la imagen" type="url" formControlName="imagenTemario"
+                    matInput />
             </mat-form-field>
 
             <!-- <div>
@@ -45,12 +50,11 @@
                 <input type="file" formControlName="imagenTemario" />
             </div> -->
 
-            <br>
 
             @if (action === 'a') {
-            <button class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Guardar</button>
+            <button class="bg-green-700 px-4 py-2 rounded-lg text-white hover:bg-green-800">Guardar</button>
             } @else {
-            <button class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Actualizar</button>
+            <button class="bg-green-700 px-4 py-2 rounded-lg text-white hover:bg-green-800">Actualizar</button>
             }
 
 

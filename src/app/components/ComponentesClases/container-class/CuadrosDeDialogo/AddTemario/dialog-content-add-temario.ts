@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Temario } from '../../../../../../interfaces/temario';
 import { UpdateTemario } from '../../../../../../interfaces/updateTemario';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 
 

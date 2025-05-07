@@ -1,12 +1,12 @@
-<div class="flex flex-col p-5">
+<div class="flex flex-col p-5" style="width: 500px;">
+
+    <h1 class="text-3xl text-center pt-5 pb-2">Crear video</h1>
 
     <mat-dialog-content class="mat-typography">
-        <form [formGroup]="addVideoForm" (ngSubmit)="onSubmitCrearVideo()" class="flex flex-col gap-3 p-6">
 
 
-            <h1 class="text-3xl text-center">Crear video</h1>
+        <form [formGroup]="addVideoForm" (ngSubmit)="onSubmitCrearVideo()" class="flex flex-col gap-3">
 
-            <br>
 
             <mat-form-field>
                 <mat-label>Título del vídeo:</mat-label>
@@ -32,7 +32,7 @@
                 <input type="text" formControlName="videoRuta" matInput />
             </mat-form-field>
 
-            <button type="submit" class="bg-blue-500 px-4 py-2 text-white rounded-lg hover:bg-blue-600">Crear
+            <button type="submit" class="bg-green-700 px-4 py-2 text-white rounded-lg hover:bg-green-800">Crear
                 video</button>
 
 
