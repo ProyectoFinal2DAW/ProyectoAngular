@@ -128,7 +128,7 @@
             <div class="flex flex-col gap-4 mt-10 p-6">
                 @if (listaParticipantesClase.length > 0) {
                 @for (participante of listaParticipantesClase; track $index) {
-                    <app-item-participante-clase [participante]="participante" class="flex-1"></app-item-participante-clase>
+                <app-item-participante-clase [participante]="participante" class="flex-1"></app-item-participante-clase>
                 }
                 } @else {
                 <h1 class="text-center text-2xl font-bold text-gray-600">No hay participantes disponibles</h1>
@@ -141,7 +141,7 @@
                 @if (listaNotasUsuarioClase.length > 0) {
                 @for (nota of listaNotasUsuarioClase; track $index) {
                 <div
-                    class="flex flex-col md:flex-row bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 shadow-lg rounded-xl hover:shadow-2xl">
+                    class="flex flex-col md:flex-row bg-gradient-to-r from-gray-400 to-gray-300 text-white p-6 shadow-lg rounded-xl hover:shadow-2xl">
 
                     <div class="flex-1">
                         <h1 class="text-2xl font-bold text-white text-glow">Cuestionario: {{ nota.nombre_cuestionario }}
@@ -153,7 +153,7 @@
                     </div>
 
                     <div class="flex items-center justify-end flex-1 text-center">
-                        <div class="bg-white text-indigo-600 w-20 py-3 px-6 rounded-lg text-2xl font-bold shadow-md">
+                        <div class="bg-white text-black w-20 py-3 px-6 rounded-lg text-2xl font-bold shadow-md">
                             {{ nota.nota }} 🏆
                         </div>
                     </div>
