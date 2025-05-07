@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import  'aos/dist/aos.css';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-procesos',
@@ -6,6 +8,13 @@ import { Component } from '@angular/core';
   templateUrl: './procesos.component.html',
   styleUrl: './procesos.component.css'
 })
-export class ProcesosComponent {
+export class ProcesosComponent implements AfterViewInit {
+  ngAfterViewInit() {
+    AOS.init({
+      duration: 1200,
+      once: true,
+      mirror: false,
+    });
+  }
 
 }

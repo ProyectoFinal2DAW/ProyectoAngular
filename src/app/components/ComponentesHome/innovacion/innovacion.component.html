@@ -1,1 +1,48 @@
-<p>innovacion works!</p>
+<div class="bg-white text-gray-800 min-h-screen mt-6">
+    <section class="bg-gradient-to-r from-gray-300 to-gray-700 text-white py-20 px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Innovación en el Laboratorio</h1>
+      <p class="text-lg max-w-2xl mx-auto">
+        Fomentamos la creatividad, la aplicación de nuevas tecnologías y la generación de soluciones reales dentro de nuestro entorno académico.
+      </p>
+    </section>
+  
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Proyectos Destacados</h2>
+  
+      <div class="grid md:grid-cols-3 gap-10">
+        @for (project of innovationProjects; track project.id; let i = $index) {
+          <div
+            class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition p-6"
+            data-aos="fade-up"
+            [attr.data-aos-delay]="i * 100"
+          >
+            <img
+              [src]="project.image || 'https://via.placeholder.com/400x200'"
+              alt="Imagen del proyecto"
+              class="rounded-lg h-40 w-full object-cover mb-4"
+            />
+            <h3 class="text-xl font-semibold">{{ project.title }}</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              {{ project.description }}
+            </p>
+          </div>
+        }
+      </div>
+    </section>
+  
+    <section class="bg-indigo-50 py-16 text-center px-6">
+      <h2 class="text-3xl font-bold mb-4" data-aos="zoom-in">
+        ¿Tienes una idea innovadora?
+      </h2>
+      <p class="text-gray-700 max-w-xl mx-auto mb-6">
+        El futuro comienza con una chispa de imaginación. Comparte tu propuesta y hazla realidad con el apoyo de nuestro equipo docente y recursos del laboratorio.
+      </p>
+      <a
+        routerLink="/proponer-idea"
+        class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-purple-800 transition"
+      >
+        Proponer una Idea
+      </a>
+    </section>
+  </div>
+  
