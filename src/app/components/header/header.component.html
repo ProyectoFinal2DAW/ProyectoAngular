@@ -7,20 +7,22 @@
         <div class="w-full flex ml-10 lg:w-[50%]">
 
             <a class="no-underline transition duration-300 hover:scale-110" routerLink="experimentos">
-                <p class="text-black">Experimentos</p>
+                <p class="text-white">Experimentos</p>
             </a>
 
-            <p class="mx-10">|</p>
+            <p class="mx-5"></p>
 
             <a class="no-underline transition text-black duration-300 hover:scale-110" routerLink="infoComplementaria">
-                <p class="text-black">Info complementaria</p>
+                <p class="text-white">Info complementaria</p>
             </a>
 
         </div>
     </div>
 
     <div class="menu-container">
-        <button class="menu-button" (click)="toggleMenu()">☰</button>
+        <button class="px-5 py-2 bg-transparent rounded-lg" (click)="toggleMenu()">
+            <img src="icons/bars-solid.svg" class="w-12">
+        </button>
         <div class="menu" [class.active]="isOpen">
             <a routerLink="/userProfile" (click)="closeMenuOnNavigation()">
                 <img src="icons/user-solid.svg" alt="Cuenta">
