@@ -28,7 +28,8 @@ export class LayoutListExamsOfClassComponent {
   //-----------------Cuadro de diálogo eliminar cuestionario-----------------
   readonly dialog = inject(MatDialog);
 
-  openDialogDeleteExam(id_questionario: number) {
+  openDialogDeleteExam(id_questionario: number, event: any) {
+    event.stopPropagation();
     const dialogRef = this.dialog.open(DialogContentDeleteTemario, {
       data: { id_questionario: this.cuestionario.id_questionario }
     });
