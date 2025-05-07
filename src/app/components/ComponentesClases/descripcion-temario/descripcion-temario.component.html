@@ -30,8 +30,8 @@
                 <br>
 
                 <div>
-                    <h4>{{ contenidoClase.contenido }}</h4>
-                    <a href="documentos/music_video.pdf" download>📄 Descargar miarchivo.pdf</a>
+                    <!-- <h4>{{ contenidoClase.contenido }}</h4> -->
+                    <a [href]="contenidoClase.contenido" download>📄 Descargar archivo.pdf</a>
                 </div>
             </div>
 
@@ -47,16 +47,26 @@
                 </div>
                 <br>
 
-                <iframe class="w-[20rem] h-[15rem]" [src]="videoUrl" title="YouTube video player" frameborder="0"
+                <!-- <iframe class="w-[20rem] h-[15rem]" [src]="videoUrl" title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen>
-                </iframe>
+                </iframe> -->
+                @if (contenidoClase.videos_temario != "") {
+                <video width="300" height="300" controls>
+                    <source [src]='contenidoClase.videos_temario' type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                } @else {
+                <h4>No hay videos disponibles</h4>
+                }
+
+
             </div>
         </div>
 
 
 
-        
+
 
 
     </div>
