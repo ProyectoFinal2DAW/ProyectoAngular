@@ -17,13 +17,14 @@ import { AuthGuard } from './guards/auth.guard';
 import { ProcesosComponent } from './components/ComponentesHome/procesos/procesos.component';
 import { InvestigacionComponent } from './components/ComponentesHome/investigacion/investigacion.component';
 import { InnovacionComponent } from './components/ComponentesHome/innovacion/innovacion.component';
+import { RedirectComponent } from './components/redirect/redirect.component';
 
 export const routes: Routes = [
   { path: '', component: Login2Component }, // Ruta principal (index)
   { path: 'login', component: Login2Component }, // Ruta para /login
   //{ path: 'login2', component: Login2Component }, // Ruta para /login
   { path: 'register', component: RegisterComponent }, // Ruta para /register
-
+  { path: 'callback', component: RedirectComponent },
   { path: 'home', component: HomeComponent }, //canActivate: [AuthGuard] poner esto en todas las rutas para protegerlas si no has iniciado sesión // Ruta para /home
   { path: 'userProfile', component: ProfileComponent }, // Ruta para /userProfile
   { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
