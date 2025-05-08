@@ -1,22 +1,26 @@
 <div class="h-full flex flex-col gap-8" style="background-image: url('/images/fondo1.jpg');">
 
-    <div class="w-full h-[100vh] flex flex-row items-end">
-        <a routerLink="/protocolos" class="flex-1">
+    <div class="h-full flex flex-col gap-8" style="background-image: url('/images/fondo1.jpg');">
+        <div class="w-full h-[100vh] flex flex-row items-end relative">
+          
+          <a routerLink="/protocolos" class="flex-1" data-aos="fade-up" data-aos-delay="200">
             <app-div-home-page-opc2></app-div-home-page-opc2>
-        </a>
-        <a routerLink="/investigacion" class="flex-1">
+          </a>
+          
+          <a routerLink="/investigacion" class="flex-1" data-aos="fade-up" data-aos-delay="100">
             <app-div-home-page></app-div-home-page>
-        </a>
-
-        <a routerLink="/procesos" class="flex-1">
+          </a>
+          
+          <a routerLink="/procesos" class="flex-1" data-aos="fade-up">
             <app-div-home-page-opc3></app-div-home-page-opc3>
-        </a>
-        <a routerLink="/innovacion" class="flex-1">
+          </a>
+          
+          <a routerLink="/innovacion" class="flex-1" data-aos="fade-up" data-aos-delay="300">
             <app-div-home-page-opc4></app-div-home-page-opc4>
-        </a>
-
-
-        <h1 class="text-7xl absolute top-20 m-20 text-green-800 neucha-regular">Bienvenido a MonLab . . . </h1>
-    </div>
+          </a>
+      
+          <h1 class="text-7xl absolute top-20 m-20 text-green-800 neucha-regular" data-aos="fade-right">Bienvenido a MonLab . . . </h1>
+        </div>
+      </div>      
 
 </div>
