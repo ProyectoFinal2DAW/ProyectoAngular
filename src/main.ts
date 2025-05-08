@@ -14,7 +14,10 @@ import {
   PublicClientApplication,
   BrowserCacheLocation
 } from '@azure/msal-browser';
+import { appConfig } from './app/app.config';
+import { provideAnimations } from '@angular/platform-browser/animations'; // Importa provideAnimations
 
+// Configuración de MSAL
 export function MSALInstanceFactory() {
   return new PublicClientApplication({
     auth: {
@@ -33,6 +36,7 @@ export function MSALInitializerFactory(msalInstance: PublicClientApplication) {
   return () => msalInstance.initialize();
 }
 
+// Configuración de providers
 const providers = [
   provideRouter(routes),
   importProvidersFrom(
@@ -48,7 +52,7 @@ const providers = [
       {
         interactionType: InteractionType.Redirect,
         protectedResourceMap: new Map([
-          ['https://graph.microsoft.com/v1.0/me', ['user.read'] ]
+          ['https://graph.microsoft.com/v1.0/me', ['user.read']]
         ])
       }
     )
@@ -63,7 +67,12 @@ const providers = [
     useFactory: MSALInitializerFactory,
     deps: [MSAL_INSTANCE],
     multi: true,
-  }
+  },
+  provideAnimations() // Agregamos el proveedor de animaciones
 ];
 
-bootstrapApplication(AppComponent, { providers }).catch(err => console.error(err));
+// Arrancar la aplicación
+bootstrapApplication(AppComponent, {
+  ...appConfig,
+  providers
+}).catch(err => console.error(err));

@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   editando = false;
 
+  imgenPerfil: string = "";
+
   activarEdicion() {
     this.editando = true;
   }
@@ -34,6 +36,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     const ahora = new Date();
+
+    this.imgenPerfil = sessionStorage.getItem("profileImageUrl")  || '';
+
+    if (this.imgenPerfil === '') {
+      this.imgenPerfil = "/images/noUserProfile.png";
+    }
 
     this.fechaActual = ahora.toISOString().split('T')[0];
 
