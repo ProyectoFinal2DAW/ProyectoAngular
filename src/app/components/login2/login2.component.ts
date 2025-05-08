@@ -70,6 +70,10 @@ export class Login2Component implements OnInit {
           });
           //--------------------------------------------------------------
 
+          sessionStorage.setItem('accessToken', result.accessToken);
+          sessionStorage.setItem('email', result.account.username); // Guardar el email en sessionStorage
+          sessionStorage.setItem('name', result.account.name || ""); // Guardar el nombre en sessionStorage
+
           this.router.navigate(['/home']);
         }
       },
