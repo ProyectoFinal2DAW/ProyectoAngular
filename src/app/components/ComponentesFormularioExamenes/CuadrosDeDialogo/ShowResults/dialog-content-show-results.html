@@ -1,0 +1,15 @@
+<div class="flex flex-col">
+
+    <mat-dialog-content class="mat-typography">
+        <h1 class="text-xl font-bold text-center"> Resultados del cuestionario</h1>
+        <br>
+        <h1 class="text-lg text-center"> Nota obtenida: {{ resultado.nota }} </h1>
+        <h1 class="text-md text-center text-green-500"> Preguntas acertadas: {{ resultado.total_correctas }} </h1>
+        <h1 class="text-md text-center text-red-500"> Preguntas falladas : {{ resultado.total_falladas }} </h1>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cerrar</button>
+    </mat-dialog-actions>
+</div>

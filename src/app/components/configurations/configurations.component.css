@@ -1,0 +1,34 @@
+.libreta {
+    background: #6b5b95;
+    width: 50%;
+    max-width: 850px;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+  }
+  
+  .espirales {
+    position: absolute;
+    left: -15px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .espirales div {
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    border: 2px solid black;
+  }
+  
+  .contenedorMainUserProfile {
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    border: 4px solid rgb(138, 170, 198);
+  }

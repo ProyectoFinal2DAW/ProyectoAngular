@@ -1,0 +1,67 @@
+<div class="flex flex-col p-5" style="width: 500px;">
+
+    
+    @if (action === 'a') {
+    <h1 class="text-3xl text-center pt-5">Añadir teoría</h1>
+    } @else {
+    <h1 class="text-3xl text-center pt-5 pb-2">Modificar teoría</h1>
+    }
+
+    <mat-dialog-content class="mat-typography">
+
+        <form [formGroup]="addTemarioForm" (ngSubmit)="onSubmitCrearActualizarTemario()" class="flex flex-col gap-3">
+
+
+
+            <br>
+
+            <!--             <input class="hidden" formControlName="idClases" [value]="datosClase.id_clases">
+ -->
+
+            <mat-form-field>
+                <mat-label>Nombre temario:</mat-label>
+                <input placeholder="Nombre temario" formControlName="nombreTemario" matInput required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Descripción:</mat-label>
+                <textarea cdkTextareaAutosize type="text" placeholder="Descripción" formControlName="descripcionTemario" #autosize="cdkTextareaAutosize"
+                    matInput></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Contenido:</mat-label>
+                <input type="text" formControlName="contenidoTemario" matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>URL video:</mat-label>
+                <input placeholder="Introduce la url del video" type="text" formControlName="videoTemario" matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>URL Imagen:</mat-label>
+                <input placeholder="Introduce la url de la imagen" type="url" formControlName="imagenTemario"
+                    matInput />
+            </mat-form-field>
+
+            <!-- <div>
+                <mat-label>Imagen:</mat-label>
+                <input type="file" formControlName="imagenTemario" />
+            </div> -->
+
+
+            @if (action === 'a') {
+            <button class="bg-green-700 px-4 py-2 rounded-lg text-white hover:bg-green-800">Guardar</button>
+            } @else {
+            <button class="bg-green-700 px-4 py-2 rounded-lg text-white hover:bg-green-800">Actualizar</button>
+            }
+
+
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cerrar</button>
+    </mat-dialog-actions>
+</div>

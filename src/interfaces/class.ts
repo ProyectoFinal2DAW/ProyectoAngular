@@ -1,8 +1,8 @@
 export interface Class {
-    id_clases: number;
-    nombre_clases: string;
-    descripcion_clases: string;
     contenido: string;
-    foto_clases: string;
+    id_clases: number;
     video_clases: string;
+    descripcion_clases: string;
+    foto_clases: string;
+    nombre_clases: string;
 }

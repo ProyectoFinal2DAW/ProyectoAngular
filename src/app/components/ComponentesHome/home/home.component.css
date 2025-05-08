@@ -1,0 +1,9 @@
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    scroll-behavior: smooth;
+    align-items: center;
+    gap: 2rem;
+}

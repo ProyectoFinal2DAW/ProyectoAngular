@@ -1,10 +1,10 @@
 
-<app-header class="fixed top-0 left-0 w-full z-50"></app-header>
+<app-header class="fixed top-0 left-0 w-full z-50" *ngIf="!isLoginOrRegister()"></app-header>
 
 <router-outlet class="mainComponent bg-black"></router-outlet>
 
 
-<app-footer class="fixed bottom-0 w-full text-center z-50"></app-footer>
+<app-footer class="fixed bottom-0 w-full text-center z-50" *ngIf="!isLoginOrRegister()"></app-footer>
 
 
 

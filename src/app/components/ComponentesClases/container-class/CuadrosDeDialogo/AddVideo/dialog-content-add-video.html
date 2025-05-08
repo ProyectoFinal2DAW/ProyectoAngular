@@ -1,0 +1,45 @@
+<div class="flex flex-col p-5" style="width: 500px;">
+
+    <h1 class="text-3xl text-center pt-5 pb-2">Crear video</h1>
+
+    <mat-dialog-content class="mat-typography">
+
+
+        <form [formGroup]="addVideoForm" (ngSubmit)="onSubmitCrearVideo()" class="flex flex-col gap-3">
+
+
+            <mat-form-field>
+                <mat-label>Título del vídeo:</mat-label>
+                <input placeholder="Escriba aquí el título del video" formControlName="tituloVideo" matInput required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Selecciona el temario</mat-label>
+                <mat-select formControlName="temarioVideo" required>
+                    <mat-option *ngFor="let temario of nombresTemarios" [value]="temario.id">
+                        {{ temario.nombre }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Imagen del video:</mat-label>
+                <input type="text" formControlName="imagenVideo" matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Video:</mat-label>
+                <input type="text" formControlName="videoRuta" matInput />
+            </mat-form-field>
+
+            <button type="submit" class="bg-green-700 px-4 py-2 text-white rounded-lg hover:bg-green-800">Crear
+                video</button>
+
+
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cerrar</button>
+    </mat-dialog-actions>
+</div>

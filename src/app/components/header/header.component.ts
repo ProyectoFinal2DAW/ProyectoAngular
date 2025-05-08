@@ -1,16 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from  '@angular/material/button' ;
 
 @Component({
-  selector: 'app-header', // Este es el selector que usarás en tu HTML
-  templateUrl: './header.component.html', // HTML del header
-  styleUrls: ['./header.component.css'], // Archivo CSS del header
-  standalone: true, // Habilita que este componente pueda usarse sin estar en un módulo
-  imports: [MatMenuModule, MatButtonModule, RouterLink] // Importa los módulos necesarios para Angular Material
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
+  standalone: true, 
+  imports: [MatMenuModule, MatButtonModule, RouterLink], 
 })
 
 export class HeaderComponent {
+  isOpen = false;
 
+  toggleMenu() {
+    this.isOpen = !this.isOpen;
+  }
+
+  closeMenuOnNavigation() {
+    this.isOpen = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeMenu(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.menu-container')) {
+      this.isOpen = false;
+    }
+  }
 }

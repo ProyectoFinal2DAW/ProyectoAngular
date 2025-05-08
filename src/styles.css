@@ -4,33 +4,84 @@
 @tailwind utilities;
 
 
-html{ 
-  height: 100%; 
+html {
+  height: 100%;
 }
-body { 
-  height: 100%; 
+
+body {
+  height: 100%;
+  background-color: #e9f5e9;
+  color: #333;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
   /* background-color:#FDF5E6; */
+
 }
-body { margin: 0; font-family: Roboto, "Jockey One, Helvetica Neue", sans-serif; }
+
+body {
+  margin: 0;
+  font-family: Roboto, "Jockey One, Helvetica Neue", sans-serif;
+}
 
 .jockey-one-regular {
-    font-family: "Jockey One", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  .neucha-regular {
-    font-family: "Neucha", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+  font-family: "Jockey One", serif;
+  font-style: normal;
+}
+
+.neucha-regular {
+  font-family: "Neucha", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.bangers-regular {
+  font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 */
+
+.icon-class {
+  width: 24px;
+  height: 24px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Neucha", serif;
-    font-weight: bold;
+@layer utilities {
+  .text-glow2 {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
   }
-  
-  .icon-class {
-      width: 24px;
-      height: 24px;
+}
+
+/* En tu archivo CSS */
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 10px rgba(31, 31, 31, 0.6), 0 0 15px rgba(56, 56, 56, 0.4);
   }
+}

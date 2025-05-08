@@ -1,54 +1,38 @@
-<div class="h-[80px] flex flex-row justify-space-between items-center p-3 ">
-
-    <a href="/home" class="w-32">
-        <img src="images/logoMonlab3.png" alt="Logo" />
+<div class="bg-gradient-to-r from-green-300 to-green-600 h-[80px] flex flex-row justify-between items-center p-3">
+    <a href="/home" class="w-72">
+        <img src="images/logoPrueba2.png" alt="Logo" />
     </a>
 
     <div class="w-full flex justify-start items-center ">
         <div class="w-full flex ml-10 lg:w-[50%]">
 
             <a class="no-underline transition duration-300 hover:scale-110" routerLink="experimentos">
-                <p class="text-black">Experimentos</p>
+                <p class="text-white">Experimentos</p>
             </a>
 
-            <p class="mx-10">|</p>
+            <p class="mx-5"></p>
 
-            <a class="no-underline transition text-black duration-300 hover:scale-110" routerLink="clases">
-                <p class="text-black">Clases</p>
+            <a class="no-underline transition text-black duration-300 hover:scale-110" routerLink="infoComplementaria">
+                <p class="text-white">Info complementaria</p>
             </a>
 
         </div>
     </div>
 
-
-
-    <button class="w-14"  [matMenuTriggerFor]="menu">
-        <img  src="icons/circle-user-regular.svg">
-    </button>
-
-    <mat-menu #menu="matMenu">
-        <a mat-menu-item href="/configuration" class="itemMenu">
-            <img class="iconItemMenu" src="icons/gear-solid.svg">
-            <label>General</label>
-        </a>
-        <a mat-menu-item href="/userProfile">
-            <img class="iconItemMenu" src="icons/user-solid.svg">
-            <label>Perfil</label>
-        </a>
-        <a mat-menu-item>
-            <img class="iconItemMenu" src="icons/lock-solid.svg">
-            <label>Cuenta</label>
-        </a>
-        <a mat-menu-item>
-            <img class="iconItemMenu" src="icons/bell-solid.svg">
-            <label>Notificaciones</label>
-        </a>
-        <a mat-menu-item href="/login">
-            <img class="iconItemMenu" src="icons/logout-solid.svg">
-            <label>Cerrar sesión</label>
-        </a>
-    </mat-menu>
-
-
+    <div class="menu-container">
+        <button class="px-5 py-2 bg-transparent rounded-lg" (click)="toggleMenu()">
+            <img src="icons/bars-solid.svg" class="w-12">
+        </button>
+        <div class="menu" [class.active]="isOpen">
+            <a routerLink="/userProfile" (click)="closeMenuOnNavigation()">
+                <img src="icons/user-solid.svg" alt="Cuenta">
+                Cuenta
+            </a>
+            <a routerLink="/login" (click)="closeMenuOnNavigation()">
+                <img src="icons/logout-solid.svg" alt="Cerrar sesión">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
 
 </div>

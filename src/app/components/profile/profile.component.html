@@ -1,50 +1,165 @@
-<div class="contenedorMainUserProfile">
+<div class="profile-component pt-6 pb-14">
+    <div class="contenedorMainUserProfile">
+        <div class="circles">
+            <div class="line">
+                
+            </div>
+        </div>
 
-    <div class="contenedorSuperiorProfile">
+        <div class="contenedorSuperiorProfile">
 
-        <img src="images/persona.jpg" class="imagenUserProfile">
+            <img [src]="imgenPerfil" class="imagenUserProfile">
 
-        <button class="buttonCambiarFoto" mat-raised-button>Cambiar foto</button>
+        </div>
 
-    </div>
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput readonly>
+        </mat-form-field>
 
+        <mat-form-field>
+            <mat-label>Apellidos</mat-label>
+            <input matInput readonly>
+        </mat-form-field>
 
-    <br>
+        <mat-form-field>
+            <mat-label>Correo</mat-label>
+            <input matInput readonly>
+        </mat-form-field>
 
-    <label for="mat-form-field">Nombre de usuario</label>
-    <mat-form-field>
-        <mat-label>Nombre</mat-label>
-        <input matInput>
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput readonly>
+        </mat-form-field>
 
-    <label for="mat-form-field">Apellidos</label>
-    <mat-form-field>
-        <mat-label>Apellidos</mat-label>
-        <input matInput>
-    </mat-form-field>
-
-    <label for="mat-form-field">Correo</label>
-    <mat-form-field>
-        <mat-label>Correo</mat-label>
-        <input matInput>
-    </mat-form-field>
-
-    <label for="mat-form-field">Contraseña</label>
-    <mat-form-field>
-        <mat-label>Contraseña</mat-label>
-        <input matInput>
-    </mat-form-field>
-
-    <div class="buttons">
-        @if (!editando) {
+        <div class="buttons">
+            @if (!editando) {
             <input type="button" value="Editar" class="buttonEditar" (click)="activarEdicion()">
-        }
+            }
 
-        @if (editando) {
+            @if (editando) {
             <button class="buttonGuardar" (click)="guardar()">✔</button>
             <button class="buttonCancelar" (click)="cancelar()">✖</button>
-        }
-        
+            }
+
+        </div>
+
     </div>
 
+    <div class="columna">
+        <div class="col1">
+            <div class="circles2">
+                <div class="line2">
+                    
+                </div>
+            </div>
+            <div class="title">
+                <img class="icon" src="/icons/gear-solid.svg">
+                <h3>Configuración</h3>
+            </div>
+            <div class="ajustes">
+                <div class="ajuste-item">
+                    <label for="hora">Hora</label>
+                    <input type="time" id="hora" name="hora" [(ngModel)]="horaActual">
+                </div>
+                <div class="ajuste-item">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" name="fecha" [(ngModel)]="fechaActual">
+                </div>
+                <div class="ajuste-item">
+                    <label for="idioma">Idioma</label>
+                    <select id="idioma" name="idioma">
+                        <option value="es">Español</option>
+                        <option value="en">Inglés</option>
+                        <option value="fr">Francés</option>
+                        <option value="de">Alemán</option>
+                    </select>
+                </div>
+                <div class="ajuste-item">
+                    <label for="zona-horaria">Zona Horaria</label>
+                    <select id="zona-horaria" name="zona-horaria">
+                        <option value="gmt-3">GMT-3</option>
+                        <option value="gmt-2">GMT-2</option>
+                        <option value="gmt-1">GMT-1</option>
+                        <option value="gmt+0">GMT+0</option>
+                        <option value="gmt+1">GMT+1</option>
+                        <option value="gmt+2">GMT+2</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col2">
+            <div class="circles3">
+                <div class="line3">
+                    
+                </div>
+            </div>
+            <div class="title">
+                <img class="icon" src="/icons/bell-solid.svg">
+                <h3>Notificaciones</h3>
+            </div>
+
+
+            <div class="tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Hora</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nuevo mensaje</td>
+                            <td>10:30 AM</td>
+                            <td><span class="estado-leido">Leído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Actualización de perfil</td>
+                            <td>9:15 AM</td>
+                            <td><span class="estado-no-leido">No Leído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Actualización de perfil</td>
+                            <td>9:15 AM</td>
+                            <td><span class="estado-no-leido">No Leído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Actualización de perfil</td>
+                            <td>9:15 AM</td>
+                            <td><span class="estado-no-leido">No Leído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Actualización de perfil</td>
+                            <td>9:15 AM</td>
+                            <td><span class="estado-no-leido">No Leído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Alerta de seguridad</td>
+                            <td>8:50 AM</td>
+                            <td><span class="estado-leido">Leído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Calificaciones</td>
+                            <td>12:30 AM</td>
+                            <td><span class="estado-leido">Leído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Tarea a entergar</td>
+                            <td>11:50 AM</td>
+                            <td><span class="estado-no-leido">No Leído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Correo enviado</td>
+                            <td>9:45 AM</td>
+                            <td><span class="estado-leido">Leído</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
