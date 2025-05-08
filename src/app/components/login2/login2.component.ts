@@ -2,36 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login2',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './login2.component.html',
   styleUrls: ['./login2.component.css']
 })
 export class Login2Component implements OnInit {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private msalService: MsalService, private router: Router) {
-    this.loginForm = this.fb.group({
-      emailFormControl: ['', [Validators.required, Validators.email]],
-      textViewContrasenya: ['', [Validators.required]]
-    });
-  }
+  loginInProgress = false;
+
+  constructor(private msalService: MsalService, private router: Router) {}
 
   ngOnInit(): void {
+    // Manejo del redireccionamiento después de un login exitoso
     this.msalService.handleRedirectObservable().subscribe({
       next: (result) => {
         if (result && result.account) {
           console.log('Inicio de sesión exitoso:', result);
 
-          //----------------------- Obtener grupos a los que esta asignado -------------------------------
+          //----------------------- Obtener grupos a los que está asignado -------------------------------
           fetch('https://graph.microsoft.com/v1.0/me/memberOf', {
             headers: {
               Authorization: `Bearer ${result.accessToken}`,
@@ -41,10 +34,9 @@ export class Login2Component implements OnInit {
             .then((rolesResponse: any) => {
               console.log('Roles del usuario:', rolesResponse);
             })
+            .catch(error => console.error('Error al obtener los roles:', error));
 
-          //--------------------------------------------------------------
-
-          //-------------------------Obtener foto de perfil-------------------------------
+          //------------------------- Obtener foto de perfil -------------------------------
           fetch('https://graph.microsoft.com/v1.0/me/photo/$value', {
             method: 'GET',
             headers: {
@@ -59,21 +51,17 @@ export class Login2Component implements OnInit {
           })
           .then(blob => {
             const imageUrl = URL.createObjectURL(blob);
-            // Ahora puedes usar esta URL en tu HTML para mostrar la imagen
-            //this.profileImageUrl = imageUrl;
             console.log('URL de la imagen de perfil:', imageUrl);
-
             sessionStorage.setItem('profileImageUrl', imageUrl); // Guardar la URL de la imagen en sessionStorage
           })
-          .catch(error => {
-            console.error('Error al obtener la imagen de perfil:', error);
-          });
-          //--------------------------------------------------------------
+          .catch(error => console.error('Error al obtener la imagen de perfil:', error));
 
+          // Guardamos la información en sessionStorage
           sessionStorage.setItem('accessToken', result.accessToken);
           sessionStorage.setItem('email', result.account.username); // Guardar el email en sessionStorage
           sessionStorage.setItem('name', result.account.name || ""); // Guardar el nombre en sessionStorage
 
+          // Redirigir a la página principal
           this.router.navigate(['/home']);
         }
       },
@@ -83,28 +71,17 @@ export class Login2Component implements OnInit {
     });
   }
 
-  onSubmit() {
-    const loginObject = {
-      email: this.loginForm.value.emailFormControl,
-      password: this.loginForm.value.textViewContrasenya,
-    }
-    // Llamada a la API...
-  }
-
-  loginInProgress = false;
-
+  // Método para iniciar el login con Microsoft
   loginWithAzure() {
     if (this.loginInProgress) {
       console.log("Login already in progress");
       return;
     }
+
     this.loginInProgress = true;
-    this.msalService.loginRedirect().subscribe({
-      next: () => { },
-      error: err => {
-        console.error(err);
-        this.loginInProgress = false;
-      }
-    });
+    
+    this.msalService.loginRedirect();  // Realiza el login con MSAL
+
+    // En este punto no es necesario hacer nada más, ya que el flujo de login se maneja con redirect.
   }
 }
