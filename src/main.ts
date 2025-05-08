@@ -75,6 +75,5 @@ const providers = [
 // Arrancar la aplicación
 bootstrapApplication(AppComponent, {
   ...appConfig,
-  providers,
-  providers: [provideAnimationsAsync()]
+  providers
 }).catch(err => console.error(err));
