@@ -30,6 +30,15 @@ export class LayoutListElementOfClassComponent {
     videos_temario: "",
   }
 
+  ngOnInit() {
+    let role = sessionStorage.getItem("jobTitle");
+    if (role === "Alumne") {
+      this.teacherUser = false;
+    } else {
+      this.teacherUser = true;
+    }
+  }
+
 
   //-----------------Cuadro de diálogo Add/Update Temario----------------
     readonly dialogAddUpdateTemario = inject(MatDialog);

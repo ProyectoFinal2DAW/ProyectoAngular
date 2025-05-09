@@ -35,8 +35,9 @@ import { DatePipe } from '@angular/common';
 export class ContainerClassComponent {
 
 
-  //TODO: Cambiar por el usuario logeado
+  //TODO: Cambiar por el usuario logeado  
   teacherUser: boolean = true;
+
   showAddTemario: boolean = false;
 
   //listaTareas: ;
@@ -76,6 +77,16 @@ export class ContainerClassComponent {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    let role = sessionStorage.getItem("jobTitle");
+    if (role === "Alumne") {
+      this.teacherUser = false;
+    } else {
+      this.teacherUser = true;
+    }
+
+    console.log("teacherUser: ", this.teacherUser);
+
     this.route.queryParams.subscribe(params => {
       this.id_clase = params['id'];
       console.log("Id recibido: " + this.id_clase);

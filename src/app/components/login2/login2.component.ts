@@ -32,13 +32,27 @@ export class Login2Component implements OnInit {
           console.log('Inicio de sesión exitoso:', result);
 
           //----------------------- Obtener grupos a los que esta asignado -------------------------------
-          fetch('https://graph.microsoft.com/v1.0/me/memberOf', {
+          fetch('https://graph.microsoft.com/v1.0/me/', {
             headers: {
               Authorization: `Bearer ${result.accessToken}`,
             },
           })
             .then(response => response.json())
             .then((rolesResponse: any) => {
+              sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
+              console.log('Roles del usuario:', rolesResponse);
+            })
+
+          //--------------------------------------------------------------
+          //----------------------- Obtener grupos a los que esta asignado -------------------------------
+          fetch('https://graph.microsoft.com/v1.0/me/memberof', {
+            headers: {
+              Authorization: `Bearer ${result.accessToken}`,
+            },
+          })
+            .then(response => response.json())
+            .then((rolesResponse: any) => {
+              //sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
               console.log('Roles del usuario:', rolesResponse);
             })
 
@@ -51,28 +65,30 @@ export class Login2Component implements OnInit {
               Authorization: `Bearer ${result.accessToken}`
             }
           })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('No se pudo obtener la imagen de perfil.');
-            }
-            return response.blob(); // Recibe la imagen como binario
-          })
-          .then(blob => {
-            const imageUrl = URL.createObjectURL(blob);
-            // Ahora puedes usar esta URL en tu HTML para mostrar la imagen
-            //this.profileImageUrl = imageUrl;
-            console.log('URL de la imagen de perfil:', imageUrl);
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('No se pudo obtener la imagen de perfil.');
+              }
+              return response.blob(); // Recibe la imagen como binario
+            })
+            .then(blob => {
+              const imageUrl = URL.createObjectURL(blob);
+              // Ahora puedes usar esta URL en tu HTML para mostrar la imagen
+              //this.profileImageUrl = imageUrl;
+              console.log('URL de la imagen de perfil:', imageUrl);
 
-            sessionStorage.setItem('profileImageUrl', imageUrl); // Guardar la URL de la imagen en sessionStorage
-          })
-          .catch(error => {
-            console.error('Error al obtener la imagen de perfil:', error);
-          });
+              sessionStorage.setItem('profileImageUrl', imageUrl); // Guardar la URL de la imagen en sessionStorage
+            })
+            .catch(error => {
+              console.error('Error al obtener la imagen de perfil:', error);
+            });
           //--------------------------------------------------------------
 
           sessionStorage.setItem('accessToken', result.accessToken);
           sessionStorage.setItem('email', result.account.username); // Guardar el email en sessionStorage
           sessionStorage.setItem('name', result.account.name || ""); // Guardar el nombre en sessionStorage
+
+
 
           this.router.navigate(['/home']);
         }
