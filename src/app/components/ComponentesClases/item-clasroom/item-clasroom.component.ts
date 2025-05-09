@@ -13,7 +13,7 @@ import { DialogContentAddClass } from '../clases/CuadrosDeDialogo/AddUpdateClass
 export class ItemClasroomComponent {
 
   //TODO: Obtener este dato del session storage
-  usuarioProfesor: boolean = true;
+  teacherUser: boolean = true;
   
   @Input() classroom: Class = {
     contenido: "",
@@ -23,6 +23,15 @@ export class ItemClasroomComponent {
     foto_clases: "",
     nombre_clases: "",
   };
+
+  ngOnInit() {
+    let role = sessionStorage.getItem("jobTitle");
+    if (role === "Alumne") {
+      this.teacherUser = false;
+    } else {
+      this.teacherUser = true;
+    }
+  }
 
   //---------------------Cuadro de diálogo Add video-------------------------------
       readonly dialogAddClass = inject(MatDialog);

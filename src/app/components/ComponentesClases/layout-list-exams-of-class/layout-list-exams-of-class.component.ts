@@ -25,6 +25,15 @@ export class LayoutListExamsOfClassComponent {
     fecha_publicacion: null
   }
 
+  ngOnInit() {
+    let role = sessionStorage.getItem("jobTitle");
+    if (role === "Alumne") {
+      this.teacherUser = false;
+    } else {
+      this.teacherUser = true;
+    }
+  }
+
   //-----------------Cuadro de diálogo eliminar cuestionario-----------------
   readonly dialog = inject(MatDialog);
 

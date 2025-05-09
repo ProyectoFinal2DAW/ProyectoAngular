@@ -78,3 +78,8 @@ Para más información sobre Angular CLI y comandos detallados, visita la [docum
 
 ---
 
+
+npm install
+ng add @angular/material
+npm install chart.js
+npm install aos

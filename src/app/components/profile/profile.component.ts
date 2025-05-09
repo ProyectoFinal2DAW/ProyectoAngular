@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
   editando = false;
 
   imgenPerfil: string = "";
+  nombre: string = "";
+  email: string = "";
 
   activarEdicion() {
     this.editando = true;
@@ -42,6 +44,9 @@ export class ProfileComponent implements OnInit {
     if (this.imgenPerfil === '') {
       this.imgenPerfil = "/images/noUserProfile.png";
     }
+
+    this.nombre = sessionStorage.getItem("name") || '';
+    this.email = sessionStorage.getItem("email") || '';
 
     this.fechaActual = ahora.toISOString().split('T')[0];
 
