@@ -25,11 +25,18 @@ export class ExperimentsComponent implements AfterViewInit {
   // Definir un array de experimentos con id, nombre e imagen
   listExperiments: Experiment[] = [];
 
+  teacherUser: boolean = true;
 
-  
 
   ngOnInit() {
     this.fetchData();
+
+    let role = sessionStorage.getItem("jobTitle");
+    if (role === "Alumne") {
+      this.teacherUser = false;
+    } else {
+      this.teacherUser = true;
+    }
   }
 
   async fetchData() {
@@ -37,19 +44,19 @@ export class ExperimentsComponent implements AfterViewInit {
   }
 
 
-    readonly dialogAddVideo = inject(MatDialog);
-  
-    dialogAddExperiment() {
-      const dialogRefAddExperiment = this.dialogAddVideo.open(DialogContentAddExperiment, {
-  
-      });
-  
-      dialogRefAddExperiment.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+  readonly dialogAddVideo = inject(MatDialog);
 
-        this.fetchData();
-      });
-    }
+  dialogAddExperiment() {
+    const dialogRefAddExperiment = this.dialogAddVideo.open(DialogContentAddExperiment, {
+
+    });
+
+    dialogRefAddExperiment.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+
+      this.fetchData();
+    });
+  }
 
   /* = [
     { id_experimento: 1, nombre_experimento: 'Experimento 1', descrip_experimento: "", foto_experimento: 'images/fondoLogin.jpg', video_experimento: ""},

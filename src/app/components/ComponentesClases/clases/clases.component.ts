@@ -28,6 +28,8 @@ export class ClasesComponent {
     nombre_clases: ""
   }
 
+  teacherUser: boolean = true;
+
   /* crearClaseVisible: Boolean = false;
 
 
@@ -41,21 +43,29 @@ export class ClasesComponent {
   async ngOnInit() {
     this.listClasses = await getClasses();
     console.log("Lista de clases: ", this.listClasses);
+
+    let role = sessionStorage.getItem("jobTitle");
+    if (role === "Alumne") {
+      this.teacherUser = false;
+    } else {
+      this.teacherUser = true;
+    }
+
   }
 
 
-    //---------------------Cuadro de diálogo Add video-------------------------------
-    readonly dialogAddClass = inject(MatDialog);
-  
-    openDialogAddUpdateClass(action: string, clase: Class, idClase: number) {
-      const dialogRefAddClass = this.dialogAddClass.open(DialogContentAddClass, {
-        data: { action: action, clase: clase, idClase: idClase }
-      });
-  
-      dialogRefAddClass.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-      });
-    }
-    //---------------------------------------------------------------------
+  //---------------------Cuadro de diálogo Add video-------------------------------
+  readonly dialogAddClass = inject(MatDialog);
+
+  openDialogAddUpdateClass(action: string, clase: Class, idClase: number) {
+    const dialogRefAddClass = this.dialogAddClass.open(DialogContentAddClass, {
+      data: { action: action, clase: clase, idClase: idClase }
+    });
+
+    dialogRefAddClass.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  //---------------------------------------------------------------------
 
 }

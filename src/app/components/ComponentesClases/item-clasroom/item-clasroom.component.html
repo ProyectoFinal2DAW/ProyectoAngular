@@ -11,7 +11,7 @@
 
     <div class="absolute bottom-4 left-0 w-full px-5 flex justify-between items-center">
 
-        @if (usuarioProfesor) {
+        @if (teacherUser) {
             <button class="backdrop-blur-sm border border-white bg-white/10 text-gray-800 p-2 rounded-lg shadow hover:bg-white/20 transition duration-200"
                 (click)="openDialogAddUpdateClass('u', classroom, classroom.id_clases, $event)">
                 <img class="w-5 h-5" src="icons/pen-solid.svg" alt="Editar">
