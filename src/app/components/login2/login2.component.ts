@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login2',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './login2.component.html',
   styleUrls: ['./login2.component.css']
 })
@@ -81,7 +80,5 @@ export class Login2Component implements OnInit {
     this.loginInProgress = true;
     
     this.msalService.loginRedirect();  // Realiza el login con MSAL
-
-    // En este punto no es necesario hacer nada más, ya que el flujo de login se maneja con redirect.
   }
 }
