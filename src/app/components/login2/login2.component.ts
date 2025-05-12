@@ -39,7 +39,8 @@ export class Login2Component implements OnInit {
           })
             .then(response => response.json())
             .then((rolesResponse: any) => {
-              sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
+              //sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
+              sessionStorage.setItem('jobTitle', "sdfsdf");
               console.log('Roles del usuario:', rolesResponse);
             })
 
