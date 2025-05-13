@@ -11,26 +11,27 @@
             <img [src]="imgenPerfil" class="imagenUserProfile">
 
         </div>
+        <br><br>
 
         <mat-form-field>
             <mat-label>Nombre</mat-label>
             <input matInput readonly [value]="nombre">
         </mat-form-field>
 
-        <!-- <mat-form-field>
-            <mat-label>Apellidos</mat-label>
-            <input matInput readonly>
-        </mat-form-field> -->
-
         <mat-form-field>
             <mat-label>Correo</mat-label>
             <input matInput readonly [value]="email">
         </mat-form-field>
 
-        <!-- <mat-form-field>
-            <mat-label>Contraseña</mat-label>
-            <input matInput readonly>
-        </mat-form-field> -->
+        <mat-form-field>
+            <mat-label>Ubicación</mat-label>
+            <input matInput readonly [value]="'Barcelona'">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Escuela</mat-label>
+            <input matInput readonly [value]="'Monlau La Sagrera'">
+        </mat-form-field>
 
         <!-- <div class="buttons">
             @if (!editando) {
