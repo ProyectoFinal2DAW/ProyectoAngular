@@ -19,20 +19,20 @@
             </mat-form-field>
 
             <!-- <mat-form-field> -->
-                <mat-label>URL Imagen:</mat-label>
-                <input type="file" (change)="onFileSelected($event)" />
+            <mat-label>Imagen:</mat-label>
+            <input type="file" (change)="onFileSelected($event)" />
             <!-- </mat-form-field> -->
 
-            <br>
 
-            <mat-form-field>
-                <mat-label>URL video:</mat-label>
-                <input placeholder="Introduce la url del video" type="url" formControlName="videoExperimento"
-                    matInput />
-            </mat-form-field>
+            <mat-label>Video:</mat-label>
+            <!-- <input placeholder="Introduce la url del video" type="url" formControlName="videoExperimento"
+                    matInput /> -->
+            <input type="file" (change)="onFileSelectedVideo($event)" />
+            
 
+            <button type="submit"
+                class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Guardar</button>
 
-            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Guardar</button>
 
 
         </form>

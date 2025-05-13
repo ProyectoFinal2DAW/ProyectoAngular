@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Class } from '../../../../../../interfaces/class';
 import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NewTemario } from '../../../../../../interfaces/newTemario';
-import { postTemario, putTemario } from '../../../../../DBManagement/DBManagement';
+import { postTemario, putTemario, uploadFile } from '../../../../../DBManagement/DBManagement';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Temario } from '../../../../../../interfaces/temario';
@@ -59,6 +59,32 @@ export class DialogContentAddTemario {
         }
     }
 
+    selectedFileImg: File | null = null;
+    selectedVideoFile: File | null = null;
+    selectedPdfFile: File | null = null;
+
+    onFileSelectedImg(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.selectedFileImg = input.files[0];
+            console.log("Archivo seleccionado:", this.selectedFileImg);
+        }
+    }
+    onFileSelectedVideo(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.selectedVideoFile = input.files[0];
+            console.log("Archivo seleccionado:", this.selectedVideoFile);
+        }
+    }
+    onFileSelectedPdf(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.selectedPdfFile = input.files[0];
+            console.log("Archivo seleccionado:", this.selectedPdfFile);
+        }
+    }
+
     async onSubmitCrearActualizarTemario() {
 
         console.log("OnSubmitCrearActualizarTemario()");
@@ -70,7 +96,23 @@ export class DialogContentAddTemario {
             return;
         }
 
-        
+        let videoUrl = '';
+        let imageUrl = '';
+        let pdfUrl = '';
+
+        if (this.selectedFileImg) {
+            imageUrl = await uploadFile(this.selectedFileImg);
+        }
+
+        if (this.selectedVideoFile) {
+            videoUrl = await uploadFile(this.selectedVideoFile);
+        }
+
+        if (this.selectedPdfFile) {
+            pdfUrl = await uploadFile(this.selectedPdfFile);
+        }
+
+
         //Ejecutar cuando la accion sea Add
         if (this.action === 'a') {
 
@@ -78,15 +120,15 @@ export class DialogContentAddTemario {
                 id_clases: this.id_clase,
                 nombre_temario: this.addTemarioForm.value.nombreTemario,
                 descrip_temario: this.addTemarioForm.value.descripcionTemario,
-                contenido: this.addTemarioForm.value.contenidoTemario,
-                foto_temario: this.addTemarioForm.value.imagenTemario,
-                videos_temario: this.addTemarioForm.value.videoTemario
+                contenido: "http://monlab.ddns.net/images/" + this.selectedPdfFile?.name,
+                foto_temario: "http://monlab.ddns.net/images/" + this.selectedFileImg?.name,
+                videos_temario: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name
             }
 
             let response = await postTemario(newTemario);
             console.log("Api response: ", response);
 
-        // Ejecutar cuando la accion sea Update
+            // Ejecutar cuando la accion sea Update
         } else {
 
             const updateTemario: UpdateTemario = {

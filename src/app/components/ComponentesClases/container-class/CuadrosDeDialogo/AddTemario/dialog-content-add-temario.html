@@ -29,21 +29,18 @@
                     matInput></textarea>
             </mat-form-field>
 
-            <mat-form-field>
-                <mat-label>Contenido:</mat-label>
-                <input type="text" formControlName="contenidoTemario" matInput />
-            </mat-form-field>
+                <mat-label>Contenido pdf:</mat-label>
+<!--                 <input type="text" formControlName="contenidoTemario" matInput />
+ -->                <input type="file" (change)="onFileSelectedPdf($event)" />
 
-            <mat-form-field>
-                <mat-label>URL video:</mat-label>
-                <input placeholder="Introduce la url del video" type="text" formControlName="videoTemario" matInput />
-            </mat-form-field>
+                <mat-label>Video:</mat-label>
+<!--                 <input placeholder="Introduce la url del video" type="text" formControlName="videoTemario" matInput />
+ -->                <input type="file" (change)="onFileSelectedVideo($event)" />
 
-            <mat-form-field>
-                <mat-label>URL Imagen:</mat-label>
-                <input placeholder="Introduce la url de la imagen" type="url" formControlName="imagenTemario"
-                    matInput />
-            </mat-form-field>
+                <mat-label>Imagen:</mat-label>
+                <!-- <input placeholder="Introduce la url de la imagen" type="url" formControlName="imagenTemario"
+                    matInput /> -->
+                    <input type="file" (change)="onFileSelectedImg($event)" />
 
             <!-- <div>
                 <mat-label>Imagen:</mat-label>
