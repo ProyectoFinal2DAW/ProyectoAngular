@@ -1,13 +1,20 @@
-<h1 class="mt-[120px] w-full text-center text-4xl mb-4 bangers-regular">Experimentos</h1>
+<h1 class="mt-[120px] w-full text-center text-4xl mb-4 bangers-regular" data-aos="zoom-in">Experimentos</h1>
 
-<div class="mt-[30px] mb-8 w-full flex flex-wrap flex-row gap-10 p-8 justify-center ">
-
+<div class="mt-[30px] mb-8 w-full flex flex-wrap flex-row gap-10 p-8 justify-center">
 
     @for (experiment of listExperiments; track $index; let idx = $index) {
-    <app-item-experiment routerLink="../experimentDescription" [queryParams]="{ id: experiment.id_experimento }"
-        [experiment]=experiment [contadorExperimento]=idx>
-    </app-item-experiment>
-    }
+        <div 
+          [attr.data-aos]="'zoom-in'" 
+          [attr.data-aos-delay]="idx * 100"
+        >
+          <app-item-experiment 
+            routerLink="../experimentDescription" 
+            [queryParams]="{ id: experiment.id_experimento }"
+            [experiment]="experiment" 
+            [contadorExperimento]="idx">
+          </app-item-experiment>
+        </div>
+      }      
 
     @if (teacherUser) {
     <button

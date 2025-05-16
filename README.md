@@ -3,6 +3,9 @@
 Este proyecto fue generado usando [Angular CLI](https://github.com/angular/angular-cli) versión **19.1.4**.
 
 ---
+Este proyecto fue generado usando [Angular CLI](https://github.com/angular/angular-cli) versión **19.1.4**.
+
+---
 
 ## 🚀 Servidor de desarrollo
 

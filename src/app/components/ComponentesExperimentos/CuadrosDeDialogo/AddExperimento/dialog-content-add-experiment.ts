@@ -34,11 +34,19 @@ export class DialogContentAddExperiment {
     }
 
     selectedFile: File | null = null;
+    selectedVideoFile: File | null = null;
 
     onFileSelected(event: Event) {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedFile = input.files[0];
+            console.log("Archivo seleccionado:", this.selectedFile);
+        }
+    }
+    onFileSelectedVideo(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.selectedVideoFile = input.files[0];
             console.log("Archivo seleccionado:", this.selectedFile);
         }
     }
@@ -52,8 +60,14 @@ export class DialogContentAddExperiment {
         }
 
         let imageUrl = '';
+        let videoUrl = '';
+
         if (this.selectedFile) {
             imageUrl = await uploadFile(this.selectedFile);
+        }
+
+        if (this.selectedVideoFile) {
+            videoUrl = await uploadFile(this.selectedVideoFile);
         }
 
         console.log("URL de la imagen:", imageUrl);
@@ -62,7 +76,7 @@ export class DialogContentAddExperiment {
             nombre_experimento: this.addExperimentForm.value.nombreExperimento,
             descrip_experimento: this.addExperimentForm.value.descripcionExperimento,
             foto_experimento: "http://monlab.ddns.net/images/" + this.selectedFile?.name,
-            video_experimento: this.addExperimentForm.value.videoExperimento,
+            video_experimento: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name,
         };
 
         const response = await postExperimento(newExperimento);

@@ -15,7 +15,8 @@ import {
   BrowserCacheLocation
 } from '@azure/msal-browser';
 import { appConfig } from './app/app.config';
-import { provideAnimations } from '@angular/platform-browser/animations'; // Importa provideAnimations
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Importa provideAnimations
 
 // Configuración de MSAL
 export function MSALInstanceFactory() {

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/ComponentesHome/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -22,26 +21,25 @@ import { RedirectComponent } from './components/redirect/redirect.component';
 export const routes: Routes = [
   { path: '', component: Login2Component }, // Ruta principal (index)
   { path: 'login', component: Login2Component }, // Ruta para /login
-  //{ path: 'login2', component: Login2Component }, // Ruta para /login
   { path: 'register', component: RegisterComponent }, // Ruta para /register
   { path: 'callback', component: RedirectComponent },
-  { path: 'home', component: HomeComponent }, //canActivate: [AuthGuard] poner esto en todas las rutas para protegerlas si no has iniciado sesión // Ruta para /home
-  { path: 'userProfile', component: ProfileComponent }, // Ruta para /userProfile
-  { path: 'experimentos', component: ExperimentsComponent }, // Ruta para /experimentos
-  { path: 'experimentDescription', component: ExperimentoDescriptionComponent }, // Ruta para /experimentos
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }, //canActivate: [AuthGuard] poner esto en todas las rutas para protegerlas si no has iniciado sesión // Ruta para /home
+  { path: 'userProfile', component: ProfileComponent, canActivate: [AuthGuard] }, // Ruta para /userProfile
+  { path: 'experimentos', component: ExperimentsComponent, canActivate: [AuthGuard] }, // Ruta para /experimentos
+  { path: 'experimentDescription', component: ExperimentoDescriptionComponent, canActivate: [AuthGuard] }, // Ruta para /experimentos
 
-  { path: 'infoComplementaria', component: ClasesComponent }, // Ruta para lista de clases
-  { path: 'clase', component: ContainerClassComponent }, // Ruta para /Detalles clase
-  { path: 'temarioDescription', component: DescripcionTemarioComponent }, // Ruta para /configuration
+  { path: 'infoComplementaria', component: ClasesComponent, canActivate: [AuthGuard] }, // Ruta para lista de clases
+  { path: 'clase', component: ContainerClassComponent, canActivate: [AuthGuard] }, // Ruta para /Detalles clase
+  { path: 'temarioDescription', component: DescripcionTemarioComponent, canActivate: [AuthGuard] }, // Ruta para /configuration
 
-  { path: 'configuration', component: ConfigurationsComponent }, // Ruta para /configuration
+  { path: 'configuration', component: ConfigurationsComponent, canActivate: [AuthGuard] }, // Ruta para /configuration
 
-  { path: 'form', component: BoxQuestionFormComponentComponent }, // Ruta para /formularioExamen
-  { path: 'createExam', component: FormCreateExamComponent }, // Ruta para /configuration
-  { path: 'protocolos', component: ProtocolosComponent }, // Ruta para /protocolos
-  { path: 'procesos', component: ProcesosComponent }, // Ruta para /procesos
-  { path: 'investigacion', component: InvestigacionComponent }, // Ruta para /investigacion
-  { path: 'innovacion', component: InnovacionComponent }, // Ruta para /innovacion
+  { path: 'form', component: BoxQuestionFormComponentComponent, canActivate: [AuthGuard] }, // Ruta para /formularioExamen
+  { path: 'createExam', component: FormCreateExamComponent, canActivate: [AuthGuard] }, // Ruta para /configuration
+  { path: 'protocolos', component: ProtocolosComponent, canActivate: [AuthGuard] }, // Ruta para /protocolos
+  { path: 'procesos', component: ProcesosComponent, canActivate: [AuthGuard] }, // Ruta para /procesos
+  { path: 'investigacion', component: InvestigacionComponent, canActivate: [AuthGuard] }, // Ruta para /investigacion
+  { path: 'innovacion', component: InnovacionComponent, canActivate: [AuthGuard] }, // Ruta para /innovacion
 
 
 ];

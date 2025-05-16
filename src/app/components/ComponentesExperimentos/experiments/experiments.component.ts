@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ItemExperimentComponent } from "../item-experiment/item-experiment.component";
 import { Experiment } from '../../../../interfaces/experiment';
 import { getExperiments } from '../../../DBManagement/DBManagement';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogContentAddExperiment } from '../CuadrosDeDialogo/AddExperimento/dialog-content-add-experiment';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-experiments',
@@ -12,7 +13,14 @@ import { DialogContentAddExperiment } from '../CuadrosDeDialogo/AddExperimento/d
   templateUrl: './experiments.component.html',
   styleUrl: './experiments.component.css'
 })
-export class ExperimentsComponent {
+export class ExperimentsComponent implements AfterViewInit {
+
+  ngAfterViewInit() {
+    AOS.init({
+      duration: 600,
+      once: true,
+    });
+  }
 
   // Definir un array de experimentos con id, nombre e imagen
   listExperiments: Experiment[] = [];
