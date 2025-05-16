@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ItemClasroomComponent } from "../item-clasroom/item-clasroom.component";
 import { Class } from '../../../../interfaces/class';
@@ -7,7 +7,7 @@ import { getClasses } from '../../../DBManagement/DBManagement';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Dialog } from '@angular/cdk/dialog';
 import { DialogContentAddClass } from './CuadrosDeDialogo/AddUpdateClass/dialog-content-add-class';
-
+import AOS from 'aos';
 
 @Component({
   selector: 'app-clases',
@@ -15,7 +15,14 @@ import { DialogContentAddClass } from './CuadrosDeDialogo/AddUpdateClass/dialog-
   templateUrl: './clases.component.html',
   styleUrl: './clases.component.css'
 })
-export class ClasesComponent {
+export class ClasesComponent implements AfterViewInit {
+
+  ngAfterViewInit() {
+      AOS.init({
+        duration: 600,
+        once: true,
+      });
+    }
 
   listClasses: Class[] = [];
 
