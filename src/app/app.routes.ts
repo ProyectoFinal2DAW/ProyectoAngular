@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/ComponentesHome/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -22,7 +21,6 @@ import { RedirectComponent } from './components/redirect/redirect.component';
 export const routes: Routes = [
   { path: '', component: Login2Component }, // Ruta principal (index)
   { path: 'login', component: Login2Component }, // Ruta para /login
-  //{ path: 'login2', component: Login2Component }, // Ruta para /login
   { path: 'register', component: RegisterComponent }, // Ruta para /register
   { path: 'callback', component: RedirectComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }, //canActivate: [AuthGuard] poner esto en todas las rutas para protegerlas si no has iniciado sesión // Ruta para /home
