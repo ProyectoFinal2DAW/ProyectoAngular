@@ -42,7 +42,7 @@ export class ClasesComponent {
 
   async ngOnInit() {
     this.listClasses = await getClasses();
-    //console.log("Lista de clases: ", this.listClasses);
+    console.log("Lista de clases: ", this.listClasses);
 
     let role = sessionStorage.getItem("jobTitle");
     if (role === "Alumne") {
@@ -62,8 +62,9 @@ export class ClasesComponent {
       data: { action: action, clase: clase, idClase: idClase }
     });
 
-    dialogRefAddClass.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+    dialogRefAddClass.afterClosed().subscribe(async result => {
+      console.log(`Dialog result: ${result}`);
+      this.listClasses = await getClasses();
     });
   }
   //---------------------------------------------------------------------

@@ -19,18 +19,18 @@ import { NewExperimento } from "../../interfaces/newExperimento";
 import exp from "constants";
 import { ExperimentData } from "../../interfaces/experimentData";
 
-const baseApiUrl = "http://monlab.ddns.net:6956/";
+const baseApiUrl = "http://localhost:8001/";
 
 /*------------------ Subir archivos -----------------*/
 
 export async function uploadFile(file: File) {
 
-    //console.log("file: "    + file);
+    console.log("file: " + file);
 
     const formData = new FormData();
     formData.append("file", file);
 
-    /*     //console.log("formData: ", formData);
+    /*     console.log("formData: ", formData);
      */
     try {
         const response = await fetch(baseApiUrl + "upload/", {
@@ -38,18 +38,30 @@ export async function uploadFile(file: File) {
             body: formData,
         });
 
-        //console.log("response: ", await response);
-        //console.log("Response body:", await response.text());
+        const text = await response.text();
+        console.log("Response body:", text);
+
+        // Convertimos el texto en un objeto JSON
+        const data = JSON.parse(text);
+
+        // Accedemos al nombre de la imagen
+        const filename = data.filename;
+
+        console.log("Nombre de la imagen:", filename);
+
+
 
         if (!response.ok) {
             throw new Error("Error al subir el archivo");
         }
 
-        const url = response.url;
+        return filename;
+
+        /* const url = response.url;
         //const filename = response.remote_path;
-        //console.log ("response", response);
+        console.log("response", response);
         //const data = await response.json();
-        return response.url;
+        return response.url; */
     } catch (error) {
         console.error("Error en uploadFile:", error);
         throw error;
@@ -65,6 +77,7 @@ export async function getClasses() {
     let listClases: Class[] = [];
 
     const response = await fetch(baseApiUrl + 'clases/');
+    console.log("response: ", response);
 
     if (!response.ok) {
         throw new Error('Error al obtener las clases');
@@ -457,7 +470,7 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
     try {
 
         //console.log("ruta API: ", baseApiUrl + "cuestionarios/?" +
-            "nombre_cuestionario=" + newCuestionario.nombre_cuestionario +
+        "nombre_cuestionario=" + newCuestionario.nombre_cuestionario +
             "&descrip_cuestionario=" + newCuestionario.descrip_cuestionario +
             "&foto_cuestionario=" + (newCuestionario.foto_cuestionario || "") +
             "&video_cuestionario=" + (newCuestionario.video_cuestionario || "");
@@ -524,7 +537,7 @@ export async function postPregunta(newPregunta: NewPregunta, idCuestionario: num
     try {
 
         //console.log("ruta API: ", baseApiUrl + "preguntas/?" +
-            "id_questionario=" + idCuestionario +
+        "id_questionario=" + idCuestionario +
             "&enunciado=" + newPregunta.enunciado +
             "&respuesta=" + "11" +
             "&correcta=" + newPregunta.correcta +
@@ -571,7 +584,7 @@ export async function postTemariosCuestionarios(id_clases: number, id_questionar
     try {
 
         //console.log("ruta API: ", baseApiUrl + "temarios_cuestionarios/?" +
-            "id_clases=" + id_clases +
+        "id_clases=" + id_clases +
             "&id_questionario=" + id_questionario +
             "&id_temario=" + id_temario;
 

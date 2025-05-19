@@ -40,7 +40,7 @@ export class DialogContentAddClass {
             this.addClassForm.patchValue({ className: this.claseUpdate.nombre_clases });
             this.addClassForm.patchValue({ classDescription: this.claseUpdate.descripcion_clases });
             this.addClassForm.patchValue({ classContent: this.claseUpdate.contenido });
-            this.addClassForm.patchValue({ classImage: this.claseUpdate.foto_clases });
+            //this.addClassForm.patchValue({ classImage: this.claseUpdate.foto_clases });
         }
     }
 
@@ -50,7 +50,7 @@ export class DialogContentAddClass {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedFile = input.files[0];
-            //console.log("Archivo seleccionado:", this.selectedFile);
+            console.log("Archivo seleccionado:", this.selectedFile);
         }
     }
 
@@ -81,12 +81,15 @@ export class DialogContentAddClass {
                 nombre_clases: this.addClassForm.value.className,
                 descripcion_clases: this.addClassForm.value.classDescription,
                 contenido: this.addClassForm.value.classContent,
-                foto_clases: "http://monlab.ddns.net/images/" + this.selectedFile?.name,
+                foto_clases: "http://monlab.ddns.net/images/" + imageUrl,
                 video_clases: "",
             };
 
             const apiPostResponse = await postClasses(newClass);
-            //console.log("ApiPostResponse: ", apiPostResponse);
+            console.log("ApiPostResponse: ", apiPostResponse);
+            if (apiPostResponse) {
+                alert("Clase creada correctamente");
+            }
 
         } else {
             const updateClase: UpdateClase = {
@@ -94,12 +97,16 @@ export class DialogContentAddClass {
                 nombre_clases: this.addClassForm.value.className,
                 descripcion_clases: this.addClassForm.value.classDescription,
                 contenido: this.addClassForm.value.classContent,
-                foto_clases: imageUrl,
+                foto_clases: "http://monlab.ddns.net/images/" + imageUrl,
                 video_clases: "",
             };
 
             const apiPutResponse = await putClases(updateClase);
-            //console.log("ApiPutResponse: ", apiPutResponse);
+            console.log("ApiPutResponse: ", apiPutResponse);
+
+            if (apiPutResponse) {
+                alert("Clase actualizada correctamente");
+            }
         }
     }
 }
