@@ -6,19 +6,30 @@
     }">
 
     <div class="h-24 flex justify-center items-center">
-        <h1 class="text-3xl text-white font-bold text-center drop-shadow-md text-glow">{{ classroom.nombre_clases }}</h1>
+        <h1 class="text-3xl text-white font-bold text-center drop-shadow-md text-glow">{{ classroom.nombre_clases }}
+        </h1>
     </div>
 
     <div class="absolute bottom-4 left-0 w-full px-5 flex justify-between items-center">
 
         @if (teacherUser) {
-            <button class="backdrop-blur-sm border border-white bg-white/10 text-gray-800 p-2 rounded-lg shadow hover:bg-white/20 transition duration-200"
+        <div class="flex flex-row gap-2">
+            <button
+                class="backdrop-blur-sm border border-white bg-white/10 text-gray-800 p-2 rounded-lg shadow hover:bg-white/20 transition duration-200"
                 (click)="openDialogAddUpdateClass('u', classroom, classroom.id_clases, $event)">
                 <img class="w-5 h-5" src="icons/pen-solid.svg" alt="Editar">
             </button>
+            <button
+                class="backdrop-blur-sm border border-white bg-white/10 text-gray-800 p-2 rounded-lg shadow hover:bg-white/20 transition duration-200"
+                (click)="openDialogDeleteClass(classroom.id_clases, $event)">
+                <img class="w-5 h-5" src="icons/trash-can-solid-white.svg" alt="Editar">
+            </button>
+        </div>
+
         }
 
-        <button class="text-white text-glow border border-white rounded-lg px-4 py-2 text-sm backdrop-blur-sm bg-white/10 hover:bg-white/20 transition duration-200">
+        <button
+            class="text-white text-glow border border-white rounded-lg px-4 py-2 text-sm backdrop-blur-sm bg-white/10 hover:bg-white/20 transition duration-200">
             Aprender más
         </button>
 

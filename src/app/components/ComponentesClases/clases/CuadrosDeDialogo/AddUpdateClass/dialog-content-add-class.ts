@@ -92,12 +92,20 @@ export class DialogContentAddClass {
             }
 
         } else {
+
+            let rutaImg = this.claseUpdate.foto_clases;
+            if (this.selectedFile) {
+                rutaImg = "http://monlab.ddns.net/images/" + imageUrl;
+            } else {
+                rutaImg = this.claseUpdate.foto_clases;
+            }
+
             const updateClase: UpdateClase = {
                 clase_id: this.idClase,
                 nombre_clases: this.addClassForm.value.className,
                 descripcion_clases: this.addClassForm.value.classDescription,
                 contenido: this.addClassForm.value.classContent,
-                foto_clases: "http://monlab.ddns.net/images/" + imageUrl,
+                foto_clases: rutaImg,
                 video_clases: "",
             };
 

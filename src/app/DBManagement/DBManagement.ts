@@ -176,6 +176,37 @@ export async function getClassById(id_clase: number) {
     return classData;
 }
 
+export async function deleteClassById(idClass: number) {
+
+    //console.log("deleteCuestionarioById()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "clases/" + idClass, {
+
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar la clase');
+        }
+
+        const data = await response.json();
+        alert("Clase eliminada correctamente");
+        return data;
+
+    } catch (error) {
+        //console.log("Error al eliminar el cuestionario: ", error);
+        alert("No se ha podido eliminar la clase");
+        return error;
+    }
+
+}
+
 /*------------------------Temarios--------------------------- */
 
 //Obetner temarios de una clase
