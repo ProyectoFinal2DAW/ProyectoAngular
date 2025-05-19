@@ -36,13 +36,13 @@ export class ClasesComponent {
   showPanelAddClass() {
 
     this.crearClaseVisible = !this.crearClaseVisible;
-    console.log("Show pop up add class");  
+    //console.log("Show pop up add class");  
 
   } */
 
   async ngOnInit() {
     this.listClasses = await getClasses();
-    console.log("Lista de clases: ", this.listClasses);
+    //console.log("Lista de clases: ", this.listClasses);
 
     let role = sessionStorage.getItem("jobTitle");
     if (role === "Alumne") {
@@ -63,7 +63,7 @@ export class ClasesComponent {
     });
 
     dialogRefAddClass.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
     });
   }
   //---------------------------------------------------------------------

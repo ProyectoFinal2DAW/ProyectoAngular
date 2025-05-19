@@ -45,7 +45,7 @@ export class ItemClasroomComponent {
         });
     
         dialogRefAddClass.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result}`);
+          //console.log(`Dialog result: ${result}`);
         });
       }
       //---------------------------------------------------------------------

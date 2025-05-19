@@ -50,16 +50,16 @@ export class DialogContentAddClass {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedFile = input.files[0];
-            console.log("Archivo seleccionado:", this.selectedFile);
+            //console.log("Archivo seleccionado:", this.selectedFile);
         }
     }
 
 
     async onSubmit() {
-        console.log("OnSubmit");
+        //console.log("OnSubmit");
 
         if (this.addClassForm.invalid) {
-            console.log("Formulario inválido");
+            //console.log("Formulario inválido");
             alert("Compruebe los campos del formulario");
             return;
         }
@@ -68,7 +68,7 @@ export class DialogContentAddClass {
         if (this.selectedFile) {
             try {
                 imageUrl = await uploadFile(this.selectedFile);
-                console.log("Imagen subida:", imageUrl);
+                //console.log("Imagen subida:", imageUrl);
             } catch (error) {
                 console.error("Error al subir la imagen:", error);
                 alert("Hubo un error al subir la imagen.");
@@ -86,7 +86,7 @@ export class DialogContentAddClass {
             };
 
             const apiPostResponse = await postClasses(newClass);
-            console.log("ApiPostResponse: ", apiPostResponse);
+            //console.log("ApiPostResponse: ", apiPostResponse);
 
         } else {
             const updateClase: UpdateClase = {
@@ -99,7 +99,7 @@ export class DialogContentAddClass {
             };
 
             const apiPutResponse = await putClases(updateClase);
-            console.log("ApiPutResponse: ", apiPutResponse);
+            //console.log("ApiPutResponse: ", apiPutResponse);
         }
     }
 }

@@ -85,11 +85,11 @@ export class ContainerClassComponent {
       this.teacherUser = true;
     }
 
-    console.log("teacherUser: ", this.teacherUser);
+    //console.log("teacherUser: ", this.teacherUser);
 
     this.route.queryParams.subscribe(params => {
       this.id_clase = params['id'];
-      console.log("Id recibido: " + this.id_clase);
+      //console.log("Id recibido: " + this.id_clase);
     });
 
     this.fetchData();
@@ -97,13 +97,13 @@ export class ContainerClassComponent {
 
   async fetchData() {
 
-    console.log("fetchData()");
+    //console.log("fetchData()");
 
     this.datosClase = await getClassById(this.id_clase);
-    console.log("Datos clase: ", this.datosClase);
+    //console.log("Datos clase: ", this.datosClase);
 
     this.listaTemarios = await getClassLessons(this.id_clase);
-    console.log("Datos temarios: ", this.listaTemarios);
+    //console.log("Datos temarios: ", this.listaTemarios);
     
     const temariosParaStorage = this.listaTemarios.map(temario => ({
       id: temario.id_temario,
@@ -114,20 +114,20 @@ export class ContainerClassComponent {
 
     this.listaVideos = await getVideosByClass(this.id_clase);
 
-    console.log("Lista videos: ", this.listaVideos);
+    //console.log("Lista videos: ", this.listaVideos);
 
     this.listaCuestionarios = await getTestsByClass(this.id_clase);
 
     this.listaParticipantesClase = await getClassParticipants(this.id_clase);
-    console.log("listaParticipantes: ", this.listaParticipantesClase);
+    //console.log("listaParticipantes: ", this.listaParticipantesClase);
 
     this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
-    console.log("Notas: ", this.listaNotasUsuarioClase);
+    //console.log("Notas: ", this.listaNotasUsuarioClase);
   }
 
   async actualizarTemarios(evento: boolean) {
 
-    console.log("Actualizar lista temarios");
+    //console.log("Actualizar lista temarios");
     this.listaTemarios = await getClassLessons(this.id_clase);
 
     //TODO: se elimina correctamente pero no se refresca la lista
@@ -136,7 +136,7 @@ export class ContainerClassComponent {
 
   async actualizarCuestionarios(evento: boolean) {
 
-    console.log("Actualizar lista cuestionarios")
+    //console.log("Actualizar lista cuestionarios")
 
     this.listaCuestionarios = await getTestsByClass(this.id_clase);
 
@@ -154,7 +154,7 @@ export class ContainerClassComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
     });
   }
   //---------------------------------------------------------------------
@@ -167,7 +167,7 @@ export class ContainerClassComponent {
     });
 
     dialogRefAddVideo.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
     });
   }
   //---------------------------------------------------------------------
@@ -176,7 +176,7 @@ export class ContainerClassComponent {
 
   openDialogAddUpdateTemario(action: string, temario: Temario) {
 
-    console.log("id_clase: ", this.id_clase, " action: ", action, " temario: ", temario);
+    //console.log("id_clase: ", this.id_clase, " action: ", action, " temario: ", temario);
 
     const dialogRefAddUpdateTemario = this.dialogAddUpdateTemario.open(DialogContentAddTemario, {
       
@@ -188,14 +188,14 @@ export class ContainerClassComponent {
     });
 
     dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
     });
   }
   //---------------------------------------------------------------------
 
   /* addTemario() {
 
-    console.log("addTemario()");
+    //console.log("addTemario()");
 
     this.showAddTemario = !this.showAddTemario;
 
@@ -203,7 +203,7 @@ export class ContainerClassComponent {
 
   addExamen() {
 
-    console.log("addExamen()");
+    //console.log("addExamen()");
 
   }
 

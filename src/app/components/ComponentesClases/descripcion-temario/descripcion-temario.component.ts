@@ -53,8 +53,8 @@ export class DescripcionTemarioComponent {
     let urlEnbed = urlBase + urlVideoId; 
     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlEnbed);
 
-    console.log("VideoURL: ", this.videoUrl);
-    console.log("contenido clase: ", this.contenidoClase);
+    //console.log("VideoURL: ", this.videoUrl);
+    //console.log("contenido clase: ", this.contenidoClase);
   }
 
 

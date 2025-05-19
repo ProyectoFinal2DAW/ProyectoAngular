@@ -52,7 +52,7 @@ export class ExperimentsComponent implements AfterViewInit {
     });
 
     dialogRefAddExperiment.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
 
       this.fetchData();
     });
