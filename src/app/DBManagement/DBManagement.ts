@@ -739,6 +739,70 @@ export async function postExperimento(newExperimento: NewExperimento) {
 
 }
 
+export async function putExperimento(id_experimento: number, newExperimento: NewExperimento) {
+
+    //console.log("putClasses()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "experimentos/" + id_experimento +
+            "?nombre_experimento=" + newExperimento.nombre_experimento +
+            "&descrip_experimento=" + newExperimento.descrip_experimento +
+            "&foto_experimento=" + newExperimento.foto_experimento +
+            "&video_experimento=" + newExperimento.video_experimento, {
+
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al actualizar el experimento');
+        }
+
+        const data = await response.json();
+        alert("Experimento actualizado correctamente");
+        return data;
+
+    } catch (error) {
+        //console.log("Error al obtener el la clase: ", error);
+        alert("No se ha podido actualizar el experimento");
+        return error;
+    }
+}
+export async function deleteExperimentoById(idExperimento: number) {
+
+    //console.log("deleteCuestionarioById()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "experimentos/" + idExperimento, {
+
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar el experimento');
+        }
+
+        const data = await response.json();
+        alert("Experimento eliminado correctamente");
+        return data;
+
+    } catch (error) {
+        //console.log("Error al eliminar el cuestionario: ", error);
+        alert("No se ha podido eliminar el cuestionario");
+        return error;
+    }
+
+}
+
 /*---------------------Preguntas Cuestionario-------------------- */
 
 export async function getPreguntasCuestionario(idCuestionario: Number) {

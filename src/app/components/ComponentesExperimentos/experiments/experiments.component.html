@@ -11,7 +11,8 @@
             routerLink="../experimentDescription" 
             [queryParams]="{ id: experiment.id_experimento }"
             [experiment]="experiment" 
-            [contadorExperimento]="idx">
+            [contadorExperimento]="idx"
+            (elementoActualizado)="fetchData()">
           </app-item-experiment>
         </div>
       }      

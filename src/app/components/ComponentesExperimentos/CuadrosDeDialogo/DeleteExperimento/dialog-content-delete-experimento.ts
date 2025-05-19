@@ -14,7 +14,7 @@ export class DialogContentDeleteExperimento {
 
     constructor(
         public dialogRef: MatDialogRef<DialogContentDeleteExperimento>,
-        @Inject(MAT_DIALOG_DATA) public data: { idTemario: number }
+        @Inject(MAT_DIALOG_DATA) public data: { idExperimento: number }
     ) {}
 
     onDelete(): void {

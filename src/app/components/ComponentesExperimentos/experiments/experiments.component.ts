@@ -15,6 +15,15 @@ import AOS from 'aos';
 })
 export class ExperimentsComponent implements AfterViewInit {
 
+  experimentoVacio: Experiment = {
+    id_experimento: 0,
+    nombre_experimento: "",
+    descrip_experimento: "",
+    foto_experimento: "",
+    video_experimento: "",
+    asignatura: ""
+  }
+
   ngAfterViewInit() {
     AOS.init({
       duration: 600,
@@ -48,7 +57,11 @@ export class ExperimentsComponent implements AfterViewInit {
 
   dialogAddExperiment() {
     const dialogRefAddExperiment = this.dialogAddVideo.open(DialogContentAddExperiment, {
-
+      data: {
+        id_clase: 0,
+        action: 'a',
+        experimento: this.experimentoVacio
+      }
     });
 
     dialogRefAddExperiment.afterClosed().subscribe(result => {
