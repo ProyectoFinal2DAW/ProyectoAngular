@@ -18,5 +18,32 @@ export class ItemExperimentComponent {
     asignatura: ""
   };
 
+  teacherUser: boolean = true;
+
+  ngOnInit() {
+    let role = sessionStorage.getItem("jobTitle");
+    if (role === "Alumne") {
+      this.teacherUser = false;
+    } else {
+      this.teacherUser = true;
+    }
+    console.log("role: ", role);
+  }
+
   @Input() contadorExperimento: number = 0;
+
+
+  openDialogAddUpdateExperimento(action: string, experiment: Experiment, event: any) {
+    
+    event.stopPropagation();
+
+    
+  }
+
+  openDialogDeleteExperimento(idExperiment: number, event: any) {
+
+    event.stopPropagation();
+
+  }
+
 }
