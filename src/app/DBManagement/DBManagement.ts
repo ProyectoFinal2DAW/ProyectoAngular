@@ -19,7 +19,7 @@ import { NewExperimento } from "../../interfaces/newExperimento";
 import exp from "constants";
 import { ExperimentData } from "../../interfaces/experimentData";
 
-const baseApiUrl = "http://79.154.117.109:6956/";
+const baseApiUrl = "http://localhost:8005/";
 
 /*------------------ Subir archivos -----------------*/
 
