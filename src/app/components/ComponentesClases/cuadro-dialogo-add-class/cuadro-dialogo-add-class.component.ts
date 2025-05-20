@@ -29,12 +29,12 @@ export class CuadroDialogoAddClassComponent {
 
 
   onSubmit() {
-    console.log("OnSubmit");
+    //console.log("OnSubmit");
 
     let apiPostResponse = null;
 
     if (this.addClassForm.invalid) {
-      console.log("Formulario inválido");
+      //console.log("Formulario inválido");
       alert("Compruebe los campos del formulario");
       return;
     }
@@ -50,7 +50,7 @@ export class CuadroDialogoAddClassComponent {
 
     apiPostResponse = postClasses(newClass);
  
-    console.log("ApiPostResponse: ", apiPostResponse);
+    //console.log("ApiPostResponse: ", apiPostResponse);
 
     
 

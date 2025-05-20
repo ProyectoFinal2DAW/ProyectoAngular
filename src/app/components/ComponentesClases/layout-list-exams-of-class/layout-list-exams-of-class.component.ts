@@ -44,11 +44,11 @@ export class LayoutListExamsOfClassComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
       if (result) {
         //ejecutar la funcion para eliminar el cuestionario
         deleteCuestionarioById(id_questionario).then(() => {
-          console.log('Eliminación completada');
+          //console.log('Eliminación completada');
           // Aquí puedes actualizar la lista, mostrar un mensaje, etc.
           this.elementoEliminado.emit(true);
 

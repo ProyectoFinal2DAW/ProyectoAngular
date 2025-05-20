@@ -43,13 +43,17 @@ export class ClasesComponent implements AfterViewInit {
   showPanelAddClass() {
 
     this.crearClaseVisible = !this.crearClaseVisible;
-    console.log("Show pop up add class");  
+    //console.log("Show pop up add class");  
 
   } */
-
-  async ngOnInit() {
+  async fetchData() {
     this.listClasses = await getClasses();
     console.log("Lista de clases: ", this.listClasses);
+  }
+
+  async ngOnInit() {
+
+    await this.fetchData();
 
     let role = sessionStorage.getItem("jobTitle");
     if (role === "Alumne") {
@@ -61,7 +65,9 @@ export class ClasesComponent implements AfterViewInit {
   }
 
 
-  //---------------------Cuadro de diálogo Add video-------------------------------
+
+
+  //---------------------Cuadro de diálogo Add Class-------------------------------
   readonly dialogAddClass = inject(MatDialog);
 
   openDialogAddUpdateClass(action: string, clase: Class, idClase: number) {
@@ -69,8 +75,10 @@ export class ClasesComponent implements AfterViewInit {
       data: { action: action, clase: clase, idClase: idClase }
     });
 
-    dialogRefAddClass.afterClosed().subscribe(result => {
+    dialogRefAddClass.afterClosed().subscribe(async result => {
       console.log(`Dialog result: ${result}`);
+      
+      this.fetchData();
     });
   }
   //---------------------------------------------------------------------

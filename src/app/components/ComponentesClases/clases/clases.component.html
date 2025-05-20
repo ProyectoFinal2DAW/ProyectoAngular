@@ -7,19 +7,11 @@
 
     <div class="flex flex-wrap flex-row gap-5 items-center justify-center">
 
-      @for (classroom of listClasses; track $index; let idx = $index) {
-        <div 
-          [attr.data-aos]="'zoom-in'" 
-          [attr.data-aos-delay]="idx * 100"
-        >
-          <app-item-clasroom 
-            routerLink="../clase" 
-            [queryParams]="{ id: classroom.id_clases }"
-            class="hover:shadow-xl transition-all duration-300" 
-            [classroom]="classroom">
-          </app-item-clasroom>
-        </div>
-      }
+
+            @for (classroom of listClasses; track $index) {
+            <app-item-clasroom routerLink="../clase" [queryParams]="{ id: classroom.id_clases }"
+                class="hover:shadow-xl transition-all duration-300" [classroom]=classroom (elementoEliminado)="fetchData()"></app-item-clasroom>
+            }
 
     </div>
 

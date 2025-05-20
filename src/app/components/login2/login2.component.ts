@@ -21,7 +21,7 @@ export class Login2Component implements OnInit {
     this.msalService.handleRedirectObservable().subscribe({
       next: (result) => {
         if (result && result.account) {
-          console.log('Inicio de sesión exitoso:', result);
+          //console.log('Inicio de sesión exitoso:', result);
 
           //----------------------- Obtener grupos a los que esta asignado -------------------------------
           fetch('https://graph.microsoft.com/v1.0/me/', {
@@ -33,7 +33,7 @@ export class Login2Component implements OnInit {
             .then((rolesResponse: any) => {
               //sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
               sessionStorage.setItem('jobTitle', "sdfsdf");
-              console.log('Roles del usuario:', rolesResponse);
+              //console.log('Roles del usuario:', rolesResponse);
             })
 
           //--------------------------------------------------------------
@@ -46,7 +46,7 @@ export class Login2Component implements OnInit {
             .then(response => response.json())
             .then((rolesResponse: any) => {
               //sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
-              console.log('Roles del usuario:', rolesResponse);
+              //console.log('Roles del usuario:', rolesResponse);
             })
             .catch(error => console.error('Error al obtener los roles:', error));
 
@@ -67,7 +67,7 @@ export class Login2Component implements OnInit {
               const imageUrl = URL.createObjectURL(blob);
               // Ahora puedes usar esta URL en tu HTML para mostrar la imagen
               //this.profileImageUrl = imageUrl;
-              console.log('URL de la imagen de perfil:', imageUrl);
+              //console.log('URL de la imagen de perfil:', imageUrl);
 
               sessionStorage.setItem('profileImageUrl', imageUrl); // Guardar la URL de la imagen en sessionStorage
             })
@@ -96,7 +96,7 @@ export class Login2Component implements OnInit {
   // Método para iniciar el login con Microsoft
   loginWithAzure() {
     if (this.loginInProgress) {
-      console.log("Login already in progress");
+      //console.log("Login already in progress");
       return;
     }
 

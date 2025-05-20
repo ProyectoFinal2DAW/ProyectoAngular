@@ -29,13 +29,32 @@
         </div>
 
 
-        <div
-            class="w-full flex justify-between px-4 py-3 rounded-2xl bg-white bg-white/10 backdrop-blur-sm hover:bg-gray-100/20 transition-all duration-200">
-            <h1 class="text-white">Más info</h1>
+        <div class="w-full flex flex-row justify-between items-center gap-3">
+            <div
+                class="flex-1 flex justify-between px-4 py-3 rounded-2xl bg-white bg-white/10 backdrop-blur-sm hover:bg-gray-100/20 transition-all duration-200">
+                <h1 class="text-white">Más info</h1>
 
-            <img class="icon-class" src="/icons/chevron-right-solid.svg">
+                <img class="icon-class" src="/icons/chevron-right-solid.svg">
+            </div>
 
+            @if (teacherUser) {
+            <div class="flex flex-row gap-2">
+
+                <button
+                    class="rounded-xl bg-white bg-white/10 backdrop-blur-sm hover:bg-gray-100/20 transition-all duration-200 p-3"
+                    (click)="openDialogAddUpdateExperimento('u', experiment, $event )">
+                    <img class="icon-class" src="icons/pencil-solid-white.svg">
+                </button>
+                <button
+                    class="rounded-xl bg-white bg-white/10 backdrop-blur-sm hover:bg-gray-100/20 transition-all duration-200 p-3"
+                    (click)="openDialogDeleteExperimento(experiment.id_experimento, $event)">
+                    <img class="icon-class" src="icons/trash-can-solid-white.svg">
+                </button>
+
+            </div>
+            }
         </div>
+
     </div>
 
 
