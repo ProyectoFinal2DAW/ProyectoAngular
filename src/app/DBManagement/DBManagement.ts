@@ -426,28 +426,10 @@ export async function getExperimentsDataById(id_experiment: number) {
     let experimentsData: ExperimentData = {
         id_datos: 0,
         id_experimento: 0,
-        masa1: 0,
-        masa2: 0,
-        masa3: 0,
-        masa4: 0,
-        velocidad1: 0,
-        velocidad2: 0,
-        velocidad3: 0,
-        velocidad4: 0,
-        velocidad5: 0,
-        altura1: 0,
-        altura2: 0,
-        altura3: 0,
-        altura4: 0,
         tiempo1: new Date(),
         tiempo2: new Date(),
         tiempo3: new Date(),
         tiempo4: new Date(),
-        resultado: null,
-        tipoExperimento: "",
-        longitud: 0,
-        gravedad: 9.81,
-        angulo_inclinación: 0,
         tiempo5: new Date()
     };
 
