@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { CommonModule } from '@angular/common';
+import { getListUsers, getUserImage, getUserRole } from '../../DBManagement/AzureManagement';
+import { NewUser } from '../../../interfaces/newUser';
+import { getUserWithEmail, postUser } from '../../DBManagement/DBManagement';
 
 @Component({
   selector: 'app-login2',
@@ -14,77 +17,63 @@ export class Login2Component implements OnInit {
 
   loginInProgress = false;
 
-  constructor(private msalService: MsalService, private router: Router) {}
+  constructor(private msalService: MsalService, private router: Router) { }
 
   ngOnInit(): void {
     // Manejo del redireccionamiento después de un login exitoso
     this.msalService.handleRedirectObservable().subscribe({
       next: (result) => {
         if (result && result.account) {
-          //console.log('Inicio de sesión exitoso:', result);
 
-          //----------------------- Obtener grupos a los que esta asignado -------------------------------
-          fetch('https://graph.microsoft.com/v1.0/me/', {
-            headers: {
-              Authorization: `Bearer ${result.accessToken}`,
-            },
-          })
-            .then(response => response.json())
-            .then((rolesResponse: any) => {
-              //sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
-              sessionStorage.setItem('jobTitle', "sdfsdf");
-              //console.log('Roles del usuario:', rolesResponse);
-            })
+          console.log("Login result: ", result);
 
-          //--------------------------------------------------------------
-          //----------------------- Obtener grupos a los que esta asignado -------------------------------
-          fetch('https://graph.microsoft.com/v1.0/me/memberof', {
-            headers: {
-              Authorization: `Bearer ${result.accessToken}`,
-            },
-          })
-            .then(response => response.json())
-            .then((rolesResponse: any) => {
-              //sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
-              //console.log('Roles del usuario:', rolesResponse);
-            })
-            .catch(error => console.error('Error al obtener los roles:', error));
+          getUserRole(result);
 
-          //------------------------- Obtener foto de perfil -------------------------------
-          fetch('https://graph.microsoft.com/v1.0/me/photo/$value', {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${result.accessToken}`
-            }
-          })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('No se pudo obtener la imagen de perfil.');
+          getUserImage(result);
+
+          (async () => {
+            
+            const userbd = await getUserWithEmail(result.account.username);
+
+            console.log("User from DB: ", userbd);
+            //const userbd = 0; // simulado
+
+            if (userbd == null) {
+              const newUser: NewUser = {
+                id_roles: 0,
+                usuario: result.account.name || "",
+                email: result.account.username,
+                contrasena: "",
+                estado: "activa",
+                profileImage: ""
+              };
+
+              let rol = sessionStorage.getItem('jobTitle') || "";
+              console.log("Rol: ", rol);
+              if (rol === "Alumne") {
+                newUser.id_roles = 1;
+              } else {
+                newUser.id_roles = 2;
               }
-              return response.blob(); // Recibe la imagen como binario
-            })
-            .then(blob => {
-              const imageUrl = URL.createObjectURL(blob);
-              // Ahora puedes usar esta URL en tu HTML para mostrar la imagen
-              //this.profileImageUrl = imageUrl;
-              //console.log('URL de la imagen de perfil:', imageUrl);
 
-              sessionStorage.setItem('profileImageUrl', imageUrl); // Guardar la URL de la imagen en sessionStorage
-            })
-            .catch(error => {
-              console.error('Error al obtener la imagen de perfil:', error);
-            });
-          //--------------------------------------------------------------
+              newUser.profileImage = sessionStorage.getItem('profileImageUrl') || "http://monlab.ddns.net/images/noUserImage.jpg";
 
-          // Guardamos la información en sessionStorage
-          sessionStorage.setItem('accessToken', result.accessToken);
-          sessionStorage.setItem('email', result.account.username); // Guardar el email en sessionStorage
-          sessionStorage.setItem('name', result.account.name || ""); // Guardar el nombre en sessionStorage
+              const userCreated = await postUser(newUser);
+              console.log("Api response post user: ", userCreated);
+              sessionStorage.setItem("id_usuario", userCreated.id_usuarios);
+            } else {
+              console.log("Entra en el else");
+              sessionStorage.setItem("id_usuario", userbd.id_usuarios.toString());
+            }
 
+            // Guardar en sessionStorage
+            sessionStorage.setItem('accessToken', result.accessToken);
+            sessionStorage.setItem('email', result.account.username);
+            sessionStorage.setItem('name', result.account.name || "");
 
-
-          // Redirigir a la página principal
-          this.router.navigate(['/home']);
+            // Redirigir
+            this.router.navigate(['/home']);
+          })();
         }
       },
       error: (error) => {
@@ -101,7 +90,7 @@ export class Login2Component implements OnInit {
     }
 
     this.loginInProgress = true;
-    
+
     this.msalService.loginRedirect();  // Realiza el login con MSAL
   }
 }

@@ -18,6 +18,9 @@ import { PostResultadoCuestionario } from "../../interfaces/postResultadoCuestio
 import { NewExperimento } from "../../interfaces/newExperimento";
 import exp from "constants";
 import { ExperimentData } from "../../interfaces/experimentData";
+import { Role } from "../../interfaces/role";
+import { NewUser } from "../../interfaces/newUser";
+import { getUserImageWithEmail } from "./AzureManagement";
 
 const baseApiUrl = "http://localhost:8001/";
 
@@ -77,6 +80,22 @@ export async function getClasses() {
     let listClases: Class[] = [];
 
     const response = await fetch(baseApiUrl + 'clases/');
+    console.log("response: ", response);
+
+    if (!response.ok) {
+        throw new Error('Error al obtener las clases');
+    }
+
+    listClases = await response.json();
+
+    return listClases;
+}
+export async function getClassesByIdUser(id_user: number) {
+    //console.log("getClasses()");
+
+    let listClases: Class[] = [];
+
+    const response = await fetch(baseApiUrl + 'usuarios/' + id_user + "/clases");
     console.log("response: ", response);
 
     if (!response.ok) {
@@ -688,11 +707,177 @@ export async function getClassParticipants(id_clase: Number) {
 
         listParticipants = await response.json();
 
+        if (listParticipants.length > 0) {
+            for (let i = 0; i < listParticipants.length; i++) {
+                const element = listParticipants[i];
+
+                let imagen = await getUserImageWithEmail(sessionStorage.getItem("accessToken") || "", element.email);
+
+                listParticipants[i].profileImage = imagen;
+
+                
+            }
+        }
+
     } catch (error) {
         //console.log("Error al obtener los participantes: ", error);
     }
 
     return listParticipants;
+
+}
+
+export async function getUserWithEmail(email: string) {
+
+    let user: User | null = null;
+
+    try {
+
+        let response = await fetch(baseApiUrl + 'usuarios/email/' + email);
+
+        if (response.status === 404) {
+            return null;
+        } else {
+            user = await response.json();
+            return user;
+        }
+        
+
+    } catch (error) {
+        console.log("Error al obtener el usuario con el email: ", error);
+        return null;
+    }
+
+}
+
+export async function postUser(newUser: NewUser) {
+
+    try {
+        console.log(
+            baseApiUrl + "usuarios/?" +
+            "id_roles=" + newUser.id_roles +
+            "&usuario=" + newUser.usuario +
+            "&email=" + newUser.email +
+            "&contrasena=" + newUser.contrasena +
+            "&estado=" + newUser.estado +
+            "&profileImage=" + newUser.profileImage);
+
+        const response = await fetch(
+            baseApiUrl + "usuarios/?" +
+            "id_roles=" + newUser.id_roles +
+            "&usuario=" + newUser.usuario +
+            "&email=" + newUser.email +
+            "&contrasena=" + newUser.contrasena +
+            "&estado=" + newUser.estado +
+            "&profileImage=" + newUser.profileImage, {
+
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+        
+        console.log("response: ", response);
+
+        if (!response.ok) {
+            throw new Error('Error al crear el usuario');
+        }
+
+        const data = await response.json();
+
+
+        return data;
+
+    } catch (error) {
+        //console.log("Error al obtener el temario: ", error);
+        alert("No se ha podido guardar el usuario");
+        return error;
+    }
+}
+
+/*----------------------- Clases Usuarios ---------------------- */
+
+export async function postUserIntoClass(id_user: number, id_clase: number) {
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "clases_usuarios/?" +
+            "id_usuarios=" + id_user +
+            "&id_clases=" + id_clase, {
+
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al asignar el usuario a la clase');
+        }
+
+        const data = await response.json();
+
+        alert("Usuario asignado a la clase correctamente");
+
+        return data;
+
+    } catch (error) {
+        //console.log("Error al obtener el temario: ", error);
+        alert("No se ha podido asignar el usuario a la clase");
+        return error;
+    }
+}
+
+export async function deleteParticipantOfClass(idUser: number, idClass: number) {
+
+    //console.log("deleteCuestionarioById()");
+
+    try {
+        const response = await fetch(
+            baseApiUrl + "clases_usuarios/" + idUser + "/" + idClass, {
+
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            //body: JSON.stringify(newClass)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar usuario de la clase');
+        }
+
+        const data = await response.json();
+        alert("Usuario eliminado de la clase correctamente");
+        return data;
+
+    } catch (error) {
+        //console.log("Error al eliminar el cuestionario: ", error);
+        alert("No se ha podido eliminar el usuario");
+        return error;
+    }
+
+}
+
+
+/*-------------------------- User Roles -------------------- */
+export async function getUserRoles() {
+
+    let listUserRoles: Role[] = [];
+
+    try {
+
+        let response = await fetch(baseApiUrl + 'roles/');
+
+        listUserRoles = await response.json();
+
+    } catch (error) {
+        //console.log("Error al obtener los participantes: ", error);
+    }
+
+    return listUserRoles;
 
 }
 
@@ -862,7 +1047,25 @@ export async function getNotasUsuarioClase(idUsuario: number, idClase: number) {
 
     try {
 
-        let response = await fetch(baseApiUrl + 'notas/clase/' + idClase + '/usuario/' + idUsuario);
+        let response = await fetch(baseApiUrl + 'resultados_cuestionarios/usuario/' + idUsuario + '/clase/' + idClase);
+
+        listaNotasUsuarioClase = await response.json();
+
+    } catch (error) {
+        //console.log("Error al obtener las notas del usuario en la clase: ", error);
+    }
+
+    return listaNotasUsuarioClase;
+
+}
+
+export async function getNotasClase(idClase: number) {
+
+    let listaNotasUsuarioClase: NotasUsuarioClase[] = [];
+
+    try {
+
+        let response = await fetch(baseApiUrl + 'resultados_cuestionarios/clase/' + idClase);
 
         listaNotasUsuarioClase = await response.json();
 
@@ -881,12 +1084,20 @@ export async function postResultadosCuestionarios(postResultadoCuestionario: Pos
 
     //console.log("postResultadosCuestionarios()");
 
+    console.log(baseApiUrl + "resultados_cuestionarios/?" +
+        "id_questionario=" + postResultadoCuestionario.id_questionario +
+        "&id_usuarios=" + postResultadoCuestionario.id_usuarios +
+        "&nota=" + postResultadoCuestionario.nota +
+        
+        "&total_correctas=" + postResultadoCuestionario.total_correctas +
+        "&total_falladas=" + postResultadoCuestionario.total_falladas);
+
     const response = await fetch(
         baseApiUrl + "resultados_cuestionarios/?" +
         "id_questionario=" + postResultadoCuestionario.id_questionario +
         "&id_usuarios=" + postResultadoCuestionario.id_usuarios +
         "&nota=" + postResultadoCuestionario.nota +
-        "&fecha_completado=" + postResultadoCuestionario.fecha_completado +
+        
         "&total_correctas=" + postResultadoCuestionario.total_correctas +
         "&total_falladas=" + postResultadoCuestionario.total_falladas, {
 

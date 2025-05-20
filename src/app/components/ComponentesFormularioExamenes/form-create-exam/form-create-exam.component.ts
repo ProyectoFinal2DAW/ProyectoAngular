@@ -112,7 +112,8 @@ export class FormCreateExamComponent {
     //console.log("ApiResponse: ", response);
 
     if (response) {
-      this.router.navigate(['/clases'], { queryParams: { id: this.id_clase } });
+      alert("Cuestionario guardado correctamente");
+      this.router.navigate(['/clase'], { queryParams: { id: this.id_clase } });
     } else {
       alert("No se ha podido guardar el cuestionario");
     }

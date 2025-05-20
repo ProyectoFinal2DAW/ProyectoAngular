@@ -7,4 +7,5 @@ export interface NotasUsuarioClase {
     total_correctas: Number;
     total_falladas: Number;
     nombre_cuestionario: String;
+    nombre_usuario: string;
 }

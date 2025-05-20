@@ -22,7 +22,7 @@ import { DialogContentShowResults } from '../CuadrosDeDialogo/ShowResults/dialog
 export class BoxQuestionFormComponentComponent {
 
   //TODO: Poner id del usuario iniciado login
-  idUsuario = 1;
+  idUsuario = 0;
   //Number(localStorage.getItem('idUsuario'));
 
   id_clase: number = 0;
@@ -55,6 +55,9 @@ export class BoxQuestionFormComponentComponent {
 
 
   ngOnInit() {
+
+    this.idUsuario = Number(sessionStorage.getItem("id_usuario"));
+
     this.route.queryParams.subscribe(params => {
       this.id_questionario = params['id'];
       this.nombre_cuestionario = params['nombre'];

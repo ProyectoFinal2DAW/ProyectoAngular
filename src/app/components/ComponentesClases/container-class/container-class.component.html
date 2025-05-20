@@ -124,31 +124,49 @@
             </div>
         </mat-tab>
 
-        <!-- <mat-tab label="Participantes">
-            <div class="flex flex-col gap-4 mt-10 p-6">
+        <mat-tab label="Participantes">
+            <div class="flex flex-col gap-4 p-6">
+                @if (teacherUser) {
+                <div class="w-full flex flex-row items-center gap-5 p-2">
+                    <h2 class="text-3xl">Añadir participante</h2>
+
+
+                    <button class="hover:bg-blue-100 p-2 rounded-xl" (click)="openDialogAddParticipant(id_clase)">
+                        <img src="icons/plus-solid-black.svg" class="icon-class">
+                    </button>
+
+
+                </div>
+                }
                 @if (listaParticipantesClase.length > 0) {
                 @for (participante of listaParticipantesClase; track $index) {
-                <app-item-participante-clase [participante]="participante" class="flex-1"></app-item-participante-clase>
+                <app-item-participante-clase [participante]="participante" [idClase]="id_clase" class="flex-1"
+                    (participanteEliminado)="actualizarParticipantes($event)"></app-item-participante-clase>
                 }
                 } @else {
                 <h1 class="text-center text-2xl font-bold text-gray-600">No hay participantes disponibles</h1>
                 }
             </div>
-        </mat-tab> -->
+        </mat-tab>
 
         <mat-tab label="Calificaciones">
             <div class="flex flex-col gap-6 mt-10 p-6">
                 @if (listaNotasUsuarioClase.length > 0) {
                 @for (nota of listaNotasUsuarioClase; track $index) {
                 <div
-                    class="flex flex-col md:flex-row bg-gradient-to-r from-gray-400 to-gray-300 text-white p-6 shadow-lg rounded-xl hover:shadow-2xl">
+                    class="flex flex-row justify-between bg-gradient-to-r from-gray-400 to-gray-300 text-white p-6 shadow-lg rounded-xl hover:shadow-2xl">
 
-                    <div class="flex-1">
-                        <h1 class="text-2xl font-bold text-white text-glow">Cuestionario: {{ nota.nombre_cuestionario }}
+                    <div class="flex-3 flex-col gap-4">
+                        <h1 class="text-2xl font-bold text-white text-glow mb-2">Cuestionario: {{ nota.nombre_cuestionario }}
                         </h1>
-                        <p class="mt-2 text-lg">✅ Aciertos: <span class="font-semibold">{{ nota.total_correctas
+
+                        @if(teacherUser){
+                        <h1 class="text-md">👤 Alumno: {{ nota.nombre_usuario }}</h1>
+                        }
+
+                        <p class="text-md">✅ Aciertos: <span class="font-semibold">{{ nota.total_correctas
                                 }}</span> / ❌ Fallos: <span class="font-semibold">{{ nota.total_falladas }}</span></p>
-                        <p class="mt-1 text-sm opacity-90">📅 Fecha de realización: {{ nota.fecha_completado |
+                        <p class="text-md opacity-90">📅 Fecha de realización: {{ nota.fecha_completado |
                             date:'dd/MM/yyyy HH:mm' }}</p>
                     </div>
 

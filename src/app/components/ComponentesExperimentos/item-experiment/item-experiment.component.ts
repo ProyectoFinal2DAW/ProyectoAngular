@@ -69,7 +69,7 @@ export class ItemExperimentComponent {
     event.stopPropagation();
 
     const dialogRef = this.dialog.open(DialogContentDeleteExperimento, {
-      data: { idExperimento: this.experiment.id_experimento } // Pasar objeto por parámetros
+      data: { idExperimento } // Pasar objeto por parámetros
     });
 
     dialogRef.afterClosed().subscribe(result => {

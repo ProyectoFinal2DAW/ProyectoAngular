@@ -10,7 +10,7 @@ import { Temario } from '../../../../interfaces/temario';
 import { CuestionarioInfoGeneral } from '../../../../interfaces/cuestionarioInfoGeneral';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ItemParticipanteClaseComponent } from "../item-participante-clase/item-participante-clase.component";
-import { getClassById, getClassLessons, getClassParticipants, getNotasUsuarioClase, getTestsByClass, getVideosByClass, postVideoClass } from '../../../DBManagement/DBManagement';
+import { getClassById, getClassLessons, getClassParticipants, getNotasClase, getNotasUsuarioClase, getTestsByClass, getVideosByClass, postVideoClass } from '../../../DBManagement/DBManagement';
 import { Router } from 'express';
 import { NotasUsuarioClase } from '../../../../interfaces/notasUsuarioClase';
 import { CuadroDialogoCrearTemarioComponent } from "../cuadro-dialogo-crear-temario/cuadro-dialogo-crear-temario.component";
@@ -25,6 +25,7 @@ import { DialogContentAddVideo } from './CuadrosDeDialogo/AddVideo/dialog-conten
 import { DialogContentShowVideo } from './CuadrosDeDialogo/ShowVideo/dialog-content-show-video';
 import { DialogContentAddTemario } from './CuadrosDeDialogo/AddTemario/dialog-content-add-temario';
 import { DatePipe } from '@angular/common';
+import { DialogContentAddParticipant } from './CuadrosDeDialogo/AddParticipant/dialog-content-add-participant';
 
 @Component({
   selector: 'app-container-class',
@@ -35,7 +36,6 @@ import { DatePipe } from '@angular/common';
 export class ContainerClassComponent {
 
 
-  //TODO: Cambiar por el usuario logeado  
   teacherUser: boolean = true;
 
   showAddTemario: boolean = false;
@@ -67,9 +67,7 @@ export class ContainerClassComponent {
   listaCuestionarios: CuestionarioInfoGeneral[] = [];
   listaNotasUsuarioClase: NotasUsuarioClase[] = [];
 
-  //TODO: Poner el id de usuario iniciado login
-  idUsuario = 1;
-  //Number(localStorage.getItem('idUsuario'));
+  idUsuario = 0;
 
   listaParticipantesClase: User[] = [];
   listaDeParticipantesValida: boolean = false;
@@ -77,6 +75,8 @@ export class ContainerClassComponent {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.idUsuario = Number(sessionStorage.getItem("id_usuario"));
 
     let role = sessionStorage.getItem("jobTitle");
     if (role === "Alumne") {
@@ -104,7 +104,7 @@ export class ContainerClassComponent {
 
     this.listaTemarios = await getClassLessons(this.id_clase);
     //console.log("Datos temarios: ", this.listaTemarios);
-    
+
     const temariosParaStorage = this.listaTemarios.map(temario => ({
       id: temario.id_temario,
       nombre: temario.nombre_temario
@@ -118,11 +118,17 @@ export class ContainerClassComponent {
 
     this.listaCuestionarios = await getTestsByClass(this.id_clase);
 
-    this.listaParticipantesClase = await getClassParticipants(this.id_clase);
+    await this.actualizarParticipantes(true);
+
     //console.log("listaParticipantes: ", this.listaParticipantesClase);
 
-    this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
-    //console.log("Notas: ", this.listaNotasUsuarioClase);
+    if (this.teacherUser) {
+      this.listaNotasUsuarioClase = await getNotasClase(this.id_clase);
+
+    } else {
+      this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
+    }
+    console.log("Notas: ", this.listaNotasUsuarioClase);
   }
 
   async actualizarTemarios(evento: boolean) {
@@ -142,6 +148,12 @@ export class ContainerClassComponent {
 
     //TODO: se elimina correctamente pero no se refresca la lista
 
+
+  }
+
+  async actualizarParticipantes(evento: boolean) {
+
+    this.listaParticipantesClase = await getClassParticipants(this.id_clase);
 
   }
 
@@ -179,7 +191,7 @@ export class ContainerClassComponent {
     //console.log("id_clase: ", this.id_clase, " action: ", action, " temario: ", temario);
 
     const dialogRefAddUpdateTemario = this.dialogAddUpdateTemario.open(DialogContentAddTemario, {
-      
+
       data: {
         id_clase: this.id_clase,
         action: action,
@@ -193,6 +205,25 @@ export class ContainerClassComponent {
   }
   //---------------------------------------------------------------------
 
+  //-----------------Cuadro de diálogo Add Participante ----------------
+  readonly dialogAddParticipant = inject(MatDialog);
+
+  openDialogAddParticipant(id_clase: number) {
+
+    //console.log("id_clase: ", this.id_clase, " action: ", action, " temario: ", temario);
+
+    const dialogRefAddUpdateTemario = this.dialogAddParticipant.open(DialogContentAddParticipant, {
+
+      data: {
+        id_clase: this.id_clase
+      }
+    });
+
+    dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
+      //console.log(`Dialog result: ${result}`);
+      this.actualizarParticipantes(true);
+    });
+  }
   /* addTemario() {
 
     //console.log("addTemario()");

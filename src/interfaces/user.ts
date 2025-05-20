@@ -1,6 +1,6 @@
 export interface User {
-    id_usuarios: Number,
-    id_roles: Number,
+    id_usuarios: number,
+    id_roles: number,
     usuario: string,
     email: string,
     estado: string,
@@ -8,5 +8,6 @@ export interface User {
     rol: {
         id_roles: Number,
         rol: string,
-    }
+    },
+    profileImage: string,
 }

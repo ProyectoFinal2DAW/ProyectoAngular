@@ -1,0 +1,34 @@
+<div class="flex flex-col p-5" style="width: 500px;">
+
+    <h1 class="text-3xl text-center pt-5 pb-2">Añadir participante</h1>
+
+    <mat-dialog-content class="mat-typography">
+
+
+        <form [formGroup]="addParticipanteForm" (ngSubmit)="onSubmitAddParticipante()" class="flex flex-col gap-3">
+
+
+            <mat-form-field>
+                <mat-label>Email:</mat-label>
+                <input placeholder="Escriba aquí el título del video" formControlName="emailParticipante" matInput required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Selecciona el rol</mat-label>
+                <mat-select formControlName="rolParticipante" required>
+                    <mat-option *ngFor="let role of listUserRoles" [value]="role.id_roles">
+                        {{ role.rol }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button type="submit" class="bg-green-700 px-4 py-2 text-white rounded-lg hover:bg-green-800">Añadir participante</button>
+
+
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cerrar</button>
+    </mat-dialog-actions>
+</div>

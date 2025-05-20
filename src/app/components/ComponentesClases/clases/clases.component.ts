@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { ItemClasroomComponent } from "../item-clasroom/item-clasroom.component";
 import { Class } from '../../../../interfaces/class';
 import { CuadroDialogoAddClassComponent } from "../cuadro-dialogo-add-class/cuadro-dialogo-add-class.component";
-import { getClasses } from '../../../DBManagement/DBManagement';
+import { getClasses, getClassesByIdUser } from '../../../DBManagement/DBManagement';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Dialog } from '@angular/cdk/dialog';
 import { DialogContentAddClass } from './CuadrosDeDialogo/AddUpdateClass/dialog-content-add-class';
@@ -28,7 +28,9 @@ export class ClasesComponent {
     nombre_clases: ""
   }
 
-  teacherUser: boolean = true;
+  teacherUser: boolean = false;
+
+  id_usuario: number = 0;
 
   /* crearClaseVisible: Boolean = false;
 
@@ -40,13 +42,21 @@ export class ClasesComponent {
 
   } */
   async fetchData() {
-    this.listClasses = await getClasses();
+
+    if (this.teacherUser) {
+      this.listClasses = await getClasses();
+    } else {
+      this.listClasses = await getClassesByIdUser(this.id_usuario);
+    }
+
     console.log("Lista de clases: ", this.listClasses);
   }
 
   async ngOnInit() {
 
-    await this.fetchData();
+    this.id_usuario = Number(sessionStorage.getItem("id_usuario"));
+
+
 
     let role = sessionStorage.getItem("jobTitle");
     if (role === "Alumne") {
@@ -54,7 +64,8 @@ export class ClasesComponent {
     } else {
       this.teacherUser = true;
     }
-
+    
+    await this.fetchData();
   }
 
 
@@ -70,7 +81,7 @@ export class ClasesComponent {
 
     dialogRefAddClass.afterClosed().subscribe(async result => {
       console.log(`Dialog result: ${result}`);
-      
+
       this.fetchData();
     });
   }
