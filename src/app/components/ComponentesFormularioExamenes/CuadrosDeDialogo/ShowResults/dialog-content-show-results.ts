@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Inject, inject, Input } from '@angular/core';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { PostResultadoCuestionario } from '../../../../../interfaces/postResultadoCuestionario';
 

@@ -2,10 +2,8 @@ import { Component, inject, AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ItemClasroomComponent } from "../item-clasroom/item-clasroom.component";
 import { Class } from '../../../../interfaces/class';
-import { CuadroDialogoAddClassComponent } from "../cuadro-dialogo-add-class/cuadro-dialogo-add-class.component";
 import { getClasses, getClassesByIdUser } from '../../../DBManagement/DBManagement';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Dialog } from '@angular/cdk/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogContentAddClass } from './CuadrosDeDialogo/AddUpdateClass/dialog-content-add-class';
 import AOS from 'aos';
 
@@ -71,7 +69,7 @@ export class ClasesComponent implements AfterViewInit {
     } else {
       this.teacherUser = true;
     }
-    
+
     await this.fetchData();
   }
 

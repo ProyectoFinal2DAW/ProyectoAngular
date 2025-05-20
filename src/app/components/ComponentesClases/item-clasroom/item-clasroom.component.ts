@@ -1,6 +1,6 @@
 import { Component, Input, inject, EventEmitter, Output } from '@angular/core';
 import { Class } from '../../../../interfaces/class';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogContentAddClass } from '../clases/CuadrosDeDialogo/AddUpdateClass/dialog-content-add-class';
 import { deleteClassById } from '../../../DBManagement/DBManagement';
 import { DialogContentDeleteClass } from '../clases/CuadrosDeDialogo/DeleteClass/dialog-content-delete-class';

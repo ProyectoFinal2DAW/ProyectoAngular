@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Inject, inject } from '@angular/core';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { videoClass } from '../../../../../../interfaces/videoClass';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';

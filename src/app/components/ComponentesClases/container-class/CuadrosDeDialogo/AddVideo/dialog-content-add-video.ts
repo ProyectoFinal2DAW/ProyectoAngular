@@ -1,12 +1,12 @@
-import { Component, ChangeDetectionStrategy, Inject, inject } from '@angular/core';
-import {MatDialog, MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NewVideo } from '../../../../../../interfaces/newVideo';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { postVideoClass } from '../../../../../DBManagement/DBManagement';
 import { CommonModule } from '@angular/common';
 

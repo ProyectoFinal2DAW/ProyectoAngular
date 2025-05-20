@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ContenidoTemarioDescripcion } from '../../../../interfaces/contenidoTemarioDescripcion';
 import { getContenidoTemario } from '../../../DBManagement/DBManagement';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';

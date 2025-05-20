@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
-import { Class } from '../../../../interfaces/class';
 import { NewClass } from '../../../../interfaces/newClass';
-
 import { postClasses } from '../../../DBManagement/DBManagement';
 
 @Component({

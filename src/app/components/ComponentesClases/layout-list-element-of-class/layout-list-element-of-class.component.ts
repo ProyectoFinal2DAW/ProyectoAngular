@@ -1,7 +1,6 @@
 import { Component, Input, inject, EventEmitter, Output } from '@angular/core';
 import { Temario } from '../../../../interfaces/temario';
 import { MatDialog } from '@angular/material/dialog';
-import { videoClass } from '../../../../interfaces/videoClass';
 import { DialogContentDeleteTemario } from '../container-class/CuadrosDeDialogo/DeleteTemario/dialog-content-delete-temario';
 import { deleteTemarioById } from '../../../DBManagement/DBManagement';
 import { DialogContentAddTemario } from '../container-class/CuadrosDeDialogo/AddTemario/dialog-content-add-temario';

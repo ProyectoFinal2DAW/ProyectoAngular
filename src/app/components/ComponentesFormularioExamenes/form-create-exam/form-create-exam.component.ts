@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, signal, Input } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink, ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NewPregunta } from '../../../../interfaces/newPregunta';
 import { postCuestionario } from '../../../DBManagement/DBManagement';
 import { NewCuestionario } from '../../../../interfaces/newCuestionario';

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Inject, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ItemVideoListClassContentComponent } from "../item-video-list-class-content/item-video-list-class-content.component";
 import { LayoutListElementOfClassComponent } from "../layout-list-element-of-class/layout-list-element-of-class.component";
 import { LayoutListExamsOfClassComponent } from '../layout-list-exams-of-class/layout-list-exams-of-class.component';
@@ -11,16 +11,9 @@ import { CuestionarioInfoGeneral } from '../../../../interfaces/cuestionarioInfo
 import { MatTabsModule } from '@angular/material/tabs';
 import { ItemParticipanteClaseComponent } from "../item-participante-clase/item-participante-clase.component";
 import { getClassById, getClassLessons, getClassParticipants, getNotasClase, getNotasUsuarioClase, getTestsByClass, getVideosByClass, postVideoClass } from '../../../DBManagement/DBManagement';
-import { Router } from 'express';
 import { NotasUsuarioClase } from '../../../../interfaces/notasUsuarioClase';
 import { CuadroDialogoCrearTemarioComponent } from "../cuadro-dialogo-crear-temario/cuadro-dialogo-crear-temario.component";
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { NewVideo } from '../../../../interfaces/newVideo';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogContentAddVideo } from './CuadrosDeDialogo/AddVideo/dialog-content-add-video';
 import { DialogContentShowVideo } from './CuadrosDeDialogo/ShowVideo/dialog-content-show-video';
 import { DialogContentAddTemario } from './CuadrosDeDialogo/AddTemario/dialog-content-add-temario';

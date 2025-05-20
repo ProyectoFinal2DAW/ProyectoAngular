@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { CommonModule } from '@angular/common';
-import { getListUsers, getUserImage, getUserRole } from '../../DBManagement/AzureManagement';
+import { getUserImage, getUserRole } from '../../DBManagement/AzureManagement';
 import { NewUser } from '../../../interfaces/newUser';
 import { getUserWithEmail, postUser } from '../../DBManagement/DBManagement';
 

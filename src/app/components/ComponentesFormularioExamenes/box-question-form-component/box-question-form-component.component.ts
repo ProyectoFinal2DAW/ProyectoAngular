@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { ItemResponseFormComponentComponent } from "../item-response-form-component/item-response-form-component.component";
-import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Question } from '../../../../interfaces/question';
-import { RouterLink, ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route } from '@angular/router';
 import { Router } from '@angular/router';
 import { getPreguntasCuestionario, postResultadosCuestionarios } from '../../../DBManagement/DBManagement';
 import { ItemListaRespuestaUsuario } from '../../../../interfaces/itemListaRespuestaUsuario';
 import { PostResultadoCuestionario } from '../../../../interfaces/postResultadoCuestionario';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogContentSendConfirm } from '../CuadrosDeDialogo/SendConfirm/dialog-content-send-confirm';
 import { DialogContentShowResults } from '../CuadrosDeDialogo/ShowResults/dialog-content-show-results';
 

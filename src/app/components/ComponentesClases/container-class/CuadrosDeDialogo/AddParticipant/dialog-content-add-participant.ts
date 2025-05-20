@@ -1,17 +1,15 @@
-import { Component, ChangeDetectionStrategy, Inject, inject } from '@angular/core';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink, ActivatedRoute } from '@angular/router';
-import { NewVideo } from '../../../../../../interfaces/newVideo';
+import { ActivatedRoute } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
-import { getUserRoles, getUserWithEmail, postUser, postUserIntoClass, postVideoClass } from '../../../../../DBManagement/DBManagement';
+import { getUserRoles, getUserWithEmail, postUser, postUserIntoClass } from '../../../../../DBManagement/DBManagement';
 import { CommonModule } from '@angular/common';
 import { Role } from '../../../../../../interfaces/role';
-import { getListUsers, getUserImage, getUserImageWithEmail, getUserName } from '../../../../../DBManagement/AzureManagement';
-import { User } from '../../../../../../interfaces/user';
+import { getUserImageWithEmail, getUserName } from '../../../../../DBManagement/AzureManagement';
 import { NewUser } from '../../../../../../interfaces/newUser';
 
 

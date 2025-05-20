@@ -6,7 +6,6 @@ import { CuestionarioInfoGeneral } from "../../interfaces/cuestionarioInfoGenera
 import { User } from "../../interfaces/user";
 import { Experiment } from "../../interfaces/experiment";
 import { Question } from "../../interfaces/question";
-import { QuestionarioApi } from "../../interfaces/questionarioApi";
 import { NotasUsuarioClase } from "../../interfaces/notasUsuarioClase";
 import { NewTemario } from "../../interfaces/newTemario";
 import { NewCuestionario } from "../../interfaces/newCuestionario";
@@ -16,13 +15,12 @@ import { UpdateClase } from "../../interfaces/updateClase";
 import { ContenidoTemarioDescripcion } from "../../interfaces/contenidoTemarioDescripcion";
 import { PostResultadoCuestionario } from "../../interfaces/postResultadoCuestionario";
 import { NewExperimento } from "../../interfaces/newExperimento";
-import exp from "constants";
 import { ExperimentData } from "../../interfaces/experimentData";
 import { Role } from "../../interfaces/role";
 import { NewUser } from "../../interfaces/newUser";
 import { getUserImageWithEmail } from "./AzureManagement";
 
-const baseApiUrl = "http://localhost:8005/";
+const baseApiUrl = "http://localhost:8001/";
 
 /*------------------ Subir archivos -----------------*/
 
