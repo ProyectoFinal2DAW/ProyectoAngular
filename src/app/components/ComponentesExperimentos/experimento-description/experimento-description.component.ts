@@ -33,29 +33,11 @@ export class ExperimentoDescriptionComponent {
   experiment_data: ExperimentData = {
     id_datos: 0,
     id_experimento: 0,
-    masa1: 0,
-    masa2: 0,
-    masa3: 0,
-    masa4: 0,
-    velocidad1: 0,
-    velocidad2: 0,
-    velocidad3: 0,
-    velocidad4: 0,
-    velocidad5: 0,
-    altura1: 0,
-    altura2: 0,
-    altura3: 0,
-    altura4: 0,
     tiempo1: new Date(),
     tiempo2: new Date(),
     tiempo3: new Date(),
     tiempo4: new Date(),
     tiempo5: new Date(),
-    resultado: null,
-    tipoExperimento: "",
-    longitud: 0,
-    gravedad: 9.81,
-    angulo_inclinación: 0
   };
 
   listaTiempos: Date[] = [];
@@ -76,8 +58,6 @@ export class ExperimentoDescriptionComponent {
     this.experiment_data = await getExperimentsDataById(this.id_experiment);
     //console.log("ExperimentData: ", this.experiment_data);
 
-    const distancia = this.experiment_data.longitud / 3;
-
     this.listaTiempos = [
       new Date(this.experiment_data.tiempo1),
       new Date(this.experiment_data.tiempo2),
@@ -86,7 +66,7 @@ export class ExperimentoDescriptionComponent {
 
     for (let i = 0; i < 3; i++) {
       let object: DistanceTimeData = {
-        dist: i === 0 ? 0 : this.distanceTimeData[i - 1].dist + distancia,
+        dist: i === 0 ? 0 : this.distanceTimeData[i - 1].dist + 800,
         tiempo: this.listaTiempos[i],
         velocidad: 0,
         aceleracion: 0
