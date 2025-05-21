@@ -126,7 +126,7 @@ export class ContainerClassComponent {
 
   async actualizarTemarios(evento: boolean) {
 
-    //console.log("Actualizar lista temarios");
+    console.log("Actualizar lista temarios");
     this.listaTemarios = await getClassLessons(this.id_clase);
 
     //TODO: se elimina correctamente pero no se refresca la lista
@@ -180,11 +180,7 @@ export class ContainerClassComponent {
   readonly dialogAddUpdateTemario = inject(MatDialog);
 
   openDialogAddUpdateTemario(action: string, temario: Temario) {
-
-    //console.log("id_clase: ", this.id_clase, " action: ", action, " temario: ", temario);
-
     const dialogRefAddUpdateTemario = this.dialogAddUpdateTemario.open(DialogContentAddTemario, {
-
       data: {
         id_clase: this.id_clase,
         action: action,
@@ -194,6 +190,8 @@ export class ContainerClassComponent {
 
     dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
       //console.log(`Dialog result: ${result}`);
+      console.log("Se cierra el cuadro de diálogo");
+      this.actualizarTemarios(true);
     });
   }
   //---------------------------------------------------------------------
@@ -202,11 +200,7 @@ export class ContainerClassComponent {
   readonly dialogAddParticipant = inject(MatDialog);
 
   openDialogAddParticipant(id_clase: number) {
-
-    //console.log("id_clase: ", this.id_clase, " action: ", action, " temario: ", temario);
-
     const dialogRefAddUpdateTemario = this.dialogAddParticipant.open(DialogContentAddParticipant, {
-
       data: {
         id_clase: this.id_clase
       }

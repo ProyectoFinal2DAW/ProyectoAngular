@@ -17,7 +17,7 @@ export class LayoutListElementOfClassComponent {
   teacherUser: boolean = true;
 
   @Output() elementoEliminado = new EventEmitter<boolean>(); // Evento para notificar al padre
-
+  @Output() elementoActualizado = new EventEmitter<boolean>(); // Evento para notificar al padre
 
   @Input() temario: Temario = {
     id_temario: 0,
@@ -40,24 +40,28 @@ export class LayoutListElementOfClassComponent {
 
 
   //-----------------Cuadro de diálogo Add/Update Temario----------------
-    readonly dialogAddUpdateTemario = inject(MatDialog);
-  
-    openDialogAddUpdateTemario(action: string, temario: Temario, event: any) {
+  readonly dialogAddUpdateTemario = inject(MatDialog);
 
-      event.stopPropagation();
+  openDialogAddUpdateTemario(action: string, temario: Temario, event: any) {
 
-      const dialogRefAddUpdateTemario = this.dialogAddUpdateTemario.open(DialogContentAddTemario, {
-        data: {
-          id_clase: 0,
-          action: action,
-          temario: temario
-        }
-      });
-  
-      dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
-        //console.log(`Dialog result: ${result}`);
-      });
-    }
+    event.stopPropagation();
+
+    const dialogRefAddUpdateTemario = this.dialogAddUpdateTemario.open(DialogContentAddTemario, {
+      data: {
+        id_clase: 0,
+        action: action,
+        temario: temario
+      }
+    });
+
+    dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
+      //console.log(`Dialog result: ${result}`);
+
+      //ejecutar la funcion para eliminar el elemento
+      this.elementoActualizado.emit(true);
+
+    });
+  }
   //------------------Cuadro de diálogo eliminar temario-----------------
   readonly dialog = inject(MatDialog);
 
