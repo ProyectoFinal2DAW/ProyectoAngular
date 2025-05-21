@@ -20,7 +20,7 @@ import { Role } from "../../interfaces/role";
 import { NewUser } from "../../interfaces/newUser";
 import { getUserImageWithEmail } from "./AzureManagement";
 
-const baseApiUrl = "http://localhost:8001/";
+const baseApiUrl = "http://172.17.22.114:8001/";
 
 /*------------------ Subir archivos -----------------*/
 

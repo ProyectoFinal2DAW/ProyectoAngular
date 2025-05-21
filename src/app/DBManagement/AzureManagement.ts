@@ -7,7 +7,7 @@ export async function getUserRole(result: any) {
         .then(response => response.json())
         .then((rolesResponse: any) => {
             sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
-            //sessionStorage.setItem('jobTitle', "sdfsdf");
+           // sessionStorage.setItem('jobTitle', "fgttrerfg");
             console.log('Roles del usuario:', rolesResponse);
         })
 }
