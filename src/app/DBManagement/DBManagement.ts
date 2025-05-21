@@ -428,12 +428,6 @@ export async function postVideoClass(id_clases: number, newVideo: NewVideo) {
         videos_temario: newVideo.videos_temario
     }
 
-    let video = {
-        titulo_video: newVideo.titulo_video,
-        foto_temario: newVideo.foto_temario,
-        videos_temario: newVideo.videos_temario
-    }
-
     ////console.log("postVideoClass()");
 
     try {
