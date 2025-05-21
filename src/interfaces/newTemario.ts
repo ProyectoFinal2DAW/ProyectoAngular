@@ -5,4 +5,5 @@ export interface NewTemario {
     contenido: string,
     foto_temario: string,
     videos_temario: string,
+    titulo_video: string,
 }

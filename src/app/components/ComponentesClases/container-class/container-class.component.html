@@ -1,9 +1,5 @@
 <div class="mt-[80px] p-10 flex flex-col gap-8 overflow-auto">
 
-    @if (showAddTemario) {
-    <app-cuadro-dialogo-crear-temario [datosClase]=datosClase class="absolute z-20"></app-cuadro-dialogo-crear-temario>
-    }
-
     <div class="w-full h-[14rem] flex flex-col p-5 rounded-xl"
         [style]="{'background-image': 'url(' + datosClase.foto_clases + ')', 'background-size': 'cover', 'background-position': 'center'}">
 

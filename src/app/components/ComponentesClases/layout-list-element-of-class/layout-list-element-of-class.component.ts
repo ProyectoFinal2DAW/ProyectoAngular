@@ -27,6 +27,7 @@ export class LayoutListElementOfClassComponent {
     contenido: "",
     foto_temario: "",
     videos_temario: "",
+    titulo_video: ""
   }
 
   ngOnInit() {

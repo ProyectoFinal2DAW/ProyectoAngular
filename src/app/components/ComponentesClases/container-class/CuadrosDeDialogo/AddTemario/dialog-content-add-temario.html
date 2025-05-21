@@ -1,6 +1,6 @@
 <div class="flex flex-col p-5" style="width: 500px;">
 
-    
+
     @if (action === 'a') {
     <h1 class="text-3xl text-center pt-5">Añadir teoría</h1>
     } @else {
@@ -25,23 +25,28 @@
 
             <mat-form-field>
                 <mat-label>Descripción:</mat-label>
-                <textarea cdkTextareaAutosize type="text" placeholder="Descripción" formControlName="descripcionTemario" #autosize="cdkTextareaAutosize"
-                    matInput></textarea>
+                <textarea cdkTextareaAutosize type="text" placeholder="Descripción" formControlName="descripcionTemario"
+                    #autosize="cdkTextareaAutosize" matInput></textarea>
             </mat-form-field>
 
-                <mat-label>Contenido pdf:</mat-label>
-<!--                 <input type="text" formControlName="contenidoTemario" matInput />
- -->                <input type="file" (change)="onFileSelectedPdf($event)" />
 
-                <mat-label>Video:</mat-label>
-<!--                 <input placeholder="Introduce la url del video" type="text" formControlName="videoTemario" matInput />
- -->                <input type="file" (change)="onFileSelectedVideo($event)" />
 
-                <mat-label>Imagen:</mat-label>
-                <!-- <input placeholder="Introduce la url de la imagen" type="url" formControlName="imagenTemario"
+
+            <mat-form-field>
+                <mat-label>Título video:</mat-label>
+                <input placeholder="Título libro" formControlName="tituloVideo" matInput />
+            </mat-form-field>
+
+            <mat-label>Video:</mat-label>
+            <input type="file" (change)="onFileSelectedVideo($event)" />
+
+            <mat-label>Imagen:</mat-label>
+            <!-- <input placeholder="Introduce la url de la imagen" type="url" formControlName="imagenTemario"
                     matInput /> -->
-                    <input type="file" (change)="onFileSelectedImg($event)" />
+            <input type="file" (change)="onFileSelectedImg($event)" />
 
+            <mat-label>Contenido pdf:</mat-label>
+            <input type="file" (change)="onFileSelectedPdf($event)" />
             <!-- <div>
                 <mat-label>Imagen:</mat-label>
                 <input type="file" formControlName="imagenTemario" />
@@ -49,9 +54,11 @@
 
 
             @if (action === 'a') {
-            <button type="submit" class="bg-green-700 px-4 py-2 rounded-lg text-white hover:bg-green-800">Guardar</button>
+            <button type="submit"
+                class="bg-green-700 px-4 py-2 rounded-lg text-white hover:bg-green-800">Guardar</button>
             } @else {
-            <button type="submit" class="bg-green-700 px-4 py-2 rounded-lg text-white hover:bg-green-800">Actualizar</button>
+            <button type="submit"
+                class="bg-green-700 px-4 py-2 rounded-lg text-white hover:bg-green-800">Actualizar</button>
             }
 
 

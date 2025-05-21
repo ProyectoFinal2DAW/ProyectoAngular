@@ -292,7 +292,7 @@ export async function postTemario(newTemario: NewTemario) {
         "&descrip_temario=" + newTemario.descrip_temario +
         "&contenido=" + newTemario.contenido +
         "&foto_temario=" + newTemario.foto_temario +
-        "&video_clases=" + newTemario.videos_temario);
+        "&videos_temario=" + newTemario.videos_temario);
 
     try {
         const response = await fetch(
@@ -302,7 +302,7 @@ export async function postTemario(newTemario: NewTemario) {
             "&descrip_temario=" + newTemario.descrip_temario +
             "&contenido=" + newTemario.contenido +
             "&foto_temario=" + newTemario.foto_temario +
-            "&video_clases=" + newTemario.videos_temario, {
+            "&videos_temario=" + newTemario.videos_temario, {
 
             method: "POST",
             headers: {
@@ -333,7 +333,7 @@ export async function putTemario(newTemario: UpdateTemario) {
         "&descrip_temario=" + newTemario.descrip_temario +
         "&contenido=" + newTemario.contenido +
         "&foto_temario=" + newTemario.foto_temario +
-        "&video_clases=" + newTemario.videos_temario);
+        "&videos_temario=" + newTemario.videos_temario);
 
     try {
         const response = await fetch(
@@ -343,7 +343,7 @@ export async function putTemario(newTemario: UpdateTemario) {
             "&descrip_temario=" + newTemario.descrip_temario +
             "&contenido=" + newTemario.contenido +
             "&foto_temario=" + newTemario.foto_temario +
-            "&video_clases=" + newTemario.videos_temario, {
+            "&videos_temario=" + newTemario.videos_temario, {
 
             method: "PUT",
             headers: {
@@ -422,18 +422,24 @@ export async function getVideosByClass(id_clase: Number) {
 export async function postVideoClass(id_clases: number, newVideo: NewVideo) {
 
 
+    let video = {
+        titulo_video: newVideo.titulo_video,
+        foto_temario: newVideo.foto_temario,
+        videos_temario: newVideo.videos_temario
+    }
+
     //console.log("postVideoClass()");
 
     try {
 
         const response = await fetch(
-            baseApiUrl + "temarios/clase/" + id_clases + "/videos",
+            baseApiUrl + "temarios/clase/" + id_clases + "/videos?id_temario=" + newVideo.temario_video,
             {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(newVideo)
+                body: JSON.stringify(video)
             });
 
         if (!response.ok) {
