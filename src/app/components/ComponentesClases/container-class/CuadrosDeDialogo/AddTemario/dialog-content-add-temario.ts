@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Inject, Input } from '@angular/core';
-import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Class } from '../../../../../../interfaces/class';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -16,7 +16,7 @@ import { UpdateTemario } from '../../../../../../interfaces/updateTemario';
     selector: 'dialog-content-add-temario',
     templateUrl: 'dialog-content-add-temario.html',
     imports: [MatDialogModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    
 })
 export class DialogContentAddTemario {
 
@@ -36,7 +36,12 @@ export class DialogContentAddTemario {
     addTemarioForm: FormGroup;
 
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: { id_clase: number, action: string, temario: Temario }, private fb: FormBuilder) {
+    constructor(
+        public dialogRef: MatDialogRef<DialogContentAddTemario>,
+        @Inject(MAT_DIALOG_DATA) 
+        public data: { id_clase: number, action: string, temario: Temario }, 
+        private fb: FormBuilder
+    ){
         this.addTemarioForm = this.fb.group({
             nombreTemario: ['', Validators.required],
             descripcionTemario: [''],
@@ -56,6 +61,10 @@ export class DialogContentAddTemario {
             this.addTemarioForm.patchValue({ videoTemario: this.temarioUpdate.videos_temario });
             //this.addTemarioForm.patchValue({ imagenTemario: this.temarioUpdate.foto_temario });
         }
+    }
+
+    toSend(): void {
+        this.dialogRef.close(true); // Cierra el diálogo y envía "true" como resultado
     }
 
     selectedFileImg: File | null = null;
@@ -125,26 +134,45 @@ export class DialogContentAddTemario {
             }
 
             let response = await postTemario(newTemario);
-            //console.log("Api response: ", response);
+            console.log("Api response: ", response);
 
             // Ejecutar cuando la accion sea Update
         } else {
+
+            let rutaImg = "";
+            if (!this.selectedFileImg) {
+                rutaImg = this.temarioUpdate.foto_temario;
+            } else {
+                rutaImg = "http://monlab.ddns.net/images/" + this.selectedFileImg?.name;
+            }
+            let rutaVideo = "";
+            if (!this.selectedVideoFile) {
+                rutaVideo = this.temarioUpdate.videos_temario;
+            } else {
+                rutaVideo = "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name;
+            }
+            let rutaPdf = "";
+            if (!this.selectedPdfFile) {
+                rutaPdf = this.temarioUpdate.contenido;
+            } else {
+                rutaPdf = "http://monlab.ddns.net/images/" + this.selectedPdfFile?.name;
+            }
 
             const updateTemario: UpdateTemario = {
                 temario_id: this.temarioUpdate.id_temario,
                 id_clases: this.temarioUpdate.id_clases,
                 nombre_temario: this.addTemarioForm.value.nombreTemario,
                 descrip_temario: this.addTemarioForm.value.descripcionTemario,
-                contenido: this.addTemarioForm.value.contenidoTemario,
-                foto_temario: this.addTemarioForm.value.imagenTemario,
-                videos_temario: this.addTemarioForm.value.videoTemario
+                contenido: rutaPdf,
+                foto_temario: rutaImg,
+                videos_temario: rutaVideo
             }
 
             let response = await putTemario(updateTemario);
-            //console.log("Api response: ", response);
+            console.log("Api response: ", response);
 
         }
-
+        this.dialogRef.close(true);
 
 
 

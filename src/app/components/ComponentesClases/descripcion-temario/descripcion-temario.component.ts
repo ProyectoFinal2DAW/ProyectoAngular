@@ -46,12 +46,13 @@ export class DescripcionTemarioComponent {
 
     this.contenidoClase = await getContenidoTemario(this.id_clase, this.id_temario);
 
-    let url = this.contenidoClase.videos_temario;
+    console.log("Contenido clase: ", this.contenidoClase);
+    /* let url = this.contenidoClase.videos_temario;
     let urlBase = "https://www.youtube.com/embed/";
     let urlVideoId = url.split('?v=')[1]
 
     let urlEnbed = urlBase + urlVideoId; 
-    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlEnbed);
+    this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlEnbed); */
 
     //console.log("VideoURL: ", this.videoUrl);
     //console.log("contenido clase: ", this.contenidoClase);

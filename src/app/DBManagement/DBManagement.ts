@@ -19,6 +19,7 @@ import { ExperimentData } from "../../interfaces/experimentData";
 import { Role } from "../../interfaces/role";
 import { NewUser } from "../../interfaces/newUser";
 import { getUserImageWithEmail } from "./AzureManagement";
+import { UpdateTemario } from "../../interfaces/updateTemario";
 
 const baseApiUrl = "http://localhost:8001/";
 
@@ -238,7 +239,6 @@ export async function getClassLessons(id_clase: Number) {
             return lessonsList;
         }
 
-        // Si la respuesta es exitosa, se procesan los datos
         lessonsList = await response.json();
 
     } catch (error) {
@@ -286,7 +286,13 @@ export async function getContenidoTemario(id_clase: number, id_temario: number) 
 
 export async function postTemario(newTemario: NewTemario) {
 
-    //console.log("postClasses()");
+    console.log(baseApiUrl + "temarios/?" +
+            "id_clases=" + newTemario.id_clases +
+            "&nombre_temario=" + newTemario.nombre_temario +
+            "&descrip_temario=" + newTemario.descrip_temario +
+            "&contenido=" + newTemario.contenido +
+            "&foto_temario=" + newTemario.foto_temario +
+            "&video_clases=" + newTemario.videos_temario);
 
     try {
         const response = await fetch(
@@ -306,10 +312,11 @@ export async function postTemario(newTemario: NewTemario) {
         });
 
         if (!response.ok) {
-            throw new Error('Error al crear la clase');
+            throw new Error('Error al crear el temario');
         }
 
         const data = await response.json();
+        alert("Temario creado correctamente");
         return data;
 
     } catch (error) {
@@ -318,14 +325,19 @@ export async function postTemario(newTemario: NewTemario) {
         return error;
     }
 }
-export async function putTemario(newTemario: NewTemario) {
+export async function putTemario(newTemario: UpdateTemario) {
 
-    //TODO: Sin hacer, creo que no esta hecho !!!!!!!!
-    //console.log("putClasses()");
+    console.log(baseApiUrl + "temarios/ " + newTemario.temario_id + "/?" +
+            "id_clases=" + newTemario.id_clases +
+            "&nombre_temario=" + newTemario.nombre_temario +
+            "&descrip_temario=" + newTemario.descrip_temario +
+            "&contenido=" + newTemario.contenido +
+            "&foto_temario=" + newTemario.foto_temario +
+            "&video_clases=" + newTemario.videos_temario);
 
     try {
         const response = await fetch(
-            baseApiUrl + "temarios/?" +
+            baseApiUrl + "temarios/ " + newTemario.temario_id + "/?" +
             "id_clases=" + newTemario.id_clases +
             "&nombre_temario=" + newTemario.nombre_temario +
             "&descrip_temario=" + newTemario.descrip_temario +
@@ -345,6 +357,8 @@ export async function putTemario(newTemario: NewTemario) {
         }
 
         const data = await response.json();
+
+        alert("Temario actualizado correctamente");
         return data;
 
     } catch (error) {
