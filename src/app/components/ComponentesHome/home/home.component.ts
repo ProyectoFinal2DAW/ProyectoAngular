@@ -19,6 +19,10 @@ export class HomeComponent implements AfterViewInit {
       duration: 1200,
       once: true
     });
+
+    setTimeout(() => {
+      AOS.refreshHard();
+    }, 500);
   }
 
 }
