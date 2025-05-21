@@ -63,21 +63,21 @@ export class BoxQuestionFormComponentComponent {
       this.nombre_cuestionario = params['nombre'];
       this.id_clase = params['id_clase'];
 
-      //console.log("Id recibido: " + this.id_questionario);
+      ////console.log("Id recibido: " + this.id_questionario);
     });
 
     this.fetchData();
   }
 
   async fetchData() {
-    //console.log("fetchData()");
+    ////console.log("fetchData()");
 
     this.listQuestions = await getPreguntasCuestionario(this.id_questionario);
 
   }
 
   onSubmit() {
-    //console.log("onSubmit()");
+    ////console.log("onSubmit()");
 
 
     this.openDialog();
@@ -93,15 +93,15 @@ export class BoxQuestionFormComponentComponent {
 
     let acierto = false;
 
-    //console.log("ListaRespuestasUsuario: ", this.listaRespuestasUsuario);
-    //console.log("element: ", element);
+    ////console.log("ListaRespuestasUsuario: ", this.listaRespuestasUsuario);
+    ////console.log("element: ", element);
 
     while (!encontrado && i < this.listaRespuestasUsuario.length) {
 
       if (this.listaRespuestasUsuario[i].id == element.id_pregunta) {
         encontrado = true;
         posicionEncontrada = i;
-        //console.log("Encontado: ", this.listaRespuestasUsuario[i].id, "    ", element.id_pregunta);
+        ////console.log("Encontado: ", this.listaRespuestasUsuario[i].id, "    ", element.id_pregunta);
       }
 
       i++;
@@ -110,8 +110,8 @@ export class BoxQuestionFormComponentComponent {
     if (encontrado) {
       if (this.listaRespuestasUsuario[posicionEncontrada].respuesta == element.correcta) {
         acierto = true;
-        //console.log("acierto: ", this.listaRespuestasUsuario[posicionEncontrada].respuesta);
-        //console.log("correcta: ", element.correcta);
+        ////console.log("acierto: ", this.listaRespuestasUsuario[posicionEncontrada].respuesta);
+        ////console.log("correcta: ", element.correcta);
       }
     }
 
@@ -124,7 +124,7 @@ export class BoxQuestionFormComponentComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
 
       if (result) {
         for (let i = 0; i < this.listQuestions.length; i++) {
@@ -132,7 +132,7 @@ export class BoxQuestionFormComponentComponent {
 
           //Devuelve true si la respuesta es correcta o false si es incorrecta
           let respuesta = this.buscarRespuesta(element);
-          //console.log("Respuesta: ", respuesta);
+          ////console.log("Respuesta: ", respuesta);
 
           if (respuesta) {
             this.cantidadAciertos++;
@@ -146,10 +146,10 @@ export class BoxQuestionFormComponentComponent {
 
         nota = nota / 10;
 
-        //console.log("idCuestionario: ", this.id_questionario);
-        //console.log("Nota: ", nota.toFixed(2));
-        //console.log("Cantidad aciertos: ", this.cantidadAciertos);
-        //console.log("Cantidad fallos: ", this.cantidadFallos);
+        ////console.log("idCuestionario: ", this.id_questionario);
+        ////console.log("Nota: ", nota.toFixed(2));
+        ////console.log("Cantidad aciertos: ", this.cantidadAciertos);
+        ////console.log("Cantidad fallos: ", this.cantidadFallos);
 
         const postResultadoCuestionario: PostResultadoCuestionario = {
           id_questionario: this.id_questionario,
@@ -161,7 +161,7 @@ export class BoxQuestionFormComponentComponent {
         }
 
         const resultado = postResultadosCuestionarios(postResultadoCuestionario);
-        //console.log("Resultado Api Resultado cuestionarios", resultado);
+        ////console.log("Resultado Api Resultado cuestionarios", resultado);
 
 
         this.openDialogShowResults(postResultadoCuestionario)
@@ -178,7 +178,7 @@ export class BoxQuestionFormComponentComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
 
       this.router.navigate(['/clase'], { queryParams: { id: this.id_clase } });
     });
@@ -187,21 +187,21 @@ export class BoxQuestionFormComponentComponent {
 
   procesarRespuesta(evento: ItemListaRespuestaUsuario) {
     this.respuestaSeleccionada = evento;
-    //console.log("Pregunta ID:", evento.id, "Respuesta:", evento.respuesta);
+    ////console.log("Pregunta ID:", evento.id, "Respuesta:", evento.respuesta);
 
     let posicionEncontrada = this.buscarIdEnArray(evento);
 
-    //console.log("Posicion encontrada: ", posicionEncontrada);
+    ////console.log("Posicion encontrada: ", posicionEncontrada);
 
     if (posicionEncontrada === -1) {
-      //console.log("Se añade a la lista, no existia");
+      ////console.log("Se añade a la lista, no existia");
       this.listaRespuestasUsuario.push(evento)
     } else {
-      //console.log("Se modifica la respuesta ya guardada");
+      ////console.log("Se modifica la respuesta ya guardada");
       this.listaRespuestasUsuario[posicionEncontrada].respuesta = evento.respuesta;
     }
 
-    //console.log("Lista actualizada: ", this.listaRespuestasUsuario);
+    ////console.log("Lista actualizada: ", this.listaRespuestasUsuario);
 
   }
 
@@ -211,7 +211,7 @@ export class BoxQuestionFormComponentComponent {
     let encontrado = false;
     let valorReturn = -1;
 
-    //console.log("ListaRespuestasUsuario: ", this.listaRespuestasUsuario);
+    ////console.log("ListaRespuestasUsuario: ", this.listaRespuestasUsuario);
 
     while (!encontrado && i < this.listaRespuestasUsuario.length) {
 

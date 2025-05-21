@@ -8,7 +8,7 @@ export async function getUserRole(result: any) {
         .then((rolesResponse: any) => {
             sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
            // sessionStorage.setItem('jobTitle', "fgttrerfg");
-            console.log('Roles del usuario:', rolesResponse);
+            //console.log('Roles del usuario:', rolesResponse);
         })
 }
 
@@ -29,7 +29,7 @@ export async function getUserImage(result: any) {
             const imageUrl = URL.createObjectURL(blob);
             // Ahora puedes usar esta URL en tu HTML para mostrar la imagen
             //this.profileImageUrl = imageUrl;
-            //console.log('URL de la imagen de perfil:', imageUrl);
+            ////console.log('URL de la imagen de perfil:', imageUrl);
 
             sessionStorage.setItem('profileImageUrl', imageUrl); // Guardar la URL de la imagen en sessionStorage
         })
@@ -48,7 +48,7 @@ export async function getListUsers(result: any) {
         .then(response => response.json())
         .then((rolesResponse: any) => {
             //sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
-            console.log('Lista de usuarios:', rolesResponse);
+            //console.log('Lista de usuarios:', rolesResponse);
         })
         .catch(error => console.error('Error al obtener los roles:', error));
 }

@@ -78,11 +78,11 @@ export class ContainerClassComponent {
       this.teacherUser = true;
     }
 
-    //console.log("teacherUser: ", this.teacherUser);
+    ////console.log("teacherUser: ", this.teacherUser);
 
     this.route.queryParams.subscribe(params => {
       this.id_clase = params['id'];
-      //console.log("Id recibido: " + this.id_clase);
+      ////console.log("Id recibido: " + this.id_clase);
     });
 
     this.fetchData();
@@ -90,13 +90,13 @@ export class ContainerClassComponent {
 
   async fetchData() {
 
-    //console.log("fetchData()");
+    ////console.log("fetchData()");
 
     this.datosClase = await getClassById(this.id_clase);
-    //console.log("Datos clase: ", this.datosClase);
+    ////console.log("Datos clase: ", this.datosClase);
 
     this.listaTemarios = await getClassLessons(this.id_clase);
-    //console.log("Datos temarios: ", this.listaTemarios);
+    ////console.log("Datos temarios: ", this.listaTemarios);
 
     const temariosParaStorage = this.listaTemarios.map(temario => ({
       id: temario.id_temario,
@@ -107,13 +107,13 @@ export class ContainerClassComponent {
 
     this.listaVideos = await getVideosByClass(this.id_clase);
 
-    //console.log("Lista videos: ", this.listaVideos);
+    ////console.log("Lista videos: ", this.listaVideos);
 
     this.listaCuestionarios = await getTestsByClass(this.id_clase);
 
     await this.actualizarParticipantes(true);
 
-    //console.log("listaParticipantes: ", this.listaParticipantesClase);
+    ////console.log("listaParticipantes: ", this.listaParticipantesClase);
 
     if (this.teacherUser) {
       this.listaNotasUsuarioClase = await getNotasClase(this.id_clase);
@@ -121,12 +121,12 @@ export class ContainerClassComponent {
     } else {
       this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
     }
-    console.log("Notas: ", this.listaNotasUsuarioClase);
+    //console.log("Notas: ", this.listaNotasUsuarioClase);
   }
 
   async actualizarTemarios(evento: boolean) {
 
-    console.log("Actualizar lista temarios");
+    //console.log("Actualizar lista temarios");
     this.listaTemarios = await getClassLessons(this.id_clase);
 
     //TODO: se elimina correctamente pero no se refresca la lista
@@ -135,7 +135,7 @@ export class ContainerClassComponent {
 
   async actualizarCuestionarios(evento: boolean) {
 
-    //console.log("Actualizar lista cuestionarios")
+    ////console.log("Actualizar lista cuestionarios")
 
     this.listaCuestionarios = await getTestsByClass(this.id_clase);
 
@@ -159,7 +159,7 @@ export class ContainerClassComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
     });
   }
   //---------------------------------------------------------------------
@@ -172,7 +172,7 @@ export class ContainerClassComponent {
     });
 
     dialogRefAddVideo.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
     });
   }
   //---------------------------------------------------------------------
@@ -189,8 +189,8 @@ export class ContainerClassComponent {
     });
 
     dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
-      console.log("Se cierra el cuadro de diálogo");
+      ////console.log(`Dialog result: ${result}`);
+      //console.log("Se cierra el cuadro de diálogo");
       this.actualizarTemarios(true);
     });
   }
@@ -207,13 +207,13 @@ export class ContainerClassComponent {
     });
 
     dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
       this.actualizarParticipantes(true);
     });
   }
   /* addTemario() {
 
-    //console.log("addTemario()");
+    ////console.log("addTemario()");
 
     this.showAddTemario = !this.showAddTemario;
 
@@ -221,7 +221,7 @@ export class ContainerClassComponent {
 
   addExamen() {
 
-    //console.log("addExamen()");
+    ////console.log("addExamen()");
 
   }
 

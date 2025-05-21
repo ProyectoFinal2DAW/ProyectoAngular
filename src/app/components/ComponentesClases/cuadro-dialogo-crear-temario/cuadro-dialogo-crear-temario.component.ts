@@ -39,10 +39,10 @@ export class CuadroDialogoCrearTemarioComponent {
 
   async onSubmitCrearTemario() {
 
-    //console.log("OnSubmitCrearTemario()");
+    ////console.log("OnSubmitCrearTemario()");
 
     if (this.addTemarioForm.invalid) {
-      //console.log("Formulario inválido");
+      ////console.log("Formulario inválido");
       alert("Compruebe los campos del formulario");
       return;
     }
@@ -59,7 +59,7 @@ export class CuadroDialogoCrearTemarioComponent {
 
     let response = await postTemario(newTemario);
 
-    //console.log("Api response: ", response);
+    ////console.log("Api response: ", response);
 
   }
 

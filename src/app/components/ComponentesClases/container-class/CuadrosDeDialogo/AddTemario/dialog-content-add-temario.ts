@@ -75,31 +75,31 @@ export class DialogContentAddTemario {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedFileImg = input.files[0];
-            //console.log("Archivo seleccionado:", this.selectedFileImg);
+            ////console.log("Archivo seleccionado:", this.selectedFileImg);
         }
     }
     onFileSelectedVideo(event: Event) {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedVideoFile = input.files[0];
-            //console.log("Archivo seleccionado:", this.selectedVideoFile);
+            ////console.log("Archivo seleccionado:", this.selectedVideoFile);
         }
     }
     onFileSelectedPdf(event: Event) {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedPdfFile = input.files[0];
-            //console.log("Archivo seleccionado:", this.selectedPdfFile);
+            ////console.log("Archivo seleccionado:", this.selectedPdfFile);
         }
     }
 
     async onSubmitCrearActualizarTemario() {
 
-        //console.log("OnSubmitCrearActualizarTemario()");
+        ////console.log("OnSubmitCrearActualizarTemario()");
 
 
         if (this.addTemarioForm.invalid) {
-            //console.log("Formulario inválido");
+            ////console.log("Formulario inválido");
             alert("Compruebe los campos del formulario");
             return;
         }
@@ -134,7 +134,7 @@ export class DialogContentAddTemario {
             }
 
             let response = await postTemario(newTemario);
-            console.log("Api response: ", response);
+            //console.log("Api response: ", response);
 
             // Ejecutar cuando la accion sea Update
         } else {
@@ -169,7 +169,7 @@ export class DialogContentAddTemario {
             }
 
             let response = await putTemario(updateTemario);
-            console.log("Api response: ", response);
+            //console.log("Api response: ", response);
 
         }
         this.dialogRef.close(true);

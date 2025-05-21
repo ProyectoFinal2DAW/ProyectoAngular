@@ -34,7 +34,7 @@ export class ItemExperimentComponent {
     } else {
       this.teacherUser = true;
     }
-    console.log("role: ", role);
+    //console.log("role: ", role);
   }
 
   @Input() contadorExperimento: number = 0;
@@ -56,7 +56,7 @@ export class ItemExperimentComponent {
     });
 
     dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
       this.elementoActualizado.emit(true);
     });
   }

@@ -41,7 +41,7 @@ export class ItemResponseFormComponentComponent implements OnInit {
   @Output() respuestaSeleccionada = new EventEmitter<{ id: number, respuesta: string }>(); 
 
   onSelectedRespuesta(respuesta: string) {
-    //console.log("Seleccionaste:", respuesta);
+    ////console.log("Seleccionaste:", respuesta);
     this.respuestaSeleccionada.emit({ id: this.question.id_pregunta, respuesta });
   }
 
