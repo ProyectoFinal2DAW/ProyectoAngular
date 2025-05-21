@@ -287,12 +287,12 @@ export async function getContenidoTemario(id_clase: number, id_temario: number) 
 export async function postTemario(newTemario: NewTemario) {
 
     console.log(baseApiUrl + "temarios/?" +
-            "id_clases=" + newTemario.id_clases +
-            "&nombre_temario=" + newTemario.nombre_temario +
-            "&descrip_temario=" + newTemario.descrip_temario +
-            "&contenido=" + newTemario.contenido +
-            "&foto_temario=" + newTemario.foto_temario +
-            "&video_clases=" + newTemario.videos_temario);
+        "id_clases=" + newTemario.id_clases +
+        "&nombre_temario=" + newTemario.nombre_temario +
+        "&descrip_temario=" + newTemario.descrip_temario +
+        "&contenido=" + newTemario.contenido +
+        "&foto_temario=" + newTemario.foto_temario +
+        "&video_clases=" + newTemario.videos_temario);
 
     try {
         const response = await fetch(
@@ -328,12 +328,12 @@ export async function postTemario(newTemario: NewTemario) {
 export async function putTemario(newTemario: UpdateTemario) {
 
     console.log(baseApiUrl + "temarios/ " + newTemario.temario_id + "/?" +
-            "id_clases=" + newTemario.id_clases +
-            "&nombre_temario=" + newTemario.nombre_temario +
-            "&descrip_temario=" + newTemario.descrip_temario +
-            "&contenido=" + newTemario.contenido +
-            "&foto_temario=" + newTemario.foto_temario +
-            "&video_clases=" + newTemario.videos_temario);
+        "id_clases=" + newTemario.id_clases +
+        "&nombre_temario=" + newTemario.nombre_temario +
+        "&descrip_temario=" + newTemario.descrip_temario +
+        "&contenido=" + newTemario.contenido +
+        "&foto_temario=" + newTemario.foto_temario +
+        "&video_clases=" + newTemario.videos_temario);
 
     try {
         const response = await fetch(
@@ -709,7 +709,7 @@ export async function getClassParticipants(id_clase: Number) {
 
                 listParticipants[i].profileImage = imagen;
 
-                
+
             }
         }
 
@@ -735,7 +735,7 @@ export async function getUserWithEmail(email: string) {
             user = await response.json();
             return user;
         }
-        
+
 
     } catch (error) {
         console.log("Error al obtener el usuario con el email: ", error);
@@ -771,7 +771,7 @@ export async function postUser(newUser: NewUser) {
             },
             //body: JSON.stringify(newClass)
         });
-        
+
         console.log("response: ", response);
 
         if (!response.ok) {
@@ -1061,6 +1061,11 @@ export async function getNotasClase(idClase: number) {
 
         let response = await fetch(baseApiUrl + 'resultados_cuestionarios/clase/' + idClase);
 
+        if (response.status === 404) {
+            //console.warn(`Notas no encontradas para clase ${idClase} (404)`);
+            return listaNotasUsuarioClase;
+        }
+
         listaNotasUsuarioClase = await response.json();
 
     } catch (error) {
@@ -1082,7 +1087,7 @@ export async function postResultadosCuestionarios(postResultadoCuestionario: Pos
         "id_questionario=" + postResultadoCuestionario.id_questionario +
         "&id_usuarios=" + postResultadoCuestionario.id_usuarios +
         "&nota=" + postResultadoCuestionario.nota +
-        
+
         "&total_correctas=" + postResultadoCuestionario.total_correctas +
         "&total_falladas=" + postResultadoCuestionario.total_falladas);
 
@@ -1091,7 +1096,7 @@ export async function postResultadosCuestionarios(postResultadoCuestionario: Pos
         "id_questionario=" + postResultadoCuestionario.id_questionario +
         "&id_usuarios=" + postResultadoCuestionario.id_usuarios +
         "&nota=" + postResultadoCuestionario.nota +
-        
+
         "&total_correctas=" + postResultadoCuestionario.total_correctas +
         "&total_falladas=" + postResultadoCuestionario.total_falladas, {
 
