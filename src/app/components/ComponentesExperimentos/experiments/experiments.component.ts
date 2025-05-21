@@ -49,7 +49,7 @@ export class ExperimentsComponent implements AfterViewInit {
   }
 
   async fetchData() {
-    console.log("Fetching data...");
+    //console.log("Fetching data...");
     this.listExperiments = await getExperiments();
   }
 
@@ -66,10 +66,10 @@ export class ExperimentsComponent implements AfterViewInit {
     });
 
     dialogRefAddExperiment.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
 
-      console.log("result, ", result);
-      console.log("Se ha cerrado el diálogo de añadir experimento");
+      //console.log("result, ", result);
+      //console.log("Se ha cerrado el diálogo de añadir experimento");
 
       this.fetchData();
     });

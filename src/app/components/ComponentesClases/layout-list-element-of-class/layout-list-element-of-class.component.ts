@@ -56,7 +56,7 @@ export class LayoutListElementOfClassComponent {
     });
 
     dialogRefAddUpdateTemario.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
 
       //ejecutar la funcion para eliminar el elemento
       this.elementoActualizado.emit(true);
@@ -75,11 +75,11 @@ export class LayoutListElementOfClassComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
       if (result) {
         //ejecutar la funcion para eliminar el elemento
         deleteTemarioById(idTemario).then(() => {
-          //console.log('Eliminación completada');
+          ////console.log('Eliminación completada');
           // Aquí puedes actualizar la lista, mostrar un mensaje, etc.
           this.elementoEliminado.emit(true);
 

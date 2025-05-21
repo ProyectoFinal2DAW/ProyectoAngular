@@ -48,7 +48,7 @@ export class ExperimentoDescriptionComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.id_experiment = params['id'];
-      //console.log("Id recibido: " + this.id_experiment);
+      ////console.log("Id recibido: " + this.id_experiment);
       this.fetchData(); // Llamamos aquí al cargar
     });
   }
@@ -56,7 +56,7 @@ export class ExperimentoDescriptionComponent {
   async fetchData() {
     this.experiment = await getExperimentById(this.id_experiment);
     this.experiment_data = await getExperimentsDataById(this.id_experiment);
-    //console.log("ExperimentData: ", this.experiment_data);
+    ////console.log("ExperimentData: ", this.experiment_data);
 
     this.listaTiempos = [
       new Date(this.experiment_data.tiempo1),
@@ -89,7 +89,7 @@ export class ExperimentoDescriptionComponent {
       this.distanceTimeData.push(object);
     }
 
-    //console.log("DistanceTimeData: ", this.distanceTimeData);
+    ////console.log("DistanceTimeData: ", this.distanceTimeData);
 
     const url = this.experiment.video_experimento;
     if (url.includes("?v=")) {

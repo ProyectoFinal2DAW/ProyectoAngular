@@ -25,7 +25,7 @@ export class Login2Component implements OnInit {
       next: (result) => {
         if (result && result.account) {
 
-          console.log("Login result: ", result);
+          //console.log("Login result: ", result);
 
           getUserRole(result);
 
@@ -35,7 +35,7 @@ export class Login2Component implements OnInit {
             
             const userbd = await getUserWithEmail(result.account.username);
 
-            console.log("User from DB: ", userbd);
+            //console.log("User from DB: ", userbd);
             //const userbd = 0; // simulado
 
             if (userbd == null) {
@@ -49,7 +49,7 @@ export class Login2Component implements OnInit {
               };
 
               let rol = sessionStorage.getItem('jobTitle') || "";
-              console.log("Rol: ", rol);
+              //console.log("Rol: ", rol);
               if (rol === "Alumne") {
                 newUser.id_roles = 1;
               } else {
@@ -59,10 +59,10 @@ export class Login2Component implements OnInit {
               newUser.profileImage = sessionStorage.getItem('profileImageUrl') || "http://monlab.ddns.net/images/noUserImage.jpg";
 
               const userCreated = await postUser(newUser);
-              console.log("Api response post user: ", userCreated);
+              //console.log("Api response post user: ", userCreated);
               sessionStorage.setItem("id_usuario", userCreated.id_usuarios);
             } else {
-              console.log("Entra en el else");
+              //console.log("Entra en el else");
               sessionStorage.setItem("id_usuario", userbd.id_usuarios.toString());
             }
 
@@ -85,7 +85,7 @@ export class Login2Component implements OnInit {
   // Método para iniciar el login con Microsoft
   loginWithAzure() {
     if (this.loginInProgress) {
-      //console.log("Login already in progress");
+      ////console.log("Login already in progress");
       return;
     }
 

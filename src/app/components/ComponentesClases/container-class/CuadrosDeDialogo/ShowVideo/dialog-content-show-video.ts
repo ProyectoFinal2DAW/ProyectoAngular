@@ -20,7 +20,7 @@ export class DialogContentShowVideo {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { video: videoClass }, private sanitizer: DomSanitizer) {
     this.video = data.video;
-    //console.log("Received video object: ", this.video);
+    ////console.log("Received video object: ", this.video);
   }
 
   ngOnInit() {
@@ -32,8 +32,8 @@ export class DialogContentShowVideo {
     let urlEnbed = urlBase + urlVideoId;
     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlEnbed);
 
-    //console.log("VideoURL: ", this.videoUrl);
-    ////console.log("contenido clase: ", this.contenidoClase);
+    ////console.log("VideoURL: ", this.videoUrl);
+    //////console.log("contenido clase: ", this.contenidoClase);
 
     //this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video.videos_temario);
 

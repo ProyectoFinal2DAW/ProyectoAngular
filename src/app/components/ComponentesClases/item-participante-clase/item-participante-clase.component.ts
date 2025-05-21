@@ -46,14 +46,14 @@ export class ItemParticipanteClaseComponent {
   
     async openDialogDeleteUserClass(idUser: number) {
   
-      console.log("openDialogDeleteUserClass");
+      //console.log("openDialogDeleteUserClass");
   
       const dialogRef = this.dialog.open(DialogContentDeleteParticipant, {
         data: { idUser: idUser } // Pasar objeto por parámetros
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        //console.log(`Dialog result: ${result}`);
+        ////console.log(`Dialog result: ${result}`);
         if (result) {
           //ejecutar la funcion para eliminar el elemento
           deleteParticipantOfClass(idUser, this.idClase).then(() => {

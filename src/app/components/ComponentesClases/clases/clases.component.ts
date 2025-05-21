@@ -43,7 +43,7 @@ export class ClasesComponent implements AfterViewInit {
   showPanelAddClass() {
 
     this.crearClaseVisible = !this.crearClaseVisible;
-    //console.log("Show pop up add class");  
+    ////console.log("Show pop up add class");  
 
   } */
   async fetchData() {
@@ -54,7 +54,7 @@ export class ClasesComponent implements AfterViewInit {
       this.listClasses = await getClassesByIdUser(this.id_usuario);
     }
 
-    console.log("Lista de clases: ", this.listClasses);
+    //console.log("Lista de clases: ", this.listClasses);
   }
 
   async ngOnInit() {
@@ -85,7 +85,7 @@ export class ClasesComponent implements AfterViewInit {
     });
 
     dialogRefAddClass.afterClosed().subscribe(async result => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
 
       this.fetchData();
     });

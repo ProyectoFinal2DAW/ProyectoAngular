@@ -21,12 +21,12 @@ export class ConfigurationsComponent {
   }
 
   guardar() {
-    //console.log('Guardado');
+    ////console.log('Guardado');
     this.editando = false;
   }
 
   cancelar() {
-    //console.log('Cancelado');
+    ////console.log('Cancelado');
     this.editando = false;
   }
 

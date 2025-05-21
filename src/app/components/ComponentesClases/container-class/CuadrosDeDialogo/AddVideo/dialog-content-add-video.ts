@@ -35,13 +35,13 @@ import { CommonModule } from '@angular/common';
     ngOnInit() {
       this.route.queryParams.subscribe(params => {
         this.id_clase = params['id'];
-        //console.log("Id recibido: " + this.id_clase);
+        ////console.log("Id recibido: " + this.id_clase);
       });
       
       const nombresGuardados = sessionStorage.getItem("nombresTemarios");
       if (nombresGuardados) {
         this.nombresTemarios = JSON.parse(nombresGuardados);
-        //console.log("Nombres de temarios cargados: ", this.nombresTemarios);
+        ////console.log("Nombres de temarios cargados: ", this.nombresTemarios);
       }
     }
   
@@ -66,7 +66,7 @@ import { CommonModule } from '@angular/common';
     async onSubmitCrearVideo() {
   
       if (this.addVideoForm.invalid) {
-        //console.log("Formulario inválido");
+        ////console.log("Formulario inválido");
         alert("Compruebe los campos del formulario");
         return;
       }
@@ -77,11 +77,11 @@ import { CommonModule } from '@angular/common';
         foto_temario: "http://monlab.ddns.net/images/" + this.selectedFile?.name,
         videos_temario: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name,
       }
-      //console.log(newVideo);
+      ////console.log(newVideo);
   
       const response = await postVideoClass(this.id_clase, newVideo);
   
-      console.log("Api response: ", response);
+      ////console.log("Api response: ", response);
       
     }
     

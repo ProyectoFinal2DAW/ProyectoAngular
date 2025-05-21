@@ -14,7 +14,7 @@ export class RedirectComponent implements OnInit {
     this.msalService.handleRedirectObservable().subscribe({
       next: (result) => {
         if (result && result.account) {
-          //console.log('Inicio de sesión exitoso:', result);
+          ////console.log('Inicio de sesión exitoso:', result);
           this.router.navigate(['/home']);
         }
       },

@@ -27,12 +27,12 @@ const baseApiUrl = "http://172.17.22.114:8001/";
 
 export async function uploadFile(file: File) {
 
-    console.log("file: " + file);
+    //console.log("file: " + file);
 
     const formData = new FormData();
     formData.append("file", file);
 
-    /*     console.log("formData: ", formData);
+    /*     //console.log("formData: ", formData);
      */
     try {
         const response = await fetch(baseApiUrl + "upload/", {
@@ -41,7 +41,7 @@ export async function uploadFile(file: File) {
         });
 
         const text = await response.text();
-        console.log("Response body:", text);
+        //console.log("Response body:", text);
 
         // Convertimos el texto en un objeto JSON
         const data = JSON.parse(text);
@@ -49,7 +49,7 @@ export async function uploadFile(file: File) {
         // Accedemos al nombre de la imagen
         const filename = data.filename;
 
-        console.log("Nombre de la imagen:", filename);
+        //console.log("Nombre de la imagen:", filename);
 
 
 
@@ -61,7 +61,7 @@ export async function uploadFile(file: File) {
 
         /* const url = response.url;
         //const filename = response.remote_path;
-        console.log("response", response);
+        //console.log("response", response);
         //const data = await response.json();
         return response.url; */
     } catch (error) {
@@ -74,12 +74,12 @@ export async function uploadFile(file: File) {
 /*----------------------Classes--------------------- */
 //Obtener todas las clases
 export async function getClasses() {
-    //console.log("getClasses()");
+    ////console.log("getClasses()");
 
     let listClases: Class[] = [];
 
     const response = await fetch(baseApiUrl + 'clases/');
-    console.log("response: ", response);
+    //console.log("response: ", response);
 
     if (!response.ok) {
         throw new Error('Error al obtener las clases');
@@ -90,12 +90,12 @@ export async function getClasses() {
     return listClases;
 }
 export async function getClassesByIdUser(id_user: number) {
-    //console.log("getClasses()");
+    ////console.log("getClasses()");
 
     let listClases: Class[] = [];
 
     const response = await fetch(baseApiUrl + 'usuarios/' + id_user + "/clases");
-    console.log("response: ", response);
+    //console.log("response: ", response);
 
     if (!response.ok) {
         throw new Error('Error al obtener las clases');
@@ -108,7 +108,7 @@ export async function getClassesByIdUser(id_user: number) {
 //Crear una clase
 export async function postClasses(newClass: NewClass) {
 
-    //console.log("postClasses()");
+    ////console.log("postClasses()");
 
     const response = await fetch(
         baseApiUrl + "clases/?" +
@@ -136,7 +136,7 @@ export async function postClasses(newClass: NewClass) {
 
 export async function putClases(claseUpdate: UpdateClase) {
 
-    //console.log("putClasses()");
+    ////console.log("putClasses()");
 
     try {
         const response = await fetch(
@@ -162,7 +162,7 @@ export async function putClases(claseUpdate: UpdateClase) {
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener el la clase: ", error);
+        ////console.log("Error al obtener el la clase: ", error);
         alert("No se ha podido actualizar la clase");
         return error;
     }
@@ -196,7 +196,7 @@ export async function getClassById(id_clase: number) {
 
 export async function deleteClassById(idClass: number) {
 
-    //console.log("deleteCuestionarioById()");
+    ////console.log("deleteCuestionarioById()");
 
     try {
         const response = await fetch(
@@ -218,7 +218,7 @@ export async function deleteClassById(idClass: number) {
         return data;
 
     } catch (error) {
-        //console.log("Error al eliminar el cuestionario: ", error);
+        ////console.log("Error al eliminar el cuestionario: ", error);
         alert("No se ha podido eliminar la clase");
         return error;
     }
@@ -243,7 +243,7 @@ export async function getClassLessons(id_clase: Number) {
 
     } catch (error) {
         // Solo mostrar el error si no es 404
-        //console.log("Error al obtener los temarios: ", error);
+        ////console.log("Error al obtener los temarios: ", error);
     }
 
     return lessonsList;
@@ -277,7 +277,7 @@ export async function getContenidoTemario(id_clase: number, id_temario: number) 
 
     } catch (error) {
         // Solo mostrar el error si no es 404
-        //console.log("Error al obtener el contenido del temario: ", error);
+        ////console.log("Error al obtener el contenido del temario: ", error);
     }
 
     return contenidoTemario;
@@ -320,7 +320,7 @@ export async function postTemario(newTemario: NewTemario) {
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener el temario: ", error);
+        ////console.log("Error al obtener el temario: ", error);
         alert("No se ha podido guardar el temario");
         return error;
     }
@@ -362,7 +362,7 @@ export async function putTemario(newTemario: UpdateTemario) {
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener el experimento: ", error);
+        ////console.log("Error al obtener el experimento: ", error);
         alert("No se ha podido guardar el temario");
         return error;
     }
@@ -370,7 +370,7 @@ export async function putTemario(newTemario: UpdateTemario) {
 
 export async function deleteTemarioById(idTemario: number) {
 
-    //console.log("deleteTemarioById()");
+    ////console.log("deleteTemarioById()");
 
     try {
         const response = await fetch(
@@ -391,7 +391,7 @@ export async function deleteTemarioById(idTemario: number) {
         return data;
 
     } catch (error) {
-        //console.log("Error al eliminar el temario: ", error);
+        ////console.log("Error al eliminar el temario: ", error);
         alert("No se ha podido eliminar el temario");
         return error;
     }
@@ -411,7 +411,7 @@ export async function getVideosByClass(id_clase: Number) {
         listVideos = await response.json();
 
     } catch (error) {
-        //console.log("Error al obtener los videos: ", error);
+        ////console.log("Error al obtener los videos: ", error);
 
     }
 
@@ -428,7 +428,13 @@ export async function postVideoClass(id_clases: number, newVideo: NewVideo) {
         videos_temario: newVideo.videos_temario
     }
 
-    //console.log("postVideoClass()");
+    let video = {
+        titulo_video: newVideo.titulo_video,
+        foto_temario: newVideo.foto_temario,
+        videos_temario: newVideo.videos_temario
+    }
+
+    ////console.log("postVideoClass()");
 
     try {
 
@@ -450,7 +456,7 @@ export async function postVideoClass(id_clases: number, newVideo: NewVideo) {
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener el video creado: ", error);
+        ////console.log("Error al obtener el video creado: ", error);
         alert("No se ha podido guardar el video");
         return error;
     }
@@ -479,7 +485,7 @@ export async function getExperimentsDataById(id_experiment: number) {
         experimentsData = experimentsDataList[experimentsDataList.length - 1];
 
     } catch (error) {
-        //console.log("Error al obtener los videos: ", error);
+        ////console.log("Error al obtener los videos: ", error);
 
     }
 
@@ -501,7 +507,7 @@ export async function getTestsByClass(id_clase: Number) {
         listTests = await response.json();
 
     } catch (error) {
-        //console.log("Error al obtener los cuestionarios: ", error);
+        ////console.log("Error al obtener los cuestionarios: ", error);
     }
 
     return listTests;
@@ -515,11 +521,11 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
     //3. Crear POST Temarios Cuestionarios con el id de la clase 
     //   seleccionada, el id cuestionario devuelto en el POST 1 y poner 1 en el temario
 
-    //console.log("postCuestionario()");
+    ////console.log("postCuestionario()");
 
     try {
 
-        //console.log("ruta API: ", baseApiUrl + "cuestionarios/?" +
+        ////console.log("ruta API: ", baseApiUrl + "cuestionarios/?" +
         "nombre_cuestionario=" + newCuestionario.nombre_cuestionario +
             "&descrip_cuestionario=" + newCuestionario.descrip_cuestionario +
             "&foto_cuestionario=" + (newCuestionario.foto_cuestionario || "") +
@@ -545,7 +551,7 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
 
         const data = await response.json();
 
-        //console.log("data: ", data);
+        ////console.log("data: ", data);
 
         const idCuestionario = data.id_questionario;
 
@@ -574,7 +580,7 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
 
 
     } catch (error) {
-        //console.log("Error al obtener el cuestionario: ", error);
+        ////console.log("Error al obtener el cuestionario: ", error);
         alert("No se ha podido guardar el cuestionario");
         return false;
     }
@@ -582,11 +588,11 @@ export async function postCuestionario(newCuestionario: NewCuestionario, listaPr
 export async function postPregunta(newPregunta: NewPregunta, idCuestionario: number) {
 
 
-    //console.log("postPregunta()");
+    ////console.log("postPregunta()");
 
     try {
 
-        //console.log("ruta API: ", baseApiUrl + "preguntas/?" +
+        ////console.log("ruta API: ", baseApiUrl + "preguntas/?" +
         "id_questionario=" + idCuestionario +
             "&enunciado=" + newPregunta.enunciado +
             "&respuesta=" + "11" +
@@ -620,7 +626,7 @@ export async function postPregunta(newPregunta: NewPregunta, idCuestionario: num
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener la pregunta: ", error);
+        ////console.log("Error al obtener la pregunta: ", error);
         alert("No se ha podido guardar la pregunta");
         return error;
     }
@@ -629,11 +635,11 @@ export async function postPregunta(newPregunta: NewPregunta, idCuestionario: num
 export async function postTemariosCuestionarios(id_clases: number, id_questionario: number, id_temario: number) {
 
 
-    //console.log("postTemariosCuestionarios()");
+    ////console.log("postTemariosCuestionarios()");
 
     try {
 
-        //console.log("ruta API: ", baseApiUrl + "temarios_cuestionarios/?" +
+        ////console.log("ruta API: ", baseApiUrl + "temarios_cuestionarios/?" +
         "id_clases=" + id_clases +
             "&id_questionario=" + id_questionario +
             "&id_temario=" + id_temario;
@@ -659,7 +665,7 @@ export async function postTemariosCuestionarios(id_clases: number, id_questionar
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener temarios-cuestionarios: ", error);
+        ////console.log("Error al obtener temarios-cuestionarios: ", error);
         alert("No se ha podido guardar temarios-cuestionarios");
         return error;
     }
@@ -667,7 +673,7 @@ export async function postTemariosCuestionarios(id_clases: number, id_questionar
 
 export async function deleteCuestionarioById(idcuestionario: number) {
 
-    //console.log("deleteCuestionarioById()");
+    ////console.log("deleteCuestionarioById()");
 
     try {
         const response = await fetch(
@@ -688,7 +694,7 @@ export async function deleteCuestionarioById(idcuestionario: number) {
         return data;
 
     } catch (error) {
-        //console.log("Error al eliminar el cuestionario: ", error);
+        ////console.log("Error al eliminar el cuestionario: ", error);
         alert("No se ha podido eliminar el cuestionario");
         return error;
     }
@@ -720,7 +726,7 @@ export async function getClassParticipants(id_clase: Number) {
         }
 
     } catch (error) {
-        //console.log("Error al obtener los participantes: ", error);
+        ////console.log("Error al obtener los participantes: ", error);
     }
 
     return listParticipants;
@@ -744,7 +750,7 @@ export async function getUserWithEmail(email: string) {
 
 
     } catch (error) {
-        console.log("Error al obtener el usuario con el email: ", error);
+        //console.log("Error al obtener el usuario con el email: ", error);
         return null;
     }
 
@@ -753,14 +759,14 @@ export async function getUserWithEmail(email: string) {
 export async function postUser(newUser: NewUser) {
 
     try {
-        console.log(
-            baseApiUrl + "usuarios/?" +
-            "id_roles=" + newUser.id_roles +
-            "&usuario=" + newUser.usuario +
-            "&email=" + newUser.email +
-            "&contrasena=" + newUser.contrasena +
-            "&estado=" + newUser.estado +
-            "&profileImage=" + newUser.profileImage);
+        //console.log(
+        //    baseApiUrl + "usuarios/?" +
+        //    "id_roles=" + newUser.id_roles +
+        //    "&usuario=" + newUser.usuario +
+        //    "&email=" + newUser.email +
+        //    "&contrasena=" + newUser.contrasena +
+        //    "&estado=" + newUser.estado +
+         //   "&profileImage=" + newUser.profileImage);
 
         const response = await fetch(
             baseApiUrl + "usuarios/?" +
@@ -778,7 +784,7 @@ export async function postUser(newUser: NewUser) {
             //body: JSON.stringify(newClass)
         });
 
-        console.log("response: ", response);
+        //console.log("response: ", response);
 
         if (!response.ok) {
             throw new Error('Error al crear el usuario');
@@ -790,7 +796,7 @@ export async function postUser(newUser: NewUser) {
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener el temario: ", error);
+        ////console.log("Error al obtener el temario: ", error);
         alert("No se ha podido guardar el usuario");
         return error;
     }
@@ -824,7 +830,7 @@ export async function postUserIntoClass(id_user: number, id_clase: number) {
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener el temario: ", error);
+        ////console.log("Error al obtener el temario: ", error);
         alert("No se ha podido asignar el usuario a la clase");
         return error;
     }
@@ -832,7 +838,7 @@ export async function postUserIntoClass(id_user: number, id_clase: number) {
 
 export async function deleteParticipantOfClass(idUser: number, idClass: number) {
 
-    //console.log("deleteCuestionarioById()");
+    ////console.log("deleteCuestionarioById()");
 
     try {
         const response = await fetch(
@@ -854,7 +860,7 @@ export async function deleteParticipantOfClass(idUser: number, idClass: number) 
         return data;
 
     } catch (error) {
-        //console.log("Error al eliminar el cuestionario: ", error);
+        ////console.log("Error al eliminar el cuestionario: ", error);
         alert("No se ha podido eliminar el usuario");
         return error;
     }
@@ -874,7 +880,7 @@ export async function getUserRoles() {
         listUserRoles = await response.json();
 
     } catch (error) {
-        //console.log("Error al obtener los participantes: ", error);
+        ////console.log("Error al obtener los participantes: ", error);
     }
 
     return listUserRoles;
@@ -894,7 +900,7 @@ export async function getExperiments() {
         listExperiments = await response.json();
 
     } catch (error) {
-        //console.log("Error al obtener los experimentos: ", error);
+        ////console.log("Error al obtener los experimentos: ", error);
     }
 
     return listExperiments;
@@ -919,7 +925,7 @@ export async function getExperimentById(id_experiment: Number) {
         experiment = await response.json();
 
     } catch (error) {
-        //console.log("Error al obtener el experimento: ", error);
+        ////console.log("Error al obtener el experimento: ", error);
     }
 
     return experiment;
@@ -928,7 +934,7 @@ export async function getExperimentById(id_experiment: Number) {
 
 export async function postExperimento(newExperimento: NewExperimento) {
 
-    //console.log("postExperimento()");
+    ////console.log("postExperimento()");
 
     const response = await fetch(
         baseApiUrl + "experimentos/?" +
@@ -957,7 +963,7 @@ export async function postExperimento(newExperimento: NewExperimento) {
 
 export async function putExperimento(id_experimento: number, newExperimento: NewExperimento) {
 
-    //console.log("putClasses()");
+    ////console.log("putClasses()");
 
     try {
         const response = await fetch(
@@ -983,14 +989,14 @@ export async function putExperimento(id_experimento: number, newExperimento: New
         return data;
 
     } catch (error) {
-        //console.log("Error al obtener el la clase: ", error);
+        ////console.log("Error al obtener el la clase: ", error);
         alert("No se ha podido actualizar el experimento");
         return error;
     }
 }
 export async function deleteExperimentoById(idExperimento: number) {
 
-    //console.log("deleteCuestionarioById()");
+    ////console.log("deleteCuestionarioById()");
 
     try {
         const response = await fetch(
@@ -1012,7 +1018,7 @@ export async function deleteExperimentoById(idExperimento: number) {
         return data;
 
     } catch (error) {
-        //console.log("Error al eliminar el cuestionario: ", error);
+        ////console.log("Error al eliminar el cuestionario: ", error);
         alert("No se ha podido eliminar el cuestionario");
         return error;
     }
@@ -1032,7 +1038,7 @@ export async function getPreguntasCuestionario(idCuestionario: Number) {
         listaPreguntasCuestionario = await response.json();
 
     } catch (error) {
-        //console.log("Error al obtener las preguntas del cuestionario: ", error);
+        ////console.log("Error al obtener las preguntas del cuestionario: ", error);
     }
 
     return listaPreguntasCuestionario;
@@ -1052,7 +1058,7 @@ export async function getNotasUsuarioClase(idUsuario: number, idClase: number) {
         listaNotasUsuarioClase = await response.json();
 
     } catch (error) {
-        //console.log("Error al obtener las notas del usuario en la clase: ", error);
+        ////console.log("Error al obtener las notas del usuario en la clase: ", error);
     }
 
     return listaNotasUsuarioClase;
@@ -1075,7 +1081,7 @@ export async function getNotasClase(idClase: number) {
         listaNotasUsuarioClase = await response.json();
 
     } catch (error) {
-        //console.log("Error al obtener las notas del usuario en la clase: ", error);
+        ////console.log("Error al obtener las notas del usuario en la clase: ", error);
     }
 
     return listaNotasUsuarioClase;
@@ -1087,15 +1093,15 @@ export async function getNotasClase(idClase: number) {
 //Crear un intento de cuestionario
 export async function postResultadosCuestionarios(postResultadoCuestionario: PostResultadoCuestionario) {
 
-    //console.log("postResultadosCuestionarios()");
+    ////console.log("postResultadosCuestionarios()");
 
-    console.log(baseApiUrl + "resultados_cuestionarios/?" +
-        "id_questionario=" + postResultadoCuestionario.id_questionario +
-        "&id_usuarios=" + postResultadoCuestionario.id_usuarios +
-        "&nota=" + postResultadoCuestionario.nota +
+    //console.log(baseApiUrl + "resultados_cuestionarios/?" +
+       // "id_questionario=" + postResultadoCuestionario.id_questionario +
+     //   "&id_usuarios=" + postResultadoCuestionario.id_usuarios +
+       // "&nota=" + postResultadoCuestionario.nota +
 
-        "&total_correctas=" + postResultadoCuestionario.total_correctas +
-        "&total_falladas=" + postResultadoCuestionario.total_falladas);
+      //  "&total_correctas=" + postResultadoCuestionario.total_correctas +
+      //  "&total_falladas=" + postResultadoCuestionario.total_falladas);
 
     const response = await fetch(
         baseApiUrl + "resultados_cuestionarios/?" +

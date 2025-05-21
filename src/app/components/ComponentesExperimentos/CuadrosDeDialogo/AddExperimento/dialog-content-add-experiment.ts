@@ -66,14 +66,14 @@ export class DialogContentAddExperiment {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedFile = input.files[0];
-            //console.log("Archivo seleccionado:", this.selectedFile);
+            ////console.log("Archivo seleccionado:", this.selectedFile);
         }
     }
     onFileSelectedVideo(event: Event) {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedVideoFile = input.files[0];
-            //console.log("Archivo seleccionado:", this.selectedFile);
+            ////console.log("Archivo seleccionado:", this.selectedFile);
         }
     }
 
@@ -96,7 +96,7 @@ export class DialogContentAddExperiment {
             videoUrl = await uploadFile(this.selectedVideoFile);
         }
 
-        //console.log("URL de la imagen:", imageUrl);
+        ////console.log("URL de la imagen:", imageUrl);
 
         if (this.action === 'u') {
 
@@ -137,7 +137,7 @@ export class DialogContentAddExperiment {
 
 
 
-        //console.log("Response:", response);
+        ////console.log("Response:", response);
         this.dialogRef.close(true);
     }
 

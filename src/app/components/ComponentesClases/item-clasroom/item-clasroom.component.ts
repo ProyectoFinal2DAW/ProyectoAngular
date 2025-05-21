@@ -48,7 +48,7 @@ export class ItemClasroomComponent {
     });
 
     dialogRefAddClass.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
       this.elementoEliminado.emit(true);
     });
   }
@@ -65,11 +65,11 @@ export class ItemClasroomComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      ////console.log(`Dialog result: ${result}`);
       if (result) {
         //ejecutar la funcion para eliminar el elemento
         deleteClassById(idClass).then(() => {
-          //console.log('Eliminación completada');
+          ////console.log('Eliminación completada');
           // Aquí puedes actualizar la lista, mostrar un mensaje, etc.
           this.elementoEliminado.emit(true);
 

@@ -53,20 +53,20 @@ export class FormCreateExamComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.id_clase = params['id_class'];
-      //console.log("Id recibido: " + this.id_clase);
+      ////console.log("Id recibido: " + this.id_clase);
     });
 
     const nombresGuardados = sessionStorage.getItem("nombresTemarios");
     if (nombresGuardados) {
       this.nombresTemarios = JSON.parse(nombresGuardados);
-      //console.log("Nombres de temarios cargados:" , this.nombresTemarios);
+      ////console.log("Nombres de temarios cargados:" , this.nombresTemarios);
     }
   }
 
   onSubmitCrearPregunta() {
 
     if (this.addPreguntaForm.invalid) {
-      //console.log("Formulario inválido");
+      ////console.log("Formulario inválido");
       alert("Compruebe los campos del formulario");
       return;
     }
@@ -93,7 +93,7 @@ export class FormCreateExamComponent {
     }
 
     if (this.addCuestionarioform.invalid) {
-      //console.log("Formulario inválido");
+      ////console.log("Formulario inválido");
       alert("Compruebe los campos del formulario");
       return;
     }
@@ -109,7 +109,7 @@ export class FormCreateExamComponent {
     };
 
     const response = await postCuestionario(cuestionarioForm, this.listaPreguntas, this.id_clase, id_temario);
-    //console.log("ApiResponse: ", response);
+    ////console.log("ApiResponse: ", response);
 
     if (response) {
       alert("Cuestionario guardado correctamente");
