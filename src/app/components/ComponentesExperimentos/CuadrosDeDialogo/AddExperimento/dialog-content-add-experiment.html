@@ -3,7 +3,12 @@
     <mat-dialog-content class="mat-typography">
         <form [formGroup]="addExperimentForm" (ngSubmit)="onSubmitCrearExperimento()" class="flex flex-col gap-3">
 
-            <h1 class="text-3xl text-center">Añadir experimento</h1>
+            @if (action === 'u') {
+                <h1 class="text-3xl text-center">Modificar experimento</h1>
+            } @else {
+                <h1 class="text-3xl text-center">Añadir experimento</h1>
+            }
+            
 
             <br>
 
