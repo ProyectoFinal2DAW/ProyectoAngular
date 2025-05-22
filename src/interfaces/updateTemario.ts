@@ -5,5 +5,6 @@ export interface UpdateTemario {
     descrip_temario: string,
     contenido: string,
     foto_temario: string,
-    videos_temario: string
+    videos_temario: string,
+    titulo_video: string
 }

@@ -6,4 +6,5 @@ export interface Temario {
     contenido: string;
     foto_temario: string;
     videos_temario: string;
+    titulo_video: string;
 }

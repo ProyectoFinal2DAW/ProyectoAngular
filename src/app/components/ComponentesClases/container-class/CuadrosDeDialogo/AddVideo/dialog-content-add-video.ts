@@ -28,9 +28,7 @@ import { CommonModule } from '@angular/common';
     constructor(private fb: FormBuilder, private route: ActivatedRoute) {
       this.addVideoForm = this.fb.group({
         tituloVideo: ['', Validators.required],
-        temarioVideo: ['', Validators.required],
-        imagenVideo: ['', Validators.required],
-        videoRuta: ['', Validators.required]
+        temarioVideo: ['', Validators.required]
       });
     }
   
@@ -47,6 +45,23 @@ import { CommonModule } from '@angular/common';
       }
     }
   
+    selectedFile: File | null = null;
+    selectedVideoFile: File | null = null;
+
+    onFileSelected(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.selectedFile = input.files[0];
+            //console.log("Archivo seleccionado:", this.selectedFile);
+        }
+    }
+    onFileSelectedVideo(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.selectedVideoFile = input.files[0];
+            //console.log("Archivo seleccionado:", this.selectedFile);
+        }
+    }
   
     async onSubmitCrearVideo() {
   
@@ -59,8 +74,8 @@ import { CommonModule } from '@angular/common';
       const newVideo: NewVideo = {
         titulo_video: this.addVideoForm.value.tituloVideo,
         temario_video: this.addVideoForm.value.temarioVideo,
-        foto_temario: this.addVideoForm.value.imagenVideo,
-        videos_temario: this.addVideoForm.value.videoRuta
+        foto_temario: "http://monlab.ddns.net/images/" + this.selectedFile?.name,
+        videos_temario: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name,
       }
       ////console.log(newVideo);
   

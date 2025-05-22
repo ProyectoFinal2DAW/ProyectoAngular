@@ -22,15 +22,20 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <mat-label>Imagen del video:</mat-label>
                 <input type="text" formControlName="imagenVideo" matInput />
-            </mat-form-field>
+            </mat-form-field> -->
+            <mat-label>Imagen:</mat-label>
+            <input type="file" (change)="onFileSelected($event)" />
 
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <mat-label>Video:</mat-label>
                 <input type="text" formControlName="videoRuta" matInput />
-            </mat-form-field>
+            </mat-form-field> -->
+
+            <mat-label>Video:</mat-label>
+            <input type="file" (change)="onFileSelectedVideo($event)" />
 
             <button type="submit" class="bg-green-700 px-4 py-2 text-white rounded-lg hover:bg-green-800">Crear
                 video</button>

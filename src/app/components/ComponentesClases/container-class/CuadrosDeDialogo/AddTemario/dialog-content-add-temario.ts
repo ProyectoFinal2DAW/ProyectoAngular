@@ -47,7 +47,8 @@ export class DialogContentAddTemario {
             descripcionTemario: [''],
             contenidoTemario: [''],
             videoTemario: [''],
-            imagenTemario: ['']
+            imagenTemario: [''],
+            tituloVideo: ['']
         });
 
         this.temarioUpdate = data.temario;
@@ -59,6 +60,7 @@ export class DialogContentAddTemario {
             this.addTemarioForm.patchValue({ descripcionTemario: this.temarioUpdate.descrip_temario });
             this.addTemarioForm.patchValue({ contenido: this.temarioUpdate.contenido });
             this.addTemarioForm.patchValue({ videoTemario: this.temarioUpdate.videos_temario });
+            this.addTemarioForm.patchValue({ tituloVideo: this.temarioUpdate.titulo_video });
             //this.addTemarioForm.patchValue({ imagenTemario: this.temarioUpdate.foto_temario });
         }
     }
@@ -130,7 +132,8 @@ export class DialogContentAddTemario {
                 descrip_temario: this.addTemarioForm.value.descripcionTemario,
                 contenido: "http://monlab.ddns.net/images/" + this.selectedPdfFile?.name,
                 foto_temario: "http://monlab.ddns.net/images/" + this.selectedFileImg?.name,
-                videos_temario: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name
+                videos_temario: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name,
+                titulo_video: this.addTemarioForm.value.videoTemario
             }
 
             let response = await postTemario(newTemario);
@@ -165,7 +168,8 @@ export class DialogContentAddTemario {
                 descrip_temario: this.addTemarioForm.value.descripcionTemario,
                 contenido: rutaPdf,
                 foto_temario: rutaImg,
-                videos_temario: rutaVideo
+                videos_temario: rutaVideo,
+                titulo_video: this.addTemarioForm.value.tituloVideo
             }
 
             let response = await putTemario(updateTemario);

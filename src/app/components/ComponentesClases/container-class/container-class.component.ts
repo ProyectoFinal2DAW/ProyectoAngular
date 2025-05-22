@@ -12,7 +12,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ItemParticipanteClaseComponent } from "../item-participante-clase/item-participante-clase.component";
 import { getClassById, getClassLessons, getClassParticipants, getNotasClase, getNotasUsuarioClase, getTestsByClass, getVideosByClass, postVideoClass } from '../../../DBManagement/DBManagement';
 import { NotasUsuarioClase } from '../../../../interfaces/notasUsuarioClase';
-import { CuadroDialogoCrearTemarioComponent } from "../cuadro-dialogo-crear-temario/cuadro-dialogo-crear-temario.component";
 import { MatDialog } from '@angular/material/dialog';
 import { DialogContentAddVideo } from './CuadrosDeDialogo/AddVideo/dialog-content-add-video';
 import { DialogContentShowVideo } from './CuadrosDeDialogo/ShowVideo/dialog-content-show-video';
@@ -22,7 +21,7 @@ import { DialogContentAddParticipant } from './CuadrosDeDialogo/AddParticipant/d
 
 @Component({
   selector: 'app-container-class',
-  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent, RouterLink, CuadroDialogoCrearTemarioComponent, DatePipe],
+  imports: [ItemVideoListClassContentComponent, LayoutListElementOfClassComponent, LayoutListExamsOfClassComponent, MatTabsModule, ItemParticipanteClaseComponent, RouterLink, DatePipe],
   templateUrl: './container-class.component.html',
   styleUrl: './container-class.component.css'
 })
@@ -44,7 +43,8 @@ export class ContainerClassComponent {
     descrip_temario: "",
     contenido: "",
     foto_temario: "",
-    videos_temario: ""
+    videos_temario: "",
+    titulo_video: ""
   }
 
   datosClase: Class = {
@@ -88,6 +88,10 @@ export class ContainerClassComponent {
     this.fetchData();
   }
 
+   async actualizarVideos() {
+    this.listaVideos = await getVideosByClass(this.id_clase);
+  }
+
   async fetchData() {
 
     ////console.log("fetchData()");
@@ -121,7 +125,7 @@ export class ContainerClassComponent {
     } else {
       this.listaNotasUsuarioClase = await getNotasUsuarioClase(this.idUsuario, this.id_clase)
     }
-    //console.log("Notas: ", this.listaNotasUsuarioClase);
+    console.log("Notas: ", this.listaNotasUsuarioClase);
   }
 
   async actualizarTemarios(evento: boolean) {
@@ -129,6 +133,7 @@ export class ContainerClassComponent {
     //console.log("Actualizar lista temarios");
     this.listaTemarios = await getClassLessons(this.id_clase);
 
+    await this.actualizarVideos();
     //TODO: se elimina correctamente pero no se refresca la lista
 
   }
@@ -172,7 +177,8 @@ export class ContainerClassComponent {
     });
 
     dialogRefAddVideo.afterClosed().subscribe(result => {
-      ////console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
+      this.actualizarVideos();
     });
   }
   //---------------------------------------------------------------------
