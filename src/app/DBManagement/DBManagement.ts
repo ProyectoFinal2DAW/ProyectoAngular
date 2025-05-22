@@ -22,6 +22,7 @@ import { getUserImageWithEmail } from "./AzureManagement";
 import { UpdateTemario } from "../../interfaces/updateTemario";
 
 const baseApiUrl = "http://172.17.22.114:8001/";
+//const baseApiUrl = "http://localhost:8005/";
 
 /*------------------ Subir archivos -----------------*/
 
