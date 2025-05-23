@@ -1,6 +1,7 @@
 export interface DistanceTimeData {
-    dist: number,
-    tiempo: Date,
-    velocidad: number,
-    aceleracion: number,
+  dist: number;
+  tiempo: Date;
+  tiempoSegundos: number;
+  velocidad: number;
+  aceleracion: number;
 }

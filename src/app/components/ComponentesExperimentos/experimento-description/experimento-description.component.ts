@@ -40,7 +40,6 @@ export class ExperimentoDescriptionComponent {
     tiempo5: new Date(),
   };
 
-  listaTiempos: Date[] = [];
   distanceTimeData: DistanceTimeData[] = [];
 
   constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
@@ -48,7 +47,7 @@ export class ExperimentoDescriptionComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.id_experiment = params['id'];
-      this.fetchData(); // Llamamos aquí al cargar
+      this.fetchData();
     });
   }
 
@@ -56,19 +55,25 @@ export class ExperimentoDescriptionComponent {
     this.experiment = await getExperimentById(this.id_experiment);
     this.experiment_data = await getExperimentsDataById(this.id_experiment);
 
-    this.listaTiempos = [
+    const tiemposOriginales: Date[] = [
       new Date(this.experiment_data.tiempo1),
       new Date(this.experiment_data.tiempo2),
       new Date(this.experiment_data.tiempo3),
       new Date(this.experiment_data.tiempo4)
     ];
 
+    const tiempoBase = tiemposOriginales[0].getTime();
     this.distanceTimeData = [];
 
-    for (let i = 0; i < this.listaTiempos.length; i++) {
+    const DISTANCIA_ENTRE_SENSORES = 0.5; // 50 cm = 0.5 metros
+
+    for (let i = 0; i < tiemposOriginales.length; i++) {
+      const tiempoRelativo = (tiemposOriginales[i].getTime() - tiempoBase) / 1000;
+
       let object: DistanceTimeData = {
-        dist: i === 0 ? 0 : this.distanceTimeData[i - 1].dist + 800,
-        tiempo: this.listaTiempos[i],
+        dist: i * DISTANCIA_ENTRE_SENSORES,
+        tiempo: new Date(tiempoBase + tiempoRelativo * 1000),
+        tiempoSegundos: tiempoRelativo,
         velocidad: 0,
         aceleracion: 0
       };
@@ -76,7 +81,7 @@ export class ExperimentoDescriptionComponent {
       if (i > 0) {
         const prev = this.distanceTimeData[i - 1];
         const deltaDist = object.dist - prev.dist;
-        const deltaTime = (object.tiempo.getTime() - prev.tiempo.getTime()) / 1000;
+        const deltaTime = object.tiempoSegundos - prev.tiempoSegundos;
 
         object.velocidad = deltaTime !== 0 ? deltaDist / deltaTime : 0;
 
@@ -108,7 +113,7 @@ export class ExperimentoDescriptionComponent {
     new Chart(this.chartCanvas1.nativeElement, {
       type: 'line',
       data: {
-        labels: this.getTiempoLabels(),
+        labels: this.distanceTimeData.map(d => `${d.tiempoSegundos.toFixed(2)}s`),
         datasets: [{
           label: 'Distancia (m)',
           data: this.distanceTimeData.map(d => d.dist),
@@ -126,7 +131,7 @@ export class ExperimentoDescriptionComponent {
     new Chart(this.chartCanvas2.nativeElement, {
       type: 'line',
       data: {
-        labels: this.getTiempoLabels(),
+        labels: this.distanceTimeData.map(d => `${d.tiempoSegundos.toFixed(2)}s`),
         datasets: [{
           label: 'Velocidad (m/s)',
           data: this.distanceTimeData.map(d => d.velocidad),
@@ -144,7 +149,7 @@ export class ExperimentoDescriptionComponent {
     new Chart(this.chartCanvas3.nativeElement, {
       type: 'line',
       data: {
-        labels: this.getTiempoLabels(),
+        labels: this.distanceTimeData.map(d => `${d.tiempoSegundos.toFixed(2)}s`),
         datasets: [{
           label: 'Aceleración (m/s²)',
           data: this.distanceTimeData.map(d => d.aceleracion),
@@ -153,14 +158,6 @@ export class ExperimentoDescriptionComponent {
         }]
       },
       options: this.getChartOptions('Tiempo (s)', 'Aceleración (m/s²)')
-    });
-  }
-
-  getTiempoLabels(): string[] {
-    const baseTime = this.distanceTimeData[0]?.tiempo.getTime() || 0;
-    return this.distanceTimeData.map(d => {
-      const delta = (d.tiempo.getTime() - baseTime) / 1000;
-      return `${delta.toFixed(2)}s`;
     });
   }
 
