@@ -48,7 +48,6 @@ export class ExperimentoDescriptionComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.id_experiment = params['id'];
-      ////console.log("Id recibido: " + this.id_experiment);
       this.fetchData(); // Llamamos aquí al cargar
     });
   }
@@ -56,15 +55,17 @@ export class ExperimentoDescriptionComponent {
   async fetchData() {
     this.experiment = await getExperimentById(this.id_experiment);
     this.experiment_data = await getExperimentsDataById(this.id_experiment);
-    ////console.log("ExperimentData: ", this.experiment_data);
 
     this.listaTiempos = [
       new Date(this.experiment_data.tiempo1),
       new Date(this.experiment_data.tiempo2),
-      new Date(this.experiment_data.tiempo3)
+      new Date(this.experiment_data.tiempo3),
+      new Date(this.experiment_data.tiempo4)
     ];
 
-    for (let i = 0; i < 3; i++) {
+    this.distanceTimeData = [];
+
+    for (let i = 0; i < this.listaTiempos.length; i++) {
       let object: DistanceTimeData = {
         dist: i === 0 ? 0 : this.distanceTimeData[i - 1].dist + 800,
         tiempo: this.listaTiempos[i],
@@ -89,8 +90,6 @@ export class ExperimentoDescriptionComponent {
       this.distanceTimeData.push(object);
     }
 
-    ////console.log("DistanceTimeData: ", this.distanceTimeData);
-
     const url = this.experiment.video_experimento;
     if (url.includes("?v=")) {
       const urlBase = "https://www.youtube.com/embed/";
@@ -98,7 +97,6 @@ export class ExperimentoDescriptionComponent {
       this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlBase + urlVideoId);
     }
 
-    // Renderizar gráficos ahora que tenemos los datos
     this.renderChart1();
     this.renderChart2();
     this.renderChart3();
