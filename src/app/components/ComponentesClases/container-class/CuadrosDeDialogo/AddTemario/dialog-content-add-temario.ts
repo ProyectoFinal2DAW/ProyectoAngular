@@ -130,9 +130,9 @@ export class DialogContentAddTemario {
                 id_clases: this.id_clase,
                 nombre_temario: this.addTemarioForm.value.nombreTemario,
                 descrip_temario: this.addTemarioForm.value.descripcionTemario,
-                contenido: "http://monlab.ddns.net/images/" + this.selectedPdfFile?.name,
-                foto_temario: "http://monlab.ddns.net/images/" + this.selectedFileImg?.name,
-                videos_temario: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name,
+                contenido: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedPdfFile?.name,
+                foto_temario: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedFileImg?.name,
+                videos_temario: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedVideoFile?.name,
                 titulo_video: this.addTemarioForm.value.videoTemario
             }
 
@@ -146,19 +146,19 @@ export class DialogContentAddTemario {
             if (!this.selectedFileImg) {
                 rutaImg = this.temarioUpdate.foto_temario;
             } else {
-                rutaImg = "http://monlab.ddns.net/images/" + this.selectedFileImg?.name;
+                rutaImg = "http://apimonlab.alumnes-monlau.com/images/" + this.selectedFileImg?.name;
             }
             let rutaVideo = "";
             if (!this.selectedVideoFile) {
                 rutaVideo = this.temarioUpdate.videos_temario;
             } else {
-                rutaVideo = "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name;
+                rutaVideo = "http://apimonlab.alumnes-monlau.com/images/" + this.selectedVideoFile?.name;
             }
             let rutaPdf = "";
             if (!this.selectedPdfFile) {
                 rutaPdf = this.temarioUpdate.contenido;
             } else {
-                rutaPdf = "http://monlab.ddns.net/images/" + this.selectedPdfFile?.name;
+                rutaPdf = "http://apimonlab.alumnes-monlau.com/images/" + this.selectedPdfFile?.name;
             }
 
             const updateTemario: UpdateTemario = {

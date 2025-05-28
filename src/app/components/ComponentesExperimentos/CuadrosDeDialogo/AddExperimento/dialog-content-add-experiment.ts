@@ -104,13 +104,13 @@ export class DialogContentAddExperiment {
             if (!this.selectedFile) {
                 rutaImg = this.experimentUpdate.foto_experimento;
             } else {
-                rutaImg = "http://monlab.ddns.net/images/" + this.selectedFile?.name;
+                rutaImg = "http://apimonlab.alumnes-monlau.com/images/" + this.selectedFile?.name;
             }
             let rutaVideo = "";
             if (!this.selectedVideoFile) {
                 rutaVideo = this.experimentUpdate.video_experimento;
             } else {
-                rutaVideo = "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name;
+                rutaVideo = "http://apimonlab.alumnes-monlau.com/images/" + this.selectedVideoFile?.name;
             }
 
 
@@ -128,8 +128,8 @@ export class DialogContentAddExperiment {
             const newExperimento: NewExperimento = {
                 nombre_experimento: this.addExperimentForm.value.nombreExperimento,
                 descrip_experimento: this.addExperimentForm.value.descripcionExperimento,
-                foto_experimento: "http://monlab.ddns.net/images/" + this.selectedFile?.name,
-                video_experimento: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name,
+                foto_experimento: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedFile?.name,
+                video_experimento: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedVideoFile?.name,
             };
 
             const response = await postExperimento(newExperimento);

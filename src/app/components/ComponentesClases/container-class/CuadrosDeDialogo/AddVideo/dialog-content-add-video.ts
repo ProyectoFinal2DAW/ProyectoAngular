@@ -74,8 +74,8 @@ import { CommonModule } from '@angular/common';
       const newVideo: NewVideo = {
         titulo_video: this.addVideoForm.value.tituloVideo,
         temario_video: this.addVideoForm.value.temarioVideo,
-        foto_temario: "http://monlab.ddns.net/images/" + this.selectedFile?.name,
-        videos_temario: "http://monlab.ddns.net/images/" + this.selectedVideoFile?.name,
+        foto_temario: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedFile?.name,
+        videos_temario: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedVideoFile?.name,
       }
       ////console.log(newVideo);
   

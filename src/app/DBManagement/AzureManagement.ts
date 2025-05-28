@@ -7,7 +7,7 @@ export async function getUserRole(result: any) {
         .then(response => response.json())
         .then((rolesResponse: any) => {
             sessionStorage.setItem('jobTitle', rolesResponse.jobTitle || "");
-           // sessionStorage.setItem('jobTitle', "fgttrerfg");
+            //sessionStorage.setItem('jobTitle', "fgttrerfg");
             //console.log('Roles del usuario:', rolesResponse);
         })
 }
@@ -35,7 +35,7 @@ export async function getUserImage(result: any) {
         })
         .catch(error => {
             console.error('Error al obtener la imagen de perfil:', error);
-            sessionStorage.setItem('profileImageUrl', "http://monlab.ddns.net/images/noUserImage.jpg");
+            sessionStorage.setItem('profileImageUrl', "http://apimonlab.alumnes-monlau.com/images/noUserImage.jpg");
         });
 }
 
@@ -79,7 +79,7 @@ export async function getUserImageWithEmail(accessToken: string, email: string) 
         return imageUrl;
     } else {
         console.warn('El usuario no tiene imagen de perfil.');
-        return "http://monlab.ddns.net/images/noUserImage.jpg"; // URL de imagen por defecto
+        return "http://apimonlab.alumnes-monlau.com/images/noUserImage.jpg"; // URL de imagen por defecto
     }
 
 }
