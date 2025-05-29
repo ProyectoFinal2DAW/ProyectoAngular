@@ -22,9 +22,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 export function MSALInstanceFactory() {
   return new PublicClientApplication({
     auth: {
-      clientId: 'a6dd013d-c01a-4f15-9b51-2e96f7d57339',
+      clientId: '16176e00-0931-40e6-bca3-9c181a76f11f',
       authority: 'https://login.microsoftonline.com/481fa64d-78ed-4ec6-ba40-c327c2b194f6',
-      redirectUri: 'http://monlab.alumnes-monlau.com/callback'
+      redirectUri: 'http://monlab.alumnes-monlau.com/callback2'
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
