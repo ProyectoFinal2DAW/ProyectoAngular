@@ -23,7 +23,7 @@ import { UpdateTemario } from "../../interfaces/updateTemario";
 
 
 //const baseApiUrl = "http://monlab.ddns.net:6956/";
-const baseApiUrl = "http://localhost:8001/";
+const baseApiUrl = "http://monlab.alumnes-monlau.com:8000/";
 
 /*------------------ Subir archivos -----------------*/
 
