@@ -35,7 +35,7 @@ export async function getUserImage(result: any) {
         })
         .catch(error => {
             console.error('Error al obtener la imagen de perfil:', error);
-            sessionStorage.setItem('profileImageUrl', "http://apimonlab.alumnes-monlau.com/images/noUserImage.jpg");
+            sessionStorage.setItem('profileImageUrl', "https://monlab.alumnes-monlau.com/imagesnoUserImage.jpg");
         });
 }
 
@@ -79,7 +79,7 @@ export async function getUserImageWithEmail(accessToken: string, email: string) 
         return imageUrl;
     } else {
         console.warn('El usuario no tiene imagen de perfil.');
-        return "http://apimonlab.alumnes-monlau.com/images/noUserImage.jpg"; // URL de imagen por defecto
+        return "https://monlab.alumnes-monlau.com/imagesnoUserImage.jpg"; // URL de imagen por defecto
     }
 
 }

@@ -130,9 +130,9 @@ export class DialogContentAddTemario {
                 id_clases: this.id_clase,
                 nombre_temario: this.addTemarioForm.value.nombreTemario,
                 descrip_temario: this.addTemarioForm.value.descripcionTemario,
-                contenido: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedPdfFile?.name,
-                foto_temario: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedFileImg?.name,
-                videos_temario: "http://apimonlab.alumnes-monlau.com/images/" + this.selectedVideoFile?.name,
+                contenido: "https://monlab.alumnes-monlau.com/images" + this.selectedPdfFile?.name,
+                foto_temario: "https://monlab.alumnes-monlau.com/images" + this.selectedFileImg?.name,
+                videos_temario: "https://monlab.alumnes-monlau.com/images" + this.selectedVideoFile?.name,
                 titulo_video: this.addTemarioForm.value.videoTemario
             }
 
@@ -146,19 +146,19 @@ export class DialogContentAddTemario {
             if (!this.selectedFileImg) {
                 rutaImg = this.temarioUpdate.foto_temario;
             } else {
-                rutaImg = "http://apimonlab.alumnes-monlau.com/images/" + this.selectedFileImg?.name;
+                rutaImg = "https://monlab.alumnes-monlau.com/images" + this.selectedFileImg?.name;
             }
             let rutaVideo = "";
             if (!this.selectedVideoFile) {
                 rutaVideo = this.temarioUpdate.videos_temario;
             } else {
-                rutaVideo = "http://apimonlab.alumnes-monlau.com/images/" + this.selectedVideoFile?.name;
+                rutaVideo = "https://monlab.alumnes-monlau.com/images" + this.selectedVideoFile?.name;
             }
             let rutaPdf = "";
             if (!this.selectedPdfFile) {
                 rutaPdf = this.temarioUpdate.contenido;
             } else {
-                rutaPdf = "http://apimonlab.alumnes-monlau.com/images/" + this.selectedPdfFile?.name;
+                rutaPdf = "https://monlab.alumnes-monlau.com/images" + this.selectedPdfFile?.name;
             }
 
             const updateTemario: UpdateTemario = {

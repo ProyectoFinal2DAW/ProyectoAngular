@@ -56,7 +56,7 @@ export class Login2Component implements OnInit {
                 newUser.id_roles = 2;
               }
 
-              newUser.profileImage = sessionStorage.getItem('profileImageUrl') || "http://apimonlab.alumnes-monlau.com/images/noUserImage.jpg";
+              newUser.profileImage = sessionStorage.getItem('profileImageUrl') || "https://monlab.alumnes-monlau.com/imagesnoUserImage.jpg";
 
               const userCreated = await postUser(newUser);
               //console.log("Api response post user: ", userCreated);

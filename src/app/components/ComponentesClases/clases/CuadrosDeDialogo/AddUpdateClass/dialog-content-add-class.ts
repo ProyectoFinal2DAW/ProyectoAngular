@@ -81,7 +81,7 @@ export class DialogContentAddClass {
                 nombre_clases: this.addClassForm.value.className,
                 descripcion_clases: this.addClassForm.value.classDescription,
                 contenido: this.addClassForm.value.classContent,
-                foto_clases: "http://apimonlab.alumnes-monlau.com/images/" + imageUrl,
+                foto_clases: "https://monlab.alumnes-monlau.com/images" + imageUrl,
                 video_clases: "",
             };
 
@@ -95,7 +95,7 @@ export class DialogContentAddClass {
 
             let rutaImg = this.claseUpdate.foto_clases;
             if (this.selectedFile) {
-                rutaImg = "http://apimonlab.alumnes-monlau.com/images/" + imageUrl;
+                rutaImg = "https://monlab.alumnes-monlau.com/images" + imageUrl;
             } else {
                 rutaImg = this.claseUpdate.foto_clases;
             }
